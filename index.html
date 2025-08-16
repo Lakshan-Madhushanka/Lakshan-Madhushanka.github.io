@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lakshan Madhushanka | Portfolio</title>
+    <meta name="description" content="Researcher & Lecturer in Computer Engineering, Medical Imaging, AI.">
+    <meta property="og:title" content="Lakshan Madhushanka | Portfolio">
+    <meta property="og:description" content="Researcher & Lecturer in Computer Engineering, Medical Imaging, AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lakshan.info">
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container row">
+        <a class="brand" href="#top">Lakshan<span>.info</span></a>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#work">Projects</a>
+          <a href="#pubs">Publications</a>
+          <a href="#talks">Talks</a>
+          <a href="#contact" class="cta">Contact</a>
+          <button id="themeToggle" aria-label="Toggle theme">☾</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero container">
+        <div class="hero-text">
+          <h1>Hi, I'm <span class="grad">Lakshan</span>.</h1>
+          <p class="lead">
+            Lecturer & researcher in <strong>Computer Engineering</strong> —
+            working on <strong>medical imaging</strong> (OCT, histopathology), <strong>AI</strong> and <strong>robotics</strong>.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#work">See Projects</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+          <ul class="social">
+            <li><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar</a></li>
+            <li><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <img src="assets/profile-placeholder.png" alt="Profile illustration" />
+        </div>
+      </section>
+
+      <section id="about" class="container section">
+        <h2>About</h2>
+        <p>
+          I’m a Lecturer in the Department of Computer Engineering at the University of Sri Jayewardenepura, Sri Lanka.
+          My interests include biomedical image processing, embedded systems, and machine learning. I’ve worked with
+          OCT scanners, slide scanners, Jetson devices, and ROS-based robots.
+        </p>
+        <div class="grid two">
+          <div class="card">
+            <h3>Focus Areas</h3>
+            <ul>
+              <li>OCT-based plant & oral cancer imaging</li>
+              <li>Histopathology grading with CNNs & Transformers</li>
+              <li>Embedded CV on Jetson / Raspberry Pi</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Highlights</h3>
+            <ul>
+              <li>IEEE volunteer and reviewer</li>
+              <li>Award-winning undergraduate projects</li>
+              <li>Hands-on with MONAI, PyTorch, TensorFlow</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="container section">
+        <h2>Projects</h2>
+        <div class="grid three">
+          <article class="card">
+            <h3>OCT Tea Leaf Disease</h3>
+            <p>Early detection & severity grading using CvT/ViT on small datasets.</p>
+            <a class="inline" href="#" target="_blank" rel="noreferrer">Preprint (soon)</a>
+          </article>
+          <article class="card">
+            <h3>Oral Cancer Grading</h3>
+            <p>Histology-based grading with transformers + explainable AI.</p>
+            <a class="inline" href="#" target="_blank" rel="noreferrer">Project</a>
+          </article>
+          <article class="card">
+            <h3>PredictGL</h3>
+            <p>Web app predicting meal glycemic load using ensemble models.</p>
+            <a class="inline" href="#" target="_blank" rel="noreferrer">Demo</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="pubs" class="container section">
+        <h2>Publications</h2>
+        <ul class="list">
+          <li>[2025] Benchmarking Transformer Architectures for OCT Image Classification: A Comparative Study with CNNs.</li>
+          <li>[2024] PredictGL: A Web App for Glycemic Load Estimation with Ensemble Methods.</li>
+        </ul>
+      </section>
+
+      <section id="talks" class="container section">
+        <h2>Talks & Service</h2>
+        <ul class="list">
+          <li>Guest Speaker — IEEE YP Bangladesh International Talk Series</li>
+          <li>Reviewer — Computing Technology Track</li>
+          <li>IEEE Roles — Treasurer (2024), SAC (2023), SIGHT (2022)</li>
+        </ul>
+      </section>
+
+      <section id="contact" class="container section">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:hello@lakshan.info">hello@lakshan.info</a></p>
+        <form class="contact" onsubmit="return false;">
+          <label>
+            <span>Your email</span>
+            <input type="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea rows="4" placeholder="Hi Lakshan, I’d like to collaborate on..."></textarea>
+          </label>
+          <button class="btn primary" type="submit" onclick="alert('This is a static demo form. Replace with formspree or your backend.')">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container row">
+        <small>© <span id="year"></span> Lakshan Madhushanka. All rights reserved.</small>
+        <a class="inline" href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
