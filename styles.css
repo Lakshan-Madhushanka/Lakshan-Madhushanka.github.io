@@ -552,3 +552,74 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 @media (prefers-reduced-motion: reduce) {
   .will-animate, .will-animate-stagger > *, .reveal { animation:none!important; transition:none!important; transform:none!important; opacity:1!important; }
 }
+
+/* === FIX: logo on spine + card beside it (no stretch) === */
+
+/* Center spine (keep your existing spine rule or use this) */
+.alt-timeline { position: relative; }
+.alt-timeline::before{
+  content:""; position:absolute; top:0; bottom:0;
+  left:50%; transform:translateX(-50%);
+  width:2px; background: color-mix(in oklab, var(--muted), transparent 70%);
+}
+
+/* Each entry is a flex row; height equals the card's height */
+.alt-item{
+  position: relative;
+  display: flex;
+  align-items: center;     /* vertical centering */
+  margin: 0.1rem 0;
+}
+
+/* Leave room for the spine & dot */
+.alt-item.left  { justify-content: flex-end;  padding-right: calc(64px + 550px); }
+.alt-item.right { justify-content: flex-start; padding-left:  calc(64px + 550px); }
+
+/* Card: back in normal flow (NOT absolute) */
+.alt-card{
+  position: relative;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 80%);
+  border-radius: 14px;
+  padding: .9rem 1rem;
+  box-shadow: 0 8px 26px color-mix(in oklab, var(--ring), transparent 60%);
+}
+
+/* Connector centered into the card */
+.alt-card::before{
+  content:""; position:absolute; top:50%; transform:translateY(-50%);
+  width:32px; height:2px;
+  background: color-mix(in oklab, var(--muted), transparent 40%);
+}
+.alt-item.left  .alt-card::before{ right:-32px; }
+.alt-item.right .alt-card::before{ left: -32px; }
+
+/* Dot: pinned on the center spine, vertically centered to the item */
+.alt-dot{
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width:64px; height:64px; border-radius:50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--ring), transparent 55%);
+  display: grid; place-items: center; overflow: hidden; z-index: 2;
+}
+.alt-dot img{ width:100%; height:100%; object-fit:cover; }
+
+/* Mobile: move spine left; put all cards to the right */
+@media (max-width: 900px){
+  .alt-timeline::before{ left:1rem; transform:none; }
+  .alt-dot{ left:1rem; transform: translate(0, -50%); }
+
+  .alt-item.left,
+  .alt-item.right{
+    justify-content: flex-start;
+    padding-left: calc(64px + 16px);
+    padding-right: 0;
+  }
+
+  .alt-item .alt-card::before{ left:-32px; right:auto; }
+}
+

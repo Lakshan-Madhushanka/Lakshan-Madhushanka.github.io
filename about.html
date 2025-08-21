@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lakshan Madhushanka Bandara | Portfolio</title>
-    <meta name="description" content="Lecturer & Researcher — teaching, sessions, volunteering, blog, research & publications, travel.">
+    <title>About — Lakshan Madhushanka Bandara</title>
+    <meta name="description" content="About Lakshan Madhushanka Bandara — lecturer & researcher in medical imaging, AI, and robotics.">
     <link rel="icon" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,16 +34,27 @@
     </header>
 
     <main id="top">
-      <!-- Hero -->
-      <section class="hero container">
+      <!-- Hero (animated) -->
+      <section class="hero container will-animate">
         <div class="hero-text">
-          <h1>Hi, I'm <br><span class="grad">Lakshan Madhushanka Bandara</span>.</h1>
+          <h1>Hi, I'm <br><span class="grad grad-anim">Lakshan Madhushanka Bandara</span>.</h1>
           <p class="lead">
             Lecturer & researcher in <strong>Computer Engineering</strong> — working on
             <strong>medical imaging</strong>, <strong>AI</strong> and <strong>robotics</strong>.
           </p>
 
-          <ul class="social" style="display:flex;gap:1.2rem;list-style:none;padding:0;margin:.5rem 0 0;font-size:1.5rem;">
+          <!-- Action buttons -->
+          <div class="hero-actions will-animate-stagger" style="margin-top:.8rem">
+            <a class="btn" href="assets/Lakshan.jpg" download>
+              <i class="fa-solid fa-id-badge" style="margin-right:.45rem"></i> Download headshot
+            </a>
+            <a class="btn primary" href="assets/Lakshan_Madhushanka_Bandara_CV.pdf" download>
+              <i class="fa-solid fa-file-lines" style="margin-right:.45rem"></i> Download CV
+            </a>
+          </div>
+
+          <!-- Social -->
+          <ul class="social will-animate-stagger" style="display:flex;gap:1.2rem;list-style:none;padding:0;margin:.75rem 0 0;font-size:1.5rem;">
             <li>
               <a class="inline" href="https://scholar.google.com/citations?user=CIf6nxcAAAAJ&hl=en"
                  target="_blank" rel="noreferrer" aria-label="Google Scholar">
@@ -66,21 +77,21 @@
         </div>
 
         <div class="hero-art">
-          <img src="assets/Lakshan.jpg" alt="Profile illustration" />
+          <img src="assets/Lakshan.jpg" alt="Profile portrait" />
         </div>
       </section>
 
-      <!-- About -->
+      <!-- About (reveal on scroll) -->
       <section id="about" class="container section">
-        <h2>About</h2>
-        <p>
-          I’m a Electrical and Electronic Engineering Graduate of Faculty of Engieering, University of Peradeniya.
-          Currently Serving as a Lecturer in the Department of Computer Engineering at the University of Sri Jayewardenepura, Sri Lanka.
+        <h2 class="reveal">About</h2>
+        <p class="reveal">
+          I’m an Electrical and Electronic Engineering graduate (University of Peradeniya) and currently a Lecturer
+          in the Department of Computer Engineering at the University of Sri Jayewardenepura, Sri Lanka.
           My interests include biomedical image processing, embedded systems, and machine learning. I’ve worked with
           OCT scanners, slide scanners, Jetson devices, and ROS-based robots.
         </p>
         <div class="grid two">
-          <div class="card">
+          <div class="card reveal">
             <h3>Focus Areas</h3>
             <ul class="list">
               <li>OCT-based plant & oral cancer imaging</li>
@@ -88,7 +99,7 @@
               <li>Embedded CV on Jetson / Raspberry Pi</li>
             </ul>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <h3>Highlights</h3>
             <ul class="list">
               <li>IEEE volunteer and reviewer</li>
@@ -99,7 +110,7 @@
         </div>
       </section>
 
-      <!-- TIMELINES -->
+      <!-- TIMELINES (reveal + animate) -->
       <section class="container section">
         <!-- Education -->
         <h2 class="reveal">Education</h2>
@@ -205,7 +216,36 @@
       <a class="inline" href="#top">Back to top ↑</a>
     </footer>
 
-    <!-- JS (placed at end so animations/hooks can attach) -->
+    <!-- Main JS -->
     <script src="script.js"></script>
+
+    <!-- Fallback: first‑load + scroll‑reveal (keeps page animated even if script.js lacks it) -->
+    <script>
+      (function () {
+        // First-load class so .will-animate elements fade in
+        setTimeout(() => document.documentElement.classList.add('page-loaded'), 60);
+
+        // Reveal on scroll
+        const targets = document.querySelectorAll('.reveal');
+        if (!targets.length) return;
+
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) { targets.forEach(el => el.classList.add('is-visible')); return; }
+
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.12 });
+          targets.forEach(el => io.observe(el));
+        } else {
+          targets.forEach(el => el.classList.add('is-visible'));
+        }
+      })();
+    </script>
   </body>
 </html>
