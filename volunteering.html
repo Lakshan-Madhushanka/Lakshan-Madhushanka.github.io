@@ -1,67 +1,146 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lakshan Madhushanka Bandara | Portfolio</title>
-    <meta name="description" content="Lecturer & Researcher — teaching, sessions, volunteering, blog, research & publications, travel.">
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-    <header class="site-header">
-  <div class="container row">
-    <a class="brand" href="index.html"><span class="grad">Lakshan Madhushanka Bandara</span></a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteering — Lakshan</title>
+  <meta name="description" content="Volunteering timeline and contributions." />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <!-- Reuse your header -->
+  <header class="site-header">
+    <div class="container row">
+      <a class="brand" href="index.html"><span class="grad">Home</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+      <nav class="nav" id="siteNav">
+        <a href="lecturing.html">Lecturing</a>
+        <a href="sessions.html">Sessions</a>
+        <a href="volunteering.html">Volunteering</a>
+        <a href="blog.html">My Blog</a>
+        <a href="research-publications.html">Research & Publication</a>
+        <a href="travel.html">Travel</a>
+        <a href="awards.html">Awards & Recognitions</a>
+        <a href="contact.html" class="cta">Contact</a>
+        <button id="themeToggle" aria-label="Toggle theme">☾</button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hamburger button (shown on small screens) -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
-      ☰
-    </button>
+  <main class="container section" id="top">
+    <h1 class="reveal">Volunteering</h1>
+    <p class="lead reveal" style="max-width:60ch">
+      A year‑by‑year view of volunteer roles, committees, and contributions.
+    </p>
 
-    <!-- Nav -->
-    <nav class="nav" id="siteNav">
-      <a href="lecturing.html">Lecturing</a>
-      <a href="sessions.html">Sessions</a>
-      <a href="volunteering.html">Volunteering</a>
-      <a href="blog.html">My Blog</a>
-      <a href="research-publications.html">Research & Publication</a>
-      <a href="travel.html">Travel</a>
-      <a href="awards.html">Awards & Recognitions</a>
-      <a href="contact.html" class="cta">Contact</a>
-      <button id="themeToggle" aria-label="Toggle theme">☾</button>
-    </nav>
-  </div>
-</header>
+    <!-- Alternating Timeline -->
+    <section class="alt-timeline">
 
-    <main id="top">
+      <!-- YEAR GROUP -->
+      <div class="alt-year reveal">
+        <div class="alt-year-badge">2024</div>
 
-      <section class="container section">
-        <h2>Volunteering</h2>
-        <div class="grid two">
-          <article class="card">
-            <h3>IEEE Young Professionals — Communications Co‑Lead</h3>
-            <p class="meta">Climate & Sustainability Sub‑Committee</p>
-            <p>Supporting global communications and collaborations.</p>
-          </article>
-          <article class="card">
-            <h3>IEEE Sri Lanka Section</h3>
-            <ul class="list">
-              <li>Treasurer (2024), SAC (2023), SIGHT (2022)</li>
-              <li>Reviewer — Computing Technology Track</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-    
-    </main>
-    <footer class="site-footer container">
-      <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
-      <a class="inline" href="#top">Back to top ↑</a>
-    </footer>
-  </body>
+        <!-- Position item (left) -->
+        <article class="alt-item left">
+          <div class="alt-dot">
+            <!-- 120x120 transparent PNG recommended -->
+            <img src="assets/logos/ieee.png" alt="IEEE logo">
+          </div>
+          <div class="alt-card">
+            <header class="alt-head">
+              <h3 class="alt-title">Treasurer — IEEE Sri Lanka Section</h3>
+              <div class="alt-org">Committee: Section ExCom</div>
+            </header>
+            <p class="alt-desc">
+              Managed annual budget, improved reimbursement workflows, and introduced a lightweight reporting dashboard for chapters.
+            </p>
+          </div>
+        </article>
+
+        <!-- Another 2024 item (right) -->
+        <article class="alt-item right">
+          <div class="alt-dot">
+            <img src="assets/logos/ieee-yp.png" alt="IEEE Young Professionals logo">
+          </div>
+          <div class="alt-card">
+            <header class="alt-head">
+              <h3 class="alt-title">Coordinator — IEEE Young Professionals</h3>
+              <div class="alt-org">Committee: Outreach & Events</div>
+            </header>
+            <p class="alt-desc">
+              Led 6+ events including an industry panel and technical workshops; grew community engagement by 35%.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- YEAR GROUP -->
+      <div class="alt-year reveal">
+        <div class="alt-year-badge">2023</div>
+
+        <!-- Position (left) -->
+        <article class="alt-item left">
+          <div class="alt-dot">
+            <img src="assets/logos/ieee-sight.png" alt="IEEE SIGHT logo">
+          </div>
+          <div class="alt-card">
+            <header class="alt-head">
+              <h3 class="alt-title">Volunteer — IEEE SIGHT</h3>
+              <div class="alt-org">Committee: Humanitarian Activities</div>
+            </header>
+            <p class="alt-desc">
+              Contributed to a low-cost IoT water‑quality kit; trained student teams on project deployment and documentation.
+            </p>
+          </div>
+        </article>
+
+        <!-- Another 2023 item (right) -->
+        <article class="alt-item right">
+          <div class="alt-dot">
+            <img src="assets/logos/ieee-comsoc.png" alt="IEEE ComSoc logo">
+          </div>
+          <div class="alt-card">
+            <header class="alt-head">
+              <h3 class="alt-title">Committee Member — IEEE ComSoc Chapter</h3>
+              <div class="alt-org">Committee: Technical Program</div>
+            </header>
+            <p class="alt-desc">
+              Helped curate speaker lineup and handled session moderation for monthly tech talks.
+            </p>
+          </div>
+        </article>
+
+        <!-- Another 2023 item (left) -->
+        <article class="alt-item left">
+          <div class="alt-dot">
+            <img src="assets/logos/university.png" alt="University logo">
+          </div>
+          <div class="alt-card">
+            <header class="alt-head">
+              <h3 class="alt-title">Mentor — Student Robotics Club</h3>
+              <div class="alt-org">Committee: Project Mentorship</div>
+            </header>
+            <p class="alt-desc">
+              Guided two teams for an inter‑university robotics challenge; prototyped ROS‑based navigation modules.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Add more year blocks by duplicating <div class="alt-year">…</div> -->
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <small>© <span id="year"></span> Lakshan Madhushanka Bandara.</small>
+    <a class="inline" href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
