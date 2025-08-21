@@ -64,3 +64,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
   targets.forEach(el => io.observe(el));
 })();
+
+
+
+// First-load toggle so the .will-animate / stagger play once
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => document.documentElement.classList.add('page-loaded'), 60);
+});
+
+// Scroll-reveal for elements with .reveal
+(function () {
+  const nodes = document.querySelectorAll('.reveal');
+  if (!nodes.length) return;
+
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    nodes.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  nodes.forEach(el => io.observe(el));
+})();

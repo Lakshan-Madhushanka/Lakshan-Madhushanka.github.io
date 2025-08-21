@@ -513,3 +513,42 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 .alt-item.right .alt-card { grid-column: 2; }
 .alt-item.right .alt-dot { grid-column: 1; justify-self: center; }
 .alt-item { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.4rem 0;}
+
+
+/* ——— First-load & stagger animations ——— */
+.will-animate,
+.will-animate-stagger > * { opacity:0; transform:translateY(14px); will-change:opacity,transform; }
+.page-loaded .will-animate { animation: fadeUp .6s ease-out both; }
+.page-loaded .will-animate-stagger > * { animation: fadeUp .5s ease-out both; }
+.page-loaded .will-animate-stagger > *:nth-child(1){animation-delay:.06s}
+.page-loaded .will-animate-stagger > *:nth-child(2){animation-delay:.12s}
+.page-loaded .will-animate-stagger > *:nth-child(3){animation-delay:.18s}
+.page-loaded .will-animate-stagger > *:nth-child(4){animation-delay:.24s}
+.page-loaded .will-animate-stagger > *:nth-child(5){animation-delay:.30s}
+.page-loaded .will-animate-stagger > *:nth-child(6){animation-delay:.36s}
+.page-loaded .will-animate-stagger > *:nth-child(7){animation-delay:.42s}
+.page-loaded .will-animate-stagger > *:nth-child(8){animation-delay:.48s}
+
+@keyframes fadeUp { from {opacity:0; transform:translateY(14px)} to {opacity:1; transform:translateY(0)} }
+
+/* ——— Scroll‑reveal (used for section titles & tiles) ——— */
+.reveal { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity:1; transform:translateY(0); }
+
+/* ——— Subtle floating of the hero photo ——— */
+.page-loaded .hero-art img { animation: photoFloat 6s ease-in-out 1s infinite alternate; }
+@keyframes photoFloat { from {transform:translateY(0)} to {transform:translateY(-6px)} }
+
+/* ——— Animated gradient on your name ——— */
+.grad-anim {
+  background: linear-gradient(90deg, var(--accent), #00d4ff, #8ef9f3, var(--accent));
+  background-size: 300% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation: sweep 8s ease-in-out infinite;
+}
+@keyframes sweep { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .will-animate, .will-animate-stagger > *, .reveal { animation:none!important; transition:none!important; transform:none!important; opacity:1!important; }
+}
