@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  @import url('other-styles.css');
+
 </head>
 <body>
   <!-- Reuse your header -->
@@ -37,6 +39,22 @@
     <p class="lead reveal" style="max-width:60ch">
       A year‑by‑year view of volunteer roles, committees, and contributions.
     </p>
+
+
+    <section class="alt-timeline">
+  <div class="alt-year">
+    <div class="alt-year-badge">2025</div>
+    <article class="alt-item left">
+      <div class="alt-dot"><img src="logo1.png"></div>
+      <div class="alt-card">Left side content</div>
+    </article>
+    <article class="alt-item right">
+      <div class="alt-dot"><img src="logo2.png"></div>
+      <div class="alt-card">Right side content</div>
+    </article>
+  </div>
+</section>
+
 
     <!-- Alternating Timeline -->
     <section class="alt-timeline">
@@ -86,7 +104,7 @@
         <!-- Position (left) -->
         <article class="alt-item left">
           <div class="alt-dot">
-            <img src="assets/logos/ieee-sight.png" alt="IEEE SIGHT logo">
+            <img src="assets/logos/ieee-slsight.png" alt="IEEE SIGHT logo">
           </div>
           <div class="alt-card">
             <header class="alt-head">
@@ -140,7 +158,8 @@
     <small>© <span id="year"></span> Lakshan Madhushanka Bandara.</small>
     <a class="inline" href="#top">Back to top ↑</a>
   </footer>
-
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
+
+
