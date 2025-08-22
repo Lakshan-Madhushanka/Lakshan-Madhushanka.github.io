@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -34,21 +35,22 @@
 
     <main id="top">
 
-      <section class="container section">
-        <h2>Contact</h2>
-        <p>Email: <a class="inline" href="mailto:hello@lakshan.info">hello@lakshan.info</a></p>
-        <form class="contact" onsubmit="return false;" style="display:grid;gap:.75rem;max-width:560px">
-          <label><span>Your email</span>
-            <input type="email" placeholder="you@example.com" required
-              style="background:var(--surface);border:1px solid color-mix(in oklab, var(--muted), transparent 70%);color:var(--text);padding:.6rem .8rem;border-radius:12px">
-          </label>
-          <label><span>Message</span>
-            <textarea rows="4" placeholder="Hi Lakshan, I’d like to collaborate on..." 
-              style="background:var(--surface);border:1px solid color-mix(in oklab, var(--muted), transparent 70%);color:var(--text);padding:.6rem .8rem;border-radius:12px"></textarea>
-          </label>
-          <button class="btn primary" type="submit" onclick="alert('This is a static demo form. Replace with Formspree or your backend.')">Send</button>
-        </form>
-      </section>
+  <form action="https://formspree.io/f/xpwlvdke" method="POST" style="display:grid;gap:.75rem;max-width:560px">
+  <label>
+    Your email:
+    <input type="email" name="email" required placeholder="you@example.com">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message" rows="4" required placeholder="Type your message here"></textarea>
+  </label>
+  <div class="g-recaptcha" data-sitekey="6LfCpa4rAAAAAKxYy8_aNlsZ2sezylAPvzwbOk-d"></div>
+  <button type="submit" class="btn primary">Send</button>
+</form>
+
+<!-- Add this script somewhere after the form or in <head> -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     
     </main>
     <footer class="site-footer container">

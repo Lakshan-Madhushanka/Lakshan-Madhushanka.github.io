@@ -708,3 +708,145 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   .nav a, .nav .cta, #themeToggle { transition: none; }
 }
 
+/* ==== Glass Reveal Tiles (About) ==== */
+.reveal-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 900px) { .reveal-cards { grid-template-columns: 1fr; } }
+
+.reveal-card {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 82%);
+  background: color-mix(in oklab, var(--surface), transparent 35%);
+  /* initially look flat and content hidden */
+  overflow: hidden;
+  transform: translateZ(0) scale(1);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease, background .28s ease;
+}
+.reveal-card .rc-head {
+  padding: 1rem 1.1rem;
+}
+.reveal-card h3 {
+  margin: 0;
+}
+.reveal-card .rc-body {
+  padding: 0 1.1rem 1rem;
+  opacity: 0;
+  transform: translateY(8px);
+  max-height: 0;
+  transition: opacity .28s ease, transform .28s ease, max-height .4s ease;
+}
+
+/* Hover/focus: zoom, glass blur, reveal content */
+.reveal-card:hover,
+.reveal-card:focus-within,
+.reveal-card.open { /* .open = mobile tap state (JS) */
+  transform: scale(1.02);
+  border-color: color-mix(in oklab, var(--accent), transparent 50%);
+  background: color-mix(in oklab, var(--surface), transparent 15%);
+  backdrop-filter: blur(8px) saturate(1.05);
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--ring), transparent 45%);
+}
+.reveal-card:hover .rc-body,
+.reveal-card:focus-within .rc-body,
+.reveal-card.open .rc-body {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 420px; /* large enough to reveal list content */
+}
+
+/* Accent underline on title when revealed */
+.reveal-card:hover h3,
+.reveal-card:focus-within h3,
+.reveal-card.open h3 {
+  text-shadow: 0 0 10px color-mix(in oklab, var(--accent), transparent 75%);
+}
+
+/* Links inside lists keep your inline style */
+.reveal-card a.inline { text-decoration: none; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-card,
+  .reveal-card .rc-body {
+    transition: none !important;
+    transform: none !important;
+  }
+  .reveal-card .rc-body {
+    opacity: 1; max-height: none;
+  }
+}
+
+
+/* ==== Collapsible glass cards (Option 3) ==== */
+.accordion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1rem;
+}
+@media (max-width: 900px) { .accordion-grid { grid-template-columns: 1fr; } }
+
+.a-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 82%);
+  background: color-mix(in oklab, var(--surface), transparent 35%);
+  backdrop-filter: blur(0px);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, backdrop-filter .25s ease, background .25s ease;
+}
+.a-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--ring), transparent 50%);
+  backdrop-filter: blur(8px) saturate(1.05);
+  background: color-mix(in oklab, var(--surface), transparent 15%);
+  border-color: color-mix(in oklab, var(--accent), transparent 55%);
+}
+
+/* Summary (click target) */
+.a-head {
+  list-style: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem;
+  padding: 1rem 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.a-head::-webkit-details-marker { display: none; }
+
+/* Caret animation */
+.a-caret { transition: transform .25s ease; opacity: .8; }
+.a-card[open] .a-caret { transform: rotate(180deg); }
+
+/* Content reveal */
+.a-body {
+  padding: 0 1.1rem 1rem;
+  animation: revealSlide .28s ease;
+}
+@keyframes revealSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Lists inside look neat */
+.a-body .list { margin: .25rem 0 0; }
+.a-body .list li { margin: .15rem 0; }
+
+/* Keyboard focus */
+.a-head:focus { outline: none; }
+.a-card:focus-within {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--ring), transparent 50%);
+  border-color: color-mix(in oklab, var(--accent), transparent 55%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .a-card, .a-caret, .a-body { transition: none !important; animation: none !important; }
+}
+
+
+

@@ -93,3 +93,41 @@ window.addEventListener('DOMContentLoaded', () => {
 
   nodes.forEach(el => io.observe(el));
 })();
+
+// Make tiles tappable on touch devices (toggle open)
+(function () {
+  const tiles = document.querySelectorAll('.reveal-card');
+  if (!tiles.length) return;
+
+  const isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  tiles.forEach(t => {
+    // Keyboard: Enter/Space toggles
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        t.classList.toggle('open');
+      }
+    });
+    // Touch/click: only toggle on touch‑centric devices
+    if (isTouch) {
+      t.addEventListener('click', (e) => {
+        // Don’t close immediately when clicking links inside
+        if (e.target.closest('a')) return;
+        t.classList.toggle('open');
+      });
+    }
+  });
+})();
+
+
+// Only one collapsible open at a time
+(() => {
+  const cards = document.querySelectorAll('.a-card');
+  cards.forEach(card => {
+    card.addEventListener('toggle', () => {
+      if (card.open) {
+        cards.forEach(other => { if (other !== card) other.open = false; });
+      }
+    });
+  });
+})();
