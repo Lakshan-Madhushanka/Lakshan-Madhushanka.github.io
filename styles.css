@@ -1046,3 +1046,23 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   max-height: 70%;
   object-fit: contain; /* keeps aspect ratio */
 }
+/* Circle container */
+.t-logo, .membership-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;             /* or var(--surface) */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Make the image fit fully, never crop */
+.t-logo img, .membership-logo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;   /* <- critical: prevent cropping */
+  padding: 10px;                    /* inner margin so it looks smaller */
+  display: block;
+}
