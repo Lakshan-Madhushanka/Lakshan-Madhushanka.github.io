@@ -271,37 +271,68 @@ function animateCount(node, to, duration = 2000) {
   requestAnimationFrame(frame);
 }
 
-// --- News ticker: hold -> slide -> hold ---
-function startTicker(ul, opts = {}) {
+/* ========= News ticker from blog.html =========
+   Looks for <article id="..."> and uses the first <h2>/<h3> inside as title. */
+async function initNewsTicker() {
+  const list = document.getElementById('tickerList');
+  if (!list) return;
+
+  try {
+    const res = await fetch('blog.html', { cache: 'no-store' });
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    // Collect posts: article elements with ids
+    const items = Array.from(doc.querySelectorAll('article[id]')).map(a => {
+      const titleEl = a.querySelector('h2, h3');
+      const title = titleEl ? titleEl.textContent.trim() : a.id;
+      const id = a.id;
+      return { title, href: `blog.html#${id}` };
+    });
+
+    // Fallback placeholder if nothing found
+    const posts = items.length ? items : [
+      { title: 'Welcome to my blog', href: 'blog.html' },
+    ];
+
+    // Populate list
+    list.innerHTML = posts.map((p, i) =>
+      `<li${i === 0 ? ' class="active"' : ''}><a class="inline" href="${p.href}">${p.title}</a></li>`
+    ).join('');
+
+    // Auto-rotate: slide one-by-one every 3s
+    startTicker(list, 3000);
+  } catch (e) {
+    // If fetch fails, keep empty quietly
+  }
+}
+
+// Simple vertical ticker
+function startTicker(ul, interval = 3000) {
   const rows = Array.from(ul.children);
   if (rows.length <= 1) return;
 
-  const hold = opts.hold ?? 2600;     // how long to stay on each item (ms)
-  const slide = opts.slide ?? 600;    // slide animation duration (ms)
-  const easing = opts.easing ?? 'ease';
-
-  // Ensure one-line viewport for smooth slides
-  const firstHeight = rows[0].getBoundingClientRect().height || 24;
-  const viewport = ul.parentElement; // .news-ticker
-  viewport.style.height = firstHeight + 'px';
-  viewport.style.overflow = 'hidden';
-
-  // Prepare UL for sliding
-  ul.style.willChange = 'transform, opacity';
-  ul.style.transition = `transform ${slide}ms ${easing}`;
   let idx = 0;
+  const height = rows[0].getBoundingClientRect().height;
 
-  function step() {
+  // Stack vertically (grid already does), animate translateY
+  ul.style.transition = 'transform .5s ease';
+
+  setInterval(() => {
     idx = (idx + 1) % rows.length;
-    const h = rows[0].getBoundingClientRect().height || firstHeight;
+    ul.style.transform = `translateY(-${idx * height}px)`;
+  }, interval);
 
-    // slide to the next row
+  // Recompute height on resize (in case of font/viewport change)
+  window.addEventListener('resize', () => {
+    const h = ul.children[0]?.getBoundingClientRect().height || height;
     ul.style.transform = `translateY(-${idx * h}px)`;
-
-    // after the slide completes, wait 'hold' ms then move again
-    setTimeout(step, hold + slide);
-  }
-
-  // initial pause before first move
-  setTimeout(step, hold);
+  });
 }
+
+/* ========= Kick things off after DOM is ready ========= */
+window.addEventListener('DOMContentLoaded', () => {
+  // your existing page-loaded animations likely here already
+  initVisitorCounter();
+  initNewsTicker();
+});
