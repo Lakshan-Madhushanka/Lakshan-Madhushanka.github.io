@@ -308,7 +308,7 @@ async function initNewsTicker() {
 }
 
 // Simple vertical ticker
-function startTicker(ul, interval = 3000) {
+function startTicker(ul, interval = 5000) {
   const rows = Array.from(ul.children);
   if (rows.length <= 1) return;
 
@@ -316,7 +316,7 @@ function startTicker(ul, interval = 3000) {
   const height = rows[0].getBoundingClientRect().height;
 
   // Stack vertically (grid already does), animate translateY
-  ul.style.transition = 'transform .5s ease';
+  ul.style.transition = 'transform 2s ease';
 
   setInterval(() => {
     idx = (idx + 1) % rows.length;
