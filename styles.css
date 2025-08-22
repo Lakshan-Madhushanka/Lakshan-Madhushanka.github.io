@@ -623,3 +623,87 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   .alt-item .alt-card::before{ left:-32px; right:auto; }
 }
 
+/* ===== Header nav: elegant hover animations ===== */
+
+/* Remove the blocky hover bg you had before */
+.nav a,
+.nav .cta,
+#themeToggle {
+  transition: color .25s ease, opacity .25s ease;
+}
+
+/* Make links relative so we can draw an animated underline */
+.nav a {
+  position: relative;
+  color: var(--muted);
+  text-decoration: none;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;               /* distance of underline from text */
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: width .28s ease;
+}
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--text);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  width: 70%;                 /* grows from center */
+}
+
+/* Optional: tiny glow on hover (very subtle) */
+.nav a:hover {
+  text-shadow: 0 0 12px color-mix(in oklab, var(--accent), transparent 75%);
+}
+
+/* Keep CTA as a pill, but give it a smooth fill sweep */
+.nav .cta {
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: .35rem .65rem;
+  border-radius: 10px;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--accent), transparent 85%), transparent);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.nav .cta:hover,
+.nav .cta:focus-visible {
+  background-position: 0 0; /* sweep in from right to left */
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ring), transparent 65%);
+  border-color: var(--accent);
+}
+
+/* Theme toggle: playful tilt on hover */
+#themeToggle {
+  transition: transform .2s ease, color .2s ease, border-color .2s ease;
+}
+#themeToggle:hover,
+#themeToggle:focus-visible {
+  transform: rotate(-12deg);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* Keyboard focus ring (accessibility) */
+.nav a:focus-visible,
+.nav .cta:focus-visible,
+#themeToggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring), transparent 35%);
+  border-radius: 10px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav a::after { transition: none; }
+  .nav a, .nav .cta, #themeToggle { transition: none; }
+}
