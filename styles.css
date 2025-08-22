@@ -958,3 +958,91 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
     grid-template-columns: 1fr;
   }
 }
+
+/* About + Membership shared style */
+.about-card,
+.membership-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 82%);
+  background: color-mix(in oklab, var(--surface), transparent 35%);
+  padding: 1rem;
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--ring), transparent 65%);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease, backdrop-filter .25s ease;
+  backdrop-filter: blur(0px);
+}
+.about-card:hover,
+.membership-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  background: color-mix(in oklab, var(--surface), transparent 15%);
+  border-color: color-mix(in oklab, var(--accent), transparent 55%);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--ring), transparent 45%);
+  backdrop-filter: blur(8px) saturate(1.05);
+}
+
+.about-card h3,
+.membership-card h3 {
+  margin-top: 0;
+  margin-bottom: .6rem;
+  font-weight: 700;
+}
+
+
+/* Fancy animated section heading */
+.fancy-head {
+  position: relative;
+  display: inline-block;            /* so the underline hugs the text width */
+  padding-bottom: .25rem;
+  transform: translateY(12px);      /* initial offset (pairs with .reveal) */
+  opacity: 0;
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+/* Gradient underline */
+.fancy-head::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 3px;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  transition: width .6s ease .1s;   /* slightly after the text fade/slide */
+}
+
+/* When revealed by your existing IntersectionObserver */
+.reveal.is-visible.fancy-head {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.is-visible.fancy-head::after {
+  width: 100%;
+}
+
+/* Optional: a subtle glow on hover for desktop */
+@media (hover:hover) {
+  .fancy-head:hover::after {
+    box-shadow: 0 0 14px color-mix(in oklab, var(--accent), transparent 70%);
+  }
+}
+
+
+/* Circle container */
+.t-logo,
+.membership-logo {
+  width: 60px;         /* circle size */
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;    /* optional background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;    /* hides anything outside circle */
+}
+
+/* Logos inside */
+.t-logo img,
+.membership-logo img {
+  max-width: 70%;      /* scales logo down inside circle */
+  max-height: 70%;
+  object-fit: contain; /* keeps aspect ratio */
+}
