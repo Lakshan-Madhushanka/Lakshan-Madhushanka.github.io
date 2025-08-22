@@ -891,3 +891,70 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 
 /* Pause cue on hover */
 .ticker:hover { cursor: pointer; }
+
+
+/* About section layout */
+.about-layout {
+  align-items: start;
+  gap: 2rem;
+}
+
+.about-bio {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Membership card (reuse styles from before) */
+.membership-card {
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 82%);
+  background: color-mix(in oklab, var(--surface), transparent 35%);
+  padding: 1rem;
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--ring), transparent 65%);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease, backdrop-filter .25s ease;
+  backdrop-filter: blur(0px);
+}
+.membership-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  background: color-mix(in oklab, var(--surface), transparent 15%);
+  border-color: color-mix(in oklab, var(--accent), transparent 55%);
+  box-shadow: 0 14px 28px color-mix(in oklab, var(--ring), transparent 45%);
+  backdrop-filter: blur(8px) saturate(1.05);
+}
+
+/* Membership list */
+.mships {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid; gap: .6rem;
+}
+.mships li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: .6rem;
+  align-items: center;
+  padding: .35rem .4rem;
+  border-radius: 10px;
+  transition: background .2s ease;
+}
+.mships li:hover {
+  background: color-mix(in oklab, var(--accent), transparent 92%);
+}
+
+.mships img {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 75%);
+  background: var(--surface);
+}
+
+.mships .org { font-weight: 700; }
+.mships .meta { font-size: .9rem; color: var(--muted); margin-top: .1rem; }
+
+/* Mobile: stack vertically */
+@media (max-width: 900px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+}
