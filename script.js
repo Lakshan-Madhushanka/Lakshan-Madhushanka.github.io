@@ -230,3 +230,109 @@ window.addEventListener('DOMContentLoaded', () => {
     // console.warn(err);
   }
 })();
+
+/* ========= Visitor counter =========
+   Uses CountAPI (free, no-signup). It increments a key and returns total.
+   If the request fails (offline/adblock), falls back to a local number. */
+async function initVisitorCounter() {
+  const el = document.getElementById('visitorCount');
+  if (!el) return;
+
+  const endpoint = 'https://api.countapi.xyz/hit/lakshan.info/homepage'; 
+  // You can change namespace/key: /hit/{namespace}/{key}
+
+  try {
+    const res = await fetch(endpoint, { cache: 'no-store' });
+    const data = await res.json();
+    const total = typeof data.value === 'number' ? data.value : 0;
+    animateCount(el, total, 2500); // ~2.5s
+  } catch (e) {
+    // Fallback: persist a local pseudo-count so animation still works
+    const localKey = 'visitor_local_fallback';
+    const current = parseInt(localStorage.getItem(localKey) || '0', 10) + 1;
+    localStorage.setItem(localKey, String(current));
+    animateCount(el, current, 2000);
+  }
+}
+
+// Smooth number count animation
+function animateCount(node, to, duration = 2000) {
+  const start = 0;
+  const startTime = performance.now();
+  const easeOutQuad = t => t * (2 - t);
+
+  function frame(now) {
+    const p = Math.min(1, (now - startTime) / duration);
+    const eased = easeOutQuad(p);
+    const value = Math.floor(start + (to - start) * eased);
+    node.textContent = value.toLocaleString();
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ========= News ticker from blog.html =========
+   Looks for <article id="..."> and uses the first <h2>/<h3> inside as title. */
+async function initNewsTicker() {
+  const list = document.getElementById('tickerList');
+  if (!list) return;
+
+  try {
+    const res = await fetch('blog.html', { cache: 'no-store' });
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    // Collect posts: article elements with ids
+    const items = Array.from(doc.querySelectorAll('article[id]')).map(a => {
+      const titleEl = a.querySelector('h2, h3');
+      const title = titleEl ? titleEl.textContent.trim() : a.id;
+      const id = a.id;
+      return { title, href: `blog.html#${id}` };
+    });
+
+    // Fallback placeholder if nothing found
+    const posts = items.length ? items : [
+      { title: 'Welcome to my blog', href: 'blog.html' },
+    ];
+
+    // Populate list
+    list.innerHTML = posts.map((p, i) =>
+      `<li${i === 0 ? ' class="active"' : ''}><a class="inline" href="${p.href}">${p.title}</a></li>`
+    ).join('');
+
+    // Auto-rotate: slide one-by-one every 3s
+    startTicker(list, 3000);
+  } catch (e) {
+    // If fetch fails, keep empty quietly
+  }
+}
+
+// Simple vertical ticker
+function startTicker(ul, interval = 3000) {
+  const rows = Array.from(ul.children);
+  if (rows.length <= 1) return;
+
+  let idx = 0;
+  const height = rows[0].getBoundingClientRect().height;
+
+  // Stack vertically (grid already does), animate translateY
+  ul.style.transition = 'transform .5s ease';
+
+  setInterval(() => {
+    idx = (idx + 1) % rows.length;
+    ul.style.transform = `translateY(-${idx * height}px)`;
+  }, interval);
+
+  // Recompute height on resize (in case of font/viewport change)
+  window.addEventListener('resize', () => {
+    const h = ul.children[0]?.getBoundingClientRect().height || height;
+    ul.style.transform = `translateY(-${idx * h}px)`;
+  });
+}
+
+/* ========= Kick things off after DOM is ready ========= */
+window.addEventListener('DOMContentLoaded', () => {
+  // your existing page-loaded animations likely here already
+  initVisitorCounter();
+  initNewsTicker();
+});
