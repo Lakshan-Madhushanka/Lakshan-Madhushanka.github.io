@@ -850,3 +850,44 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 
 
 
+/* Two columns for the about accordion */
+.accordion-grid.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1rem;
+}
+@media (max-width: 900px){ .accordion-grid.two { grid-template-columns: 1fr; } }
+
+/* Reuse your glass details-card styling; add a tiny polish for news */
+.a-card .small { font-size: .9rem; color: var(--muted); }
+
+/* ===== Ticker (one-by-one auto scroll) ===== */
+.ticker {
+  position: relative;
+  height: 2.0rem;           /* line height area */
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent 0, black 10%, black 90%, transparent 100%);
+}
+.ticker-list {
+  list-style: none;
+  margin: 0; padding: 0;
+  position: relative;
+}
+.ticker-list li {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s ease, transform .35s ease;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ticker-list li.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.news-card .a-body a.inline { text-decoration: none; }
+
+/* Pause cue on hover */
+.ticker:hover { cursor: pointer; }
