@@ -1289,35 +1289,45 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   background: color-mix(in oklab, var(--surface), transparent 20%);
   border: 1px solid color-mix(in oklab, var(--muted), transparent 78%);
 }
-.visitors .label { color: var(--muted); font-weight: 600; letter-spacing: .2px; }
+.visitors .label { color: var(--muted); font-weight: 5000; letter-spacing: .2px; }
 .visitors .count {
   font-feature-settings: "tnum" 1, "lnum" 1;
   font-weight: 800;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: clamp(2rem, 2.4vw, 2rem);
   line-height: 1;
   background: linear-gradient(90deg, var(--accent), #00d4ff);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
-/* Ticker */
+/* News ticker cleanup */
 .news-ticker {
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  border: none;                 /* remove dashed border */
   border-radius: 10px;
-  border: 1px dashed color-mix(in oklab, var(--muted), transparent 70%);
-  padding: .4rem .6rem;
+  padding: .2rem .6rem;         /* keep a bit of breathing room */
+  line-height: 1.35;            /* consistent height per row */
+  background: transparent;      /* or a faint bg if you like */
 }
-.ticker-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; /* single column; we translateY to slide */
-}
-.ticker-list li { 
-  padding: .2rem 0;
-  white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
-}
-.ticker-list a { text-decoration: none; color: var(--text); }
-.ticker-list a:hover { color: var(--accent); }
 
-/* Mobile */
-@media (max-width: 720px) {
-  .statnews { grid-template-columns: 1fr; }
+.ticker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;                /* one column; JS translates Y */
+}
+
+.ticker-list li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: .1rem 0;             /* small buffer so it’s not cramped */
+}
+
+.ticker-list a {
+  text-decoration: none;
+  color: var(--text);
+}
+.ticker-list a:hover {
+  color: var(--accent);
 }
