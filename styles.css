@@ -1154,3 +1154,29 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 }
 
 
+/* --- Restore the vertical line, remove only the per-item dot --- */
+
+/* Keep the vertical timeline line */
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  /* If your line is centered, use left: 50% and translate; 
+     if it's left-aligned for single-column, use the left value you had before. */
+  left: 1.25rem;                 /* ← keep your original value */
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  background: color-mix(in oklab, var(--muted), transparent 70%);
+  transform: none;               /* or translateX(-50%) if using left:50% */
+}
+
+/* Remove only the small accent dot that was on top of logos */
+.t-item::before {
+  content: none !important;
+  background: none !important;
+}
+
+
