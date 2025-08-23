@@ -379,3 +379,60 @@ async function initVisitorCounter() {
 window.addEventListener('DOMContentLoaded', () => {
   initVisitorCounter();
 });
+
+// Smooth count-up animation
+function animateCount(node, to, duration = 2000, onDone) {
+  const start = 0;
+  const t0 = performance.now();
+  const easeOut = t => t * (2 - t);
+  function tick(now){
+    const p = Math.min(1, (now - t0) / duration);
+    const v = Math.floor(start + (to - start) * easeOut(p));
+    node.textContent = v.toLocaleString();
+    if (p < 1) requestAnimationFrame(tick);
+    else if (onDone) onDone(v);
+  }
+  requestAnimationFrame(tick);
+}
+
+async function initVisitorCounter() {
+  const countEl = document.getElementById('visitorCount');
+  const nounEl  = document.getElementById('visitorNoun');
+  const verbEl  = document.getElementById('visitorVerb');
+  if (!countEl || !nounEl || !verbEl) return;
+
+  // Use a stable global counter key (stored by CountAPI)
+  const urls = [
+    'https://api.countapi.xyz/hit/lakshan.info/visitors',
+    'https://api.countapi.xyz/hit/lakshan-madhushanka.github.io/visitors'
+  ];
+
+  let total = null;
+  for (const url of urls) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) continue;
+      const data = await res.json();
+      if (typeof data.value === 'number') { total = data.value; break; }
+    } catch {}
+  }
+
+  // Fallback if blocked/offline
+  if (total == null) {
+    const key = 'visitor_fallback_count';
+    total = (parseInt(localStorage.getItem(key) || '0', 10) + 1);
+    localStorage.setItem(key, String(total));
+  }
+
+  // Animate and then set grammar
+  animateCount(countEl, total, 2000, (finalVal) => {
+    const singular = finalVal === 1;
+    nounEl.textContent = singular ? 'person' : 'people';
+    verbEl.textContent = singular ? 'has' : 'have';
+  });
+}
+
+// Call on page load (keep your other DOMContentLoaded code too)
+window.addEventListener('DOMContentLoaded', () => {
+  initVisitorCounter();
+});
