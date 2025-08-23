@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lakshan Madhushanka Bandara | Portfolio</title>
+    <meta name="description" content="Lecturer & Researcher — teaching, sessions, volunteering, blog, research & publications, travel.">
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+       <header class="site-header">
+      <div class="container row">
+        <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="nav" id="siteNav">
+          <a href="lecturing.html">Lecturing</a>
+          <a href="research-publications.html">Research & Publication</a>
+          <a href="awards.html">Awards & Recognitions</a>
+          <a href="volunteering.html">Volunteering</a>
+          <a href="sessions.html">Sessions</a>
+          <a href="blog.html">My Blog</a>
+          <a href="travel.html">Travel</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" aria-label="Toggle theme">☾</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+
+  <form action="https://formspree.io/f/xpwlvdke" method="POST" style="display:grid;gap:.75rem;max-width:560px">
+  <label>
+    Your email:
+    <input type="email" name="email" required placeholder="you@example.com">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message" rows="4" required placeholder="Type your message here"></textarea>
+  </label>
+  <div class="g-recaptcha" data-sitekey="6LfCpa4rAAAAAKxYy8_aNlsZ2sezylAPvzwbOk-d"></div>
+  <button type="submit" class="btn primary">Send</button>
+</form>
+
+<!-- Add this script somewhere after the form or in <head> -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    
+    </main>
+    <footer class="site-footer container">
+      <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
+      <a class="inline" href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

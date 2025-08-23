@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Lakshan Madhushanka Bandara</title>
+  <meta name="description" content="Articles by Lakshan on AI, medical imaging, computer vision and engineering education.">
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+      <div class="container row">
+        <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="nav" id="siteNav">
+          <a href="lecturing.html">Lecturing</a>
+          <a href="research-publications.html">Research & Publication</a>
+          <a href="awards.html">Awards & Recognitions</a>
+          <a href="volunteering.html">Volunteering</a>
+          <a href="sessions.html">Sessions</a>
+          <a href="blog.html">My Blog</a>
+          <a href="travel.html">Travel</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" aria-label="Toggle theme">☾</button>
+        </nav>
+      </div>
+    </header>
+
+  <main id="top" class="container section">
+    <h1 class="reveal fancy-head">My Blog</h1>
+    <p class="lead" style="margin-top:.25rem">Notes on imaging, AI, CV, and teaching.</p>
+
+    <!-- Posts list: ticker script fetches these articles and reads their IDs + H2 titles -->
+    <div class="grid two" style="margin-top:1.2rem">
+      <!-- Post 1 -->
+      <article id="post-1" class="card reveal">
+        <header>
+          <h2>How OCT Helps Early Plant Disease Detection</h2>
+          <p class="meta">2025-07-10 • 6 min</p>
+        </header>
+        <p>
+          Optical Coherence Tomography can reveal micro‑structural changes in leaves before symptoms are visible. 
+          Here’s how I prototype datasets and evaluate models with limited samples.
+        </p>
+        <p><a class="btn" href="#post-1">Permalink</a></p>
+      </article>
+
+      <!-- Post 2 -->
+      <article id="post-2" class="card reveal">
+        <header>
+          <h2>CNN vs. Transformers for Histopathology</h2>
+          <p class="meta">2025-06-18 • 8 min</p>
+        </header>
+        <p>
+          I compare ResNet/ConvNeXt baselines against ViT/CvT/DeiT variants for patch‑level grading, with notes on 
+          stain variation and augmentation.
+        </p>
+        <p><a class="btn" href="#post-2">Permalink</a></p>
+      </article>
+
+      <!-- Post 3 -->
+      <article id="post-3" class="card reveal">
+        <header>
+          <h2>Deploying Computer Vision on Jetson: Lessons Learned</h2>
+          <p class="meta">2025-05-25 • 5 min</p>
+        </header>
+        <p>
+          From CSI cameras to TensorRT, these are the practical tips that saved hours in edge deployments.
+        </p>
+        <p><a class="btn" href="#post-3">Permalink</a></p>
+      </article>
+
+      <!-- Post 4 -->
+      <article id="post-4" class="card reveal">
+        <header>
+          <h2>Explainable AI in Medical Imaging</h2>
+          <p class="meta">2025-04-30 • 7 min</p>
+        </header>
+        <p>
+          Grad‑CAM, attention rollout, and class selectivity—what works and what misleads for clinical collaborators.
+        </p>
+        <p><a class="btn" href="#post-4">Permalink</a></p>
+      </article>
+
+      <!-- Post 5 -->
+      <article id="post-5" class="card reveal">
+        <header>
+          <h2>My Teaching Toolkit: From Labs to Feedback</h2>
+          <p class="meta">2025-03-14 • 4 min</p>
+        </header>
+        <p>
+          A quick look at how I structure labs, scaffold projects, and close the loop with rapid feedback.
+        </p>
+        <p><a class="btn" href="#post-5">Permalink</a></p>
+      </article>
+
+      <!-- Post 6 -->
+      <article id="post-6" class="card reveal">
+        <header>
+          <h2>Datasets for OCT & Histology: Curate, Don’t Accumulate</h2>
+          <p class="meta">2025-02-06 • 6 min</p>
+        </header>
+        <p>
+          Why a smaller, cleaner, better‑annotated set often beats a huge, noisy one—plus my QC checklist.
+        </p>
+        <p><a class="btn" href="#post-6">Permalink</a></p>
+      </article>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer container">
+    <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
+    <a class="inline" href="#top">Back to top ↑</a>
+  </footer>
+
+  <!-- Keep script at end -->
+  <script src="script.js"></script>
+</body>
+</html>
