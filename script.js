@@ -267,3 +267,31 @@ async function initVisitorCounter() {
 }
 
 window.addEventListener('DOMContentLoaded', initVisitorCounter);
+
+
+async function initVisitorCounter() {
+  const el = document.getElementById('visitorCount');
+  const pill = document.getElementById('visitPill');
+  if (!el || !pill) return;
+
+  // mark pill ready so it pops in
+  pill.classList.add('ready');
+
+  try {
+    const res = await fetch('https://script.google.com/macros/s/AKfycbx9fmAcq6NDykzWiTqjqo5c2Odc6g6omp_jKcTfmnvYxN9bMMg6vEQShAw5GvzKuMV3/exec', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const { value } = await res.json();
+    if (typeof value === 'number') {
+      animateCount(el, value, 1200);
+
+      // one-time pulse to draw attention
+      pill.classList.remove('pulse'); // reset if navigated back
+      requestAnimationFrame(() => pill.classList.add('pulse'));
+      return;
+    }
+    throw new Error('Bad payload');
+  } catch (e) {
+    console.warn('[counter] unavailable:', e);
+    el.textContent = '—';
+  }
+}

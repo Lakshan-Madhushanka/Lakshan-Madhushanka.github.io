@@ -1369,3 +1369,63 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   background:linear-gradient(90deg,var(--accent),#00d4ff);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
+
+/* === Visitor pill === */
+.visit-pill{
+  --bg-blur: color-mix(in oklab, var(--surface), transparent 35%);
+  display:inline-flex; align-items:center; gap:.55rem;
+  padding:.55rem .85rem; border-radius: 999px;
+  background: var(--bg-blur);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 70%);
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--ring), transparent 65%);
+  font-size: clamp(.95rem, 1.1vw, 1rem);
+  color: var(--text);
+  user-select: none;
+}
+
+.visit-pill i{
+  font-size: 1rem;
+  color: color-mix(in oklab, var(--accent), white 30%);
+  opacity: .9;
+}
+
+.visit-pill .num{
+  font-weight: 800;
+  letter-spacing: .3px;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.visit-pill .label{
+  color: var(--muted);
+}
+
+/* Subtle entrance + pulse when data arrives */
+.visit-pill.ready{
+  animation: pillPop .35s ease-out both;
+}
+.visit-pill.pulse::after{
+  content:"";
+  position:absolute;
+  inset:-2px; border-radius:inherit;
+  pointer-events:none;
+  box-shadow: 0 0 0 0 rgba(124,92,255,.35);
+  animation: softPulse 1.4s ease-out 1;
+}
+
+@keyframes pillPop{
+  from{ transform: translateY(6px) scale(.98); opacity:0; }
+  to  { transform: translateY(0)  scale(1);    opacity:1; }
+}
+@keyframes softPulse{
+  0%   { box-shadow: 0 0 0 0 var(--ring); }
+  100% { box-shadow: 0 0 0 20px rgba(124,92,255,0); }
+}
+
+/* Make sure positioning context exists for the ::after pulse */
+.visit-pill{ position: relative; }
+
+/* Optional: a tad more spacing above it in hero */
+.hero .visit-pill{ margin-top:.75rem; }
