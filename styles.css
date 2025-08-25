@@ -1361,3 +1361,11 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   background: linear-gradient(90deg, var(--accent), #00d4ff);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+
+
+.visitor-line { margin:.75rem 0 0; font-size:clamp(1rem,1.4vw,1.15rem); color:var(--text); }
+.visitor-line .num {
+  font-weight:800; font-feature-settings:"tnum" 1,"lnum" 1;
+  background:linear-gradient(90deg,var(--accent),#00d4ff);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}

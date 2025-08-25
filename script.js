@@ -330,7 +330,6 @@ function startTicker(ul, interval = 5000) {
   });
 }
 
-// Smooth count-up
 function animateCount(node, to, duration = 1200) {
   const start = 0, t0 = performance.now();
   const ease = t => t * (2 - t);
@@ -346,10 +345,8 @@ async function initVisitorCounter() {
   const el = document.getElementById('visitorCount');
   if (!el) return;
 
-  // ONE canonical namespace/key for everyone, everywhere:
-  const NAMESPACE = 'lakshan.info';
-  const KEY = 'profile-visitors'; // change this only if you want to reset
-  const URL = `https://api.countapi.xyz/hit/lakshan.info/profile-visitors`;
+  // 🔗 paste YOUR Apps Script Web App URL here:
+  const URL = 'https://script.google.com/macros/s/AKfycbx9fmAcq6NDykzWiTqjqo5c2Odc6g6omp_jKcTfmnvYxN9bMMg6vEQShAw5GvzKuMV3/exec';
 
   try {
     const res = await fetch(URL, { cache: 'no-store' });
@@ -361,7 +358,7 @@ async function initVisitorCounter() {
     }
     throw new Error('Bad payload');
   } catch (e) {
-    // If blocked or offline, show a neutral indicator (don’t invent a local number)
+    console.error('[counter]', e);
     el.textContent = '—';
   }
 }
