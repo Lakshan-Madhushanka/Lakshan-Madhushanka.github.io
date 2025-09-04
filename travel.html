@@ -1,62 +1,112 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lakshan Madhushanka Bandara | Portfolio</title>
-    <meta name="description" content="Lecturer & Researcher — teaching, sessions, volunteering, blog, research & publications, travel.">
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-        <header class="site-header">
-      <div class="container row">
-        <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
-        <nav class="nav" id="siteNav">
-          <a href="lecturing.html">Lecturing</a>
-          <a href="research-publications.html">Research & Publication</a>
-          <a href="awards.html">Awards & Recognitions</a>
-          <a href="volunteering.html">Volunteering</a>
-          <a href="sessions.html">Sessions</a>
-          <a href="blog.html">My Blog</a>
-          <a href="travel.html">Travel</a>
-          <a href="contact.html">Contact</a>
-          <button id="themeToggle" aria-label="Toggle theme">☾</button>
-        </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel & Photography — Lakshan</title>
+  <meta name="description" content="Hikes, trips and landscapes I've photographed." />
+
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script defer src="script.js"></script>
+</head>
+<body class="travel-page">
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container row">
+      <a class="brand" href="index.html"><span class="grad">Home</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+      <nav class="nav" id="siteNav">
+        <a href="lecturing.html">Lecturing</a>
+        <a href="sessions.html">Sessions</a>
+        <a href="volunteering.html">Volunteering</a>
+        <a href="blog.html">My Blog</a>
+        <a href="research-publications.html">Research & Publication</a>
+        <a href="travel.html" aria-current="page">Travel</a>
+        <a href="awards.html">Awards & Recognitions</a>
+        <a href="contact.html" class="cta">Contact</a>
+        <button id="themeToggle" aria-label="Toggle theme">☾</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Cinematic hero -->
+    <section class="travel-hero2">
+      <div class="hero-bg">
+        <!-- Replace with your best landscape -->
+        <img src="assets/travel-1.jpg" alt="Mountain sunrise" />
       </div>
-    </header>
+      <div class="hero-glass">
+        <h1><span class="crest">Travel & Photography</span></h1>
+        <p>Peaks, forests, and quiet light. A running log of places that moved me.</p>
+      </div>
+      <div class="hero-badge"><i class="fa-solid fa-person-hiking"></i></div>
+    </section>
 
-    <main id="top">
+    <!-- Interactive map -->
+    <section class="container section">
+      <h2 class="trail-head"><i class="fa-solid fa-map-location-dot"></i> Trip Map</h2>
+      <p class="muted" style="margin-top:-.4rem">Click pins to see a photo + short note. I’ll keep adding new spots.</p>
+      <div id="tripMap" class="trip-map" aria-label="Trip map"></div>
+    </section>
 
-      <section class="container section">
-        <h2>Travel</h2>
-        <div class="grid three">
-          <figure class="card">
-            <img src="assets/travel-1.jpg" alt="Travel photo" style="width:100%;border-radius:12px"/>
-            <figcaption class="meta">Place · Year — a line about the experience.</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/travel-2.jpg" alt="Travel photo" style="width:100%;border-radius:12px"/>
-            <figcaption class="meta">Place · Year — a line about the experience.</figcaption>
-          </figure>
-          <figure class="card">
-            <img src="assets/travel-3.jpg" alt="Travel photo" style="width:100%;border-radius:12px"/>
-            <figcaption class="meta">Place · Year — a line about the experience.</figcaption>
-          </figure>
-        </div>
-        <p class="container meta">Drop your own photos in <code>assets/</code> and rename them here.</p>
-      </section>
-    
-    </main>
-    <footer class="site-footer container">
-      <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
-      <a class="inline" href="#top">Back to top ↑</a>
-    </footer>
-  </body>
+    <!-- Photo-first trip cards -->
+    <section class="container section">
+      <h2 class="trail-head"><i class="fa-solid fa-camera-retro"></i> Trips</h2>
+      <div class="photo-grid">
+        <!-- Card -->
+        <article class="photo-card">
+          <a href="assets/travel-1.jpg" target="_blank" class="photo">
+            <img src="assets/travel-1.jpg" alt="Knuckles Ridge — sunrise" />
+          </a>
+          <div class="meta">
+            <h3>Knuckles Ridge — Sunrise Traverse</h3>
+            <p class="sub">Central Highlands · Aug 2025 · 12 km</p>
+            <p class="desc">Cloud inversions and hawks catching thermals. Windy ridgeline but unreal light.</p>
+          </div>
+        </article>
+
+        <article class="photo-card">
+          <a href="assets/travel-2.jpg" target="_blank" class="photo">
+            <img src="assets/travel-2.jpg" alt="Sinharaja Rainforest" />
+          </a>
+          <div class="meta">
+            <h3>Sinharaja — After the Rain</h3>
+            <p class="sub">Lowland Rainforest · May 2025 · 9 km</p>
+            <p class="desc">Emerald trails, sun shafts, and birdsong. Leeches kept us humble.</p>
+          </div>
+        </article>
+
+        <article class="photo-card">
+          <a href="assets/travel-3.jpg" target="_blank" class="photo">
+            <img src="assets/travel-3.jpg" alt="Riverston peaks" />
+          </a>
+          <div class="meta">
+            <h3>Riverston — Cloud Paths</h3>
+            <p class="sub">Matale · Nov 2024 · 7 km</p>
+            <p class="desc">Grassy shoulders with clouds breathing in and out over the ridge.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer container">
+    <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
+    <a class="inline" href="#top">Back to top ↑</a>
+  </footer>
+</body>
 </html>

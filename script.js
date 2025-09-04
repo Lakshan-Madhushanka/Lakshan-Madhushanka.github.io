@@ -295,3 +295,120 @@ async function initVisitorCounter() {
     el.textContent = '—';
   }
 }
+
+
+// ===== Travel slider =====
+function initTravelSlider() {
+  const root = document.getElementById('travelSlider');
+  if (!root) return;
+
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const dotsWrap = root.querySelector('.dots');
+  const prev = root.querySelector('.prev');
+  const next = root.querySelector('.next');
+
+  if (!slides.length) return;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    if (i === 0) b.classList.add('is-active');
+    b.addEventListener('click', () => go(i));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  let i = 0, timer = null;
+
+  function go(n){
+    slides[i].classList.remove('is-active');
+    dots[i].classList.remove('is-active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('is-active');
+    dots[i].classList.add('is-active');
+    restart();
+  }
+
+  function step(){ go(i + 1); }
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(step, 5000); // auto every 5s
+  }
+
+  prev?.addEventListener('click', () => go(i - 1));
+  next?.addEventListener('click', () => go(i + 1));
+
+  // pause on hover
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', restart);
+
+  // swipe (basic)
+  let sx = 0;
+  root.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  root.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+  });
+
+  restart();
+}
+
+// kick it off with your other inits
+window.addEventListener('DOMContentLoaded', () => {
+  initTravelSlider();
+});
+
+
+function initTripMap() {
+  const el = document.getElementById('tripMap');
+  if (!el || typeof L === 'undefined') return;
+
+  // Center on Sri Lanka; adjust zoom as you add more
+  const map = L.map(el, { scrollWheelZoom: false }).setView([7.8731, 80.7718], 7);
+
+  // Tiles (Carto dark matter pairs nicely; you can switch to outdoors tiles if you prefer)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap & Carto',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Trip pins (add as many as you like)
+  const trips = [
+    {
+      name: 'Knuckles Ridge — Sunrise',
+      coords: [7.465, 80.782],
+      img: 'assets/travel-1.jpg',
+      text: 'Ridgewalk above the cloud deck. Unreal light.'
+    },
+    {
+      name: 'Sinharaja — After Rain',
+      coords: [6.405, 80.458],
+      img: 'assets/travel-2.jpg',
+      text: 'Emerald trails and sun shafts.'
+    },
+    {
+      name: 'Riverston — Cloud Paths',
+      coords: [7.546, 80.704],
+      img: 'assets/travel-3.jpg',
+      text: 'Fog and grassy shoulders with sudden panoramas.'
+    }
+  ];
+
+  const popupHTML = t => `
+    <div style="width:220px">
+      <div style="aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin-bottom:.4rem">
+        <img src="${t.img}" alt="${t.name}" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <strong>${t.name}</strong>
+      <div style="color:#a8b3cf">${t.text}</div>
+    </div>`;
+
+  trips.forEach(t => {
+    L.marker(t.coords).addTo(map).bindPopup(popupHTML(t));
+  });
+}
+
+// Run with your other initializers
+window.addEventListener('DOMContentLoaded', () => {
+  initTripMap();
+});
