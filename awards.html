@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Awards & Recognitions | Lakshan Madhushanka Bandara</title>
-    <meta name="description" content="Awards and recognitions received by Lakshan Madhushanka Bandara through engineering, teaching, research, leadership, volunteering, and community service." />
+    <meta name="description" content="Awards and recognitions received by Lakshan Madhushanka Bandara through engineering, research, leadership, volunteering, and community service." />
     <link rel="icon" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -31,219 +32,272 @@
       </div>
     </header>
 
-    <main id="top" class="awards-page">
-      <section class="container awards-hero will-animate">
-        <p class="kicker">Recognition Archive</p>
+    <main id="top" class="awards-page awards-showcase-page">
+      <section class="container awards-showcase-hero will-animate">
+        <p class="kicker">Recognition Showcase</p>
         <h1>Awards & Recognitions</h1>
         <p class="lead">
-          A collection of academic, research, professional, leadership, volunteer, and community recognitions received
-          through engineering, teaching, research, and service.
+          Honors and recognition for academic excellence, research impact, leadership, professional contributions,
+          and community service.
         </p>
-        <ul class="award-chips" aria-label="Award categories">
-          <li>Academic Excellence</li>
-          <li>Research Awards</li>
-          <li>IEEE Recognition</li>
-          <li>Leadership</li>
-          <li>Community Impact</li>
-        </ul>
       </section>
 
-      <section class="container section">
-        <div class="section-head">
+      <section class="container section awards-showcase-section" aria-labelledby="recognitionShowcaseTitle">
+        <div class="section-head awards-showcase-head">
           <p class="kicker">Featured</p>
-          <h2 class="reveal fancy-head">Featured Recognitions</h2>
+          <h2 id="recognitionShowcaseTitle" class="reveal fancy-head">Recognition Showcase</h2>
+          <p class="awards-showcase-subtitle">Selected award and recognition moments from academic, IEEE, engineering, and community work.</p>
         </div>
-        <div class="featured-awards-grid">
-          <article class="featured-award-card reveal">
-            <div class="award-logo">
-              <img src="assets/logos/ieee.svg" alt="IEEE logo">
-            </div>
-            <div>
+
+        <div class="award-carousel reveal" data-award-carousel>
+          <button class="award-carousel-btn award-carousel-prev" type="button" aria-label="Previous recognition" data-award-prev>&larr;</button>
+          <div class="award-carousel-stage" aria-live="polite">
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
+              <span class="award-category">STEM Leadership</span>
               <span class="award-year">2023</span>
               <h3>IEEE STEM Champion 2023</h3>
               <p class="award-org">IEEE Education Activities</p>
               <p>Recognized as one of 26 IEEE STEM Champions selected globally in 2023 for contributions to pre-university STEM outreach.</p>
-              <p class="award-related">Related work: pre-university STEM education and IEEE outreach.</p>
-            </div>
-          </article>
+            </article>
 
-          <article class="featured-award-card reveal">
-            <div class="award-logo">
-              <img src="assets/logos/ieee.svg" alt="IEEE logo">
-            </div>
-            <div>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-award"></i></div>
+              <span class="award-category">IEEE Volunteering</span>
               <span class="award-year">2022</span>
               <h3>IEEE Sri Lanka Section Outstanding Volunteer Award</h3>
               <p class="award-org">IEEE Sri Lanka Section</p>
               <p>Awarded in the Student Category for exemplary contributions at sectional, regional, and global IEEE levels.</p>
-              <p class="award-related">Related work: IEEE volunteering, leadership, and member impact.</p>
-            </div>
-          </article>
+            </article>
 
-          <article class="featured-award-card reveal">
-            <div class="award-logo">
-              <img src="assets/logos/uop.png" alt="University of Peradeniya logo">
-            </div>
-            <div>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-trophy"></i></div>
+              <span class="award-category">Project Award</span>
               <span class="award-year">2022</span>
               <h3>W.P. Jayasekara Prize</h3>
               <p class="award-org">University of Peradeniya</p>
               <p>Awarded for the best undergraduate project in Electrical and Electronic Engineering.</p>
-              <p class="award-related">Related work: undergraduate engineering project.</p>
-            </div>
-          </article>
+            </article>
 
-          <article class="featured-award-card reveal">
-            <div class="award-logo award-logo-fallback" aria-hidden="true">SLIC</div>
-            <div>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+              <span class="award-category">Innovation Award</span>
               <span class="award-year">2022</span>
               <h3>Silver Medal, Sahasak Nimavum 2021</h3>
               <p class="award-org">Sri Lanka Inventors Commission</p>
               <p>Won a silver medal in the national invention and innovation competition for a smart blind spot monitoring project.</p>
-              <p class="award-related">Related work: smart blind spot monitoring project.</p>
-            </div>
-          </article>
-        </div>
-      </section>
+            </article>
 
-      <section class="container section">
-        <div class="section-head">
-          <p class="kicker">Academic & Research</p>
-          <h2 class="reveal fancy-head">Academic & Research Recognitions</h2>
-        </div>
-        <div class="award-archive-grid">
-          <article class="award-archive-card reveal">
-            <span class="award-category">Project Award</span>
-            <h3>W.P. Jayasekara Prize for the Best Undergraduate Project in Electrical and Electronic Engineering</h3>
-            <p class="award-meta">University of Peradeniya | Aug 2022</p>
-            <p>Recognized the best Electrical and Electronic Engineering project, considering engineering application and practical use of engineering mathematics.</p>
-            <p class="award-related">Related project: undergraduate engineering project.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-microscope"></i></div>
+              <span class="award-category">Project Recognition</span>
+              <span class="award-year">2021</span>
+              <h3>Best Undergraduate Project</h3>
+              <p class="award-org">University of Peradeniya</p>
+              <p>Awarded for an innovative medical imaging project using deep learning on OCT.</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Innovation Award</span>
-            <h3>Silver Medalist, Sahasak Nimavum 2021 Innovation and Invention Competition</h3>
-            <p class="award-meta">Sri Lanka Inventors Commission | Jan 2022</p>
-            <p>Won silver medal for a smart blind spot monitoring project at the national invention and innovation competition.</p>
-            <p class="award-related">Related project: smart blind spot monitoring.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-scroll"></i></div>
+              <span class="award-category">Best Paper Award</span>
+              <span class="award-year">[Year]</span>
+              <h3>Best Paper Award</h3>
+              <p class="award-org">[Conference / venue to be updated]</p>
+              <p>[Short significance to be added]</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Project Recognition</span>
-            <h3>Best Undergraduate Project</h3>
-            <p class="award-meta">University of Peradeniya | 2021</p>
-            <p>Awarded for an innovative medical imaging project using deep learning on OCT.</p>
-            <p class="award-related">Related project: medical imaging and OCT.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-person-chalkboard"></i></div>
+              <span class="award-category">Best Presenter Award</span>
+              <span class="award-year">[Year]</span>
+              <h3>Best Presenter Award</h3>
+              <p class="award-org">[Conference / venue to be updated]</p>
+              <p>[Short significance to be added]</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Engineering Award</span>
-            <h3>Eng. E.W. Karunarathna Award</h3>
-            <p class="award-meta">Institution of Engineers, Sri Lanka | [Year]</p>
-            <p>[Short description to be added]</p>
-            <p class="award-related">Related project/publication: [Related work to be added]</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
+              <span class="award-category">Engineering Award</span>
+              <span class="award-year">[Year]</span>
+              <h3>Eng. E.W. Karunarathna Award</h3>
+              <p class="award-org">Institution of Engineers, Sri Lanka</p>
+              <p>[Short significance to be added]</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Scholarship Grant</span>
-            <h3>Prof. Suhada Jayasuriya Scholarship Grant</h3>
-            <p class="award-meta">[Awarding Organization] | [Year]</p>
-            <p>Recognized as the best Robotics and Control project.</p>
-            <p class="award-related">Related project: Robotics and Control project.</p>
-          </article>
-        </div>
-      </section>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+              <span class="award-category">Scholarship Grant</span>
+              <span class="award-year">[Year]</span>
+              <h3>Prof. Suhada Jayasuriya Scholarship Grant</h3>
+              <p class="award-org">[Awarding Organization]</p>
+              <p>Recognized as the best Robotics and Control project.</p>
+            </article>
 
-      <section class="container section">
-        <div class="section-head">
-          <p class="kicker">Professional & Leadership</p>
-          <h2 class="reveal fancy-head">Professional, IEEE & Leadership Recognitions</h2>
-        </div>
-        <div class="award-archive-grid">
-          <article class="award-archive-card reveal">
-            <span class="award-category">IEEE Recognition</span>
-            <h3>IEEE R10 Ethics Champion 2023</h3>
-            <p class="award-meta">IEEE R10 Ethics Committee | Sep 2023</p>
-            <p>Recognized for commitment to ethical standards in technology and contributions that helped elevate IEEE Sri Lanka Section to a top 5 section in the region.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-scale-balanced"></i></div>
+              <span class="award-category">IEEE Recognition</span>
+              <span class="award-year">2023</span>
+              <h3>IEEE R10 Ethics Champion 2023</h3>
+              <p class="award-org">IEEE R10 Ethics Committee</p>
+              <p>Recognized for commitment to ethical standards in technology and contributions that helped elevate IEEE Sri Lanka Section to a top 5 section in the region.</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">STEM Leadership</span>
-            <h3>IEEE STEM Champion 2023</h3>
-            <p class="award-meta">IEEE Education Activities | May 2023</p>
-            <p>Recognized for contributions to pre-university STEM education and outreach. Lakshan was the second person from IEEE Sri Lanka Section to receive the honor.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-users-gear"></i></div>
+              <span class="award-category">Leadership Program</span>
+              <span class="award-year">2023</span>
+              <h3>Graduated, IEEE MGA VoLT Program 2022</h3>
+              <p class="award-org">IEEE MGA</p>
+              <p>Selected for the IEEE Volunteer Leadership Training program representing Sri Lanka Section and successfully graduated from the program.</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Leadership Program</span>
-            <h3>Graduated, IEEE MGA VoLT Program 2022</h3>
-            <p class="award-meta">IEEE MGA | Feb 2023</p>
-            <p>Selected for the IEEE Volunteer Leadership Training program representing Sri Lanka Section and successfully graduated from the program.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></div>
+              <span class="award-category">Community Impact</span>
+              <span class="award-year">2023</span>
+              <h3>Best Affinity Group Project Award 2022</h3>
+              <p class="award-org">IEEE Sri Lanka Section</p>
+              <p>Recognized the Sihinayata Peraman project for career guidance and community impact.</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">IEEE Volunteering</span>
-            <h3>IEEE Sri Lanka Section Outstanding Volunteer Award - Student Category</h3>
-            <p class="award-meta">IEEE Sri Lanka Section | Sep 2022</p>
-            <p>Recognized exemplary contributions at sectional, regional, and global levels, based on impact and outcomes for IEEE and its members.</p>
-          </article>
-        </div>
-      </section>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></div>
+              <span class="award-category">Humanitarian Technology</span>
+              <span class="award-year">2021</span>
+              <h3>First Runners-Up, IEEE R10 HTA Project Video Contest</h3>
+              <p class="award-org">IEEE R10 HTA</p>
+              <p>The team led by Lakshan won second place in a contest focused on humanitarian impact, creativity, and live project presentation.</p>
+            </article>
 
-      <section class="container section">
-        <div class="section-head">
-          <p class="kicker">Service & Outreach</p>
-          <h2 class="reveal fancy-head">Volunteer, Outreach & Community Recognitions</h2>
-        </div>
-        <div class="award-archive-grid">
-          <article class="award-archive-card reveal">
-            <span class="award-category">Community Impact</span>
-            <h3>Best Affinity Group Project Award 2022 - Section Affinity Group Category</h3>
-            <p class="award-meta">IEEE Sri Lanka Section | Feb 2023</p>
-            <p>Recognized the Sihinayata Peraman project, initiated and led as Chair of IEEE Sri Lanka Section SIGHT Group, for career guidance and community impact.</p>
-            <p class="award-related">Activity area: humanitarian activities and community service.</p>
-          </article>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-pen-nib"></i></div>
+              <span class="award-category">Science Communication</span>
+              <span class="award-year">2021</span>
+              <h3>Best Content Creation, IEEE Tech Narrator 2021</h3>
+              <p class="award-org">Education Activities, IEEE Sri Lanka Section</p>
+              <p>Recognized for Sinhala-language technology content creation through IEEE Tech Narrator.</p>
+            </article>
 
-          <article class="award-archive-card reveal">
-            <span class="award-category">Humanitarian Technology</span>
-            <h3>First Runners-Up, IEEE R10 Humanitarian Technology Conference 2021 Undergraduate Project Video Contest</h3>
-            <p class="award-meta">IEEE R10 HTA | Aug 2021</p>
-            <p>The team led by Lakshan won second place in a contest focused on humanitarian impact, creativity, and live project presentation.</p>
-            <p class="award-related">Activity area: humanitarian technology.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="container section">
-        <div class="section-head">
-          <p class="kicker">Additional</p>
-          <h2 class="reveal fancy-head">Other Recognitions</h2>
-        </div>
-        <div class="award-archive-grid compact">
-          <article class="award-archive-card reveal">
-            <span class="award-category">Science Communication</span>
-            <h3>Best Content Creation, IEEE Tech Narrator 2021</h3>
-            <p class="award-meta">Education Activities, IEEE Sri Lanka Section | Oct 2021</p>
-            <p>Recognized for Sinhala-language technology content creation through IEEE Tech Narrator.</p>
-          </article>
-
-          <article class="award-archive-card reveal">
-            <span class="award-category">Science Communication</span>
-            <h3>Most Popular Content Creation, IEEE Tech Narrator 2021</h3>
-            <p class="award-meta">Education Activities, IEEE Sri Lanka Section | Oct 2021</p>
-            <p>Recognized for popular Sinhala-language technology content creation through IEEE Tech Narrator.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="container section">
-        <div class="awards-cta reveal">
-          <h2>Connect Around Research, Teaching, or Service</h2>
-          <p>Explore my background or get in touch for academic collaboration, outreach, and research discussions.</p>
-          <div class="awards-cta-actions">
-            <a class="btn" href="about.html">Back to About</a>
-            <a class="btn primary" href="contact.html">Contact Me</a>
+            <article class="featured-award-card award-carousel-card" data-award-card>
+              <div class="award-card-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></div>
+              <span class="award-category">Science Communication</span>
+              <span class="award-year">2021</span>
+              <h3>Most Popular Content Creation, IEEE Tech Narrator 2021</h3>
+              <p class="award-org">Education Activities, IEEE Sri Lanka Section</p>
+              <p>Recognized for popular Sinhala-language technology content creation through IEEE Tech Narrator.</p>
+            </article>
           </div>
+          <button class="award-carousel-btn award-carousel-next" type="button" aria-label="Next recognition" data-award-next>&rarr;</button>
+          <div class="award-carousel-dots" aria-label="Recognition carousel navigation" data-award-dots></div>
+        </div>
+      </section>
+
+      <section class="container section award-category-photo-section" aria-labelledby="awardCategoriesTitle">
+        <div class="award-category-panel reveal">
+          <p class="kicker">Categories</p>
+          <h2 id="awardCategoriesTitle">Recognition Categories</h2>
+          <div class="award-category-list">
+            <article class="award-category-card accent-gold">
+              <span class="award-category-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+              <div>
+                <h3>Academic & Research Recognitions</h3>
+                <p>Awards and recognitions for research excellence, publications, presentations, and academic achievements.</p>
+              </div>
+              <span class="award-category-arrow" aria-hidden="true">→</span>
+            </article>
+
+            <article class="award-category-card accent-purple">
+              <span class="award-category-icon" aria-hidden="true"><i class="fa-solid fa-user-tie"></i></span>
+              <div>
+                <h3>Professional, IEEE & Leadership Recognitions</h3>
+                <p>Recognitions for leadership roles, professional service, and contributions to IEEE and professional communities.</p>
+              </div>
+              <span class="award-category-arrow" aria-hidden="true">→</span>
+            </article>
+
+            <article class="award-category-card accent-green">
+              <span class="award-category-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></span>
+              <div>
+                <h3>Volunteer, Outreach & Community Recognitions</h3>
+                <p>Appreciation for volunteer service, community impact, and initiatives that create positive change.</p>
+              </div>
+              <span class="award-category-arrow" aria-hidden="true">→</span>
+            </article>
+
+            <article class="award-category-card accent-blue">
+              <span class="award-category-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+              <div>
+                <h3>Other Recognitions</h3>
+                <p>Other noteworthy recognitions from organizations, events, and special contributions.</p>
+              </div>
+              <span class="award-category-arrow" aria-hidden="true">→</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="award-photo-mosaic reveal" aria-label="Recognition photo mosaic">
+          <figure class="award-photo award-photo-large" data-placeholder="Add assets/awards/recognition-01.jpg">
+            <img src="assets/awards/recognition-01.jpg" alt="Award ceremony recognition moment">
+          </figure>
+          <figure class="award-photo" data-placeholder="Add assets/awards/recognition-02.jpg">
+            <img src="assets/awards/recognition-02.jpg" alt="Certificate or award received at a recognition event">
+          </figure>
+          <figure class="award-photo" data-placeholder="Add assets/awards/recognition-03.jpg">
+            <img src="assets/awards/recognition-03.jpg" alt="IEEE recognition and leadership moment">
+          </figure>
+          <figure class="award-photo award-photo-wide" data-placeholder="Add assets/awards/recognition-04.jpg">
+            <img src="assets/awards/recognition-04.jpg" alt="Group recognition photo from an award or volunteer event">
+          </figure>
+        </div>
+      </section>
+
+      <section id="recognition-gallery" class="container section recognition-moments-section" aria-labelledby="recognitionMomentsTitle">
+        <div class="recognition-moments-card reveal">
+          <div class="recognition-moments-head">
+            <div>
+              <p class="kicker">Gallery</p>
+              <h2 id="recognitionMomentsTitle">Moments of Recognition</h2>
+            </div>
+            <!-- Replace this placeholder with a dedicated gallery page if one is created later. -->
+            <a class="btn" href="awards.html#recognition-gallery">View Full Gallery →</a>
+          </div>
+          <div class="recognition-moments-grid">
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-01.jpg">
+              <img src="assets/awards/moment-01.jpg" alt="Recognition ceremony moment">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-02.jpg">
+              <img src="assets/awards/moment-02.jpg" alt="Award certificate photo">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-03.jpg">
+              <img src="assets/awards/moment-03.jpg" alt="Recognition stage moment">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-04.jpg">
+              <img src="assets/awards/moment-04.jpg" alt="IEEE award or recognition moment">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-05.jpg">
+              <img src="assets/awards/moment-05.jpg" alt="Community recognition group moment">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-06.jpg">
+              <img src="assets/awards/moment-06.jpg" alt="Volunteering recognition moment">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-07.jpg">
+              <img src="assets/awards/moment-07.jpg" alt="Certificate and award display">
+            </figure>
+            <figure class="award-photo" data-placeholder="Add assets/awards/moment-08.jpg">
+              <img src="assets/awards/moment-08.jpg" alt="Award group photograph">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section">
+        <div class="awards-closing-cta reveal">
+          <div class="awards-closing-icon" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+          <div>
+            <h2>Grateful for the recognition, committed to greater impact.</h2>
+            <p>Every recognition inspires me to continue contributing to academia, research, professional communities, and society.</p>
+          </div>
+          <a class="btn primary" href="contact.html">Let's Connect →</a>
         </div>
       </section>
     </main>
