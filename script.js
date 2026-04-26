@@ -579,3 +579,445 @@ window.addEventListener('DOMContentLoaded', () => {
     initAwardsImageFallbacks();
   });
 })();
+
+// Lecturing course carousel
+(function () {
+  function initLecturingCourseCarousel() {
+    const carousel = document.querySelector('[data-course-carousel]');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('[data-course-track]');
+    const viewport = carousel.querySelector('[data-course-viewport]');
+    const prev = carousel.querySelector('[data-course-prev]');
+    const next = carousel.querySelector('[data-course-next]');
+    const dotsWrap = carousel.querySelector('[data-course-dots]');
+    const empty = carousel.querySelector('[data-course-empty]');
+    const allCards = Array.from(carousel.querySelectorAll('[data-course-card]'));
+    const filters = Array.from(document.querySelectorAll('[data-course-filter]'));
+    if (!track || !viewport || !allCards.length) return;
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeFilter = 'all';
+    let activeIndex = 0;
+    let perView = getPerView();
+    let visibleCards = [];
+    let filteredCards = [];
+    let autoTimer = null;
+    let isAnimating = false;
+
+    function getPerView() {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    }
+
+    function filterCards() {
+      filteredCards = allCards.filter((card) => {
+        const match = activeFilter === 'all' || card.dataset.institution === activeFilter;
+        card.hidden = !match;
+        return match;
+      });
+      allCards.forEach((card) => track.appendChild(card));
+      visibleCards = getVisibleCards();
+      activeIndex = 0;
+      resetTrackPosition();
+      if (empty) empty.hidden = filteredCards.length > 0;
+    }
+
+    function getVisibleCards() {
+      return Array.from(track.querySelectorAll('[data-course-card]:not([hidden])'));
+    }
+
+    function canMove() {
+      return filteredCards.length > perView;
+    }
+
+    function resetTrackPosition() {
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
+      track.offsetHeight;
+      track.style.transition = '';
+    }
+
+    function getStep() {
+      visibleCards = getVisibleCards();
+      if (visibleCards.length < 2) return 0;
+      return visibleCards[1].offsetLeft - visibleCards[0].offsetLeft;
+    }
+
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      if (!filteredCards.length) return;
+      const count = canMove() ? filteredCards.length : 1;
+      for (let i = 0; i < count; i += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show course ${i + 1}`);
+        dot.addEventListener('click', () => {
+          jumpTo(i);
+          update();
+          startAuto();
+        });
+        dotsWrap.appendChild(dot);
+      }
+    }
+
+    function jumpTo(index) {
+      if (!filteredCards.length) return;
+      const nextIndex = ((index % filteredCards.length) + filteredCards.length) % filteredCards.length;
+      const ordered = filteredCards.slice(nextIndex).concat(filteredCards.slice(0, nextIndex));
+      ordered.forEach((card) => track.appendChild(card));
+      allCards.filter((card) => card.hidden).forEach((card) => track.appendChild(card));
+      activeIndex = nextIndex;
+      visibleCards = getVisibleCards();
+      resetTrackPosition();
+    }
+
+    function updateControls() {
+      const movable = canMove() && !isAnimating;
+      if (prev) prev.disabled = !movable;
+      if (next) next.disabled = !movable;
+
+      const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('button')) : [];
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('is-active', index === activeIndex);
+        dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+        dot.disabled = isAnimating;
+      });
+    }
+
+    function updateFilters() {
+      const currentInstitution = filteredCards[activeIndex]?.dataset.institution || activeFilter;
+      filters.forEach((filter) => {
+        const value = filter.dataset.courseFilter;
+        const isActive = value === activeFilter;
+        const isCurrent = value === currentInstitution;
+        filter.classList.toggle('is-active', isActive);
+        filter.classList.toggle('is-current', isCurrent && value !== 'all');
+        filter.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        filter.setAttribute('aria-current', isCurrent && value !== 'all' ? 'true' : 'false');
+      });
+    }
+
+    function update() {
+      updateControls();
+      updateFilters();
+    }
+
+    function goNext() {
+      if (!canMove() || isAnimating) return;
+      const step = getStep();
+      if (!step) return;
+
+      isAnimating = true;
+      updateControls();
+      track.style.transform = `translateX(${-step}px)`;
+
+      window.setTimeout(() => {
+        const first = getVisibleCards()[0];
+        if (first) track.appendChild(first);
+        activeIndex = (activeIndex + 1) % filteredCards.length;
+        resetTrackPosition();
+        isAnimating = false;
+        update();
+      }, reduce ? 0 : 580);
+    }
+
+    function goPrev() {
+      if (!canMove() || isAnimating) return;
+      visibleCards = getVisibleCards();
+      const first = visibleCards[0];
+      const last = visibleCards[visibleCards.length - 1];
+      if (!first || !last) return;
+
+      isAnimating = true;
+      updateControls();
+      track.insertBefore(last, first);
+      visibleCards = getVisibleCards();
+      const step = getStep();
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-step}px)`;
+      track.offsetHeight;
+      track.style.transition = '';
+
+      window.requestAnimationFrame(() => {
+        track.style.transform = 'translateX(0)';
+      });
+
+      window.setTimeout(() => {
+        activeIndex = (activeIndex - 1 + filteredCards.length) % filteredCards.length;
+        resetTrackPosition();
+        isAnimating = false;
+        update();
+      }, reduce ? 0 : 580);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto() {
+      if (reduce || filteredCards.length <= perView) return;
+      stopAuto();
+      autoTimer = window.setInterval(goNext, 3600);
+    }
+
+    function refresh() {
+      perView = getPerView();
+      carousel.style.setProperty('--course-per-view', perView);
+      filterCards();
+      renderDots();
+      window.requestAnimationFrame(update);
+    }
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        activeFilter = filter.dataset.courseFilter || 'all';
+        activeIndex = 0;
+        refresh();
+        startAuto();
+      });
+    });
+
+    prev?.addEventListener('click', () => {
+      goPrev();
+      startAuto();
+    });
+
+    next?.addEventListener('click', () => {
+      goNext();
+      startAuto();
+    });
+
+    carousel.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goPrev();
+        startAuto();
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goNext();
+        startAuto();
+      }
+    });
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAuto();
+      else startAuto();
+    });
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        refresh();
+        startAuto();
+      }, reduce ? 0 : 120);
+    });
+
+    refresh();
+    startAuto();
+  }
+
+  window.addEventListener('DOMContentLoaded', initLecturingCourseCarousel);
+})();
+
+// Research publications page agreed design
+(function () {
+  function initResearchCollaboratorCarousel() {
+    const carousel = document.querySelector('[data-research-collab-carousel]');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('[data-research-collab-track]');
+    const prev = carousel.querySelector('[data-research-collab-prev]');
+    const next = carousel.querySelector('[data-research-collab-next]');
+    const dotsWrap = carousel.querySelector('[data-research-collab-dots]');
+    const cards = track ? Array.from(track.querySelectorAll('[data-research-collab-card]')) : [];
+    if (!track || cards.length < 2) return;
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeIndex = 0;
+    let perView = getPerView();
+    let autoTimer = null;
+    let isMoving = false;
+
+    function getPerView() {
+      if (window.innerWidth <= 700) return 1;
+      if (window.innerWidth <= 1100) return 2;
+      return 3;
+    }
+
+    function getVisibleCards() {
+      return Array.from(track.querySelectorAll('[data-research-collab-card]'));
+    }
+
+    function getStep() {
+      const visible = getVisibleCards();
+      if (visible.length < 2) return visible[0]?.getBoundingClientRect().width || 0;
+      return visible[1].offsetLeft - visible[0].offsetLeft;
+    }
+
+    function resetTrack() {
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0)';
+      track.offsetHeight;
+      track.style.transition = '';
+    }
+
+    function setControlsDisabled(disabled) {
+      [prev, next].forEach((button) => {
+        if (!button) return;
+        button.disabled = disabled;
+        button.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+      });
+      if (!dotsWrap) return;
+      dotsWrap.querySelectorAll('button').forEach((dot) => {
+        dot.disabled = disabled;
+      });
+    }
+
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      cards.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show collaborating organization ${index + 1}`);
+        dot.addEventListener('click', () => {
+          jumpTo(index);
+          startAuto();
+        });
+        dotsWrap.appendChild(dot);
+      });
+      updateDots();
+    }
+
+    function updateDots() {
+      if (!dotsWrap) return;
+      dotsWrap.querySelectorAll('button').forEach((dot, index) => {
+        const active = index === activeIndex;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+    }
+
+    function jumpTo(index) {
+      if (isMoving) return;
+      const nextIndex = ((index % cards.length) + cards.length) % cards.length;
+      const ordered = cards.slice(nextIndex).concat(cards.slice(0, nextIndex));
+      ordered.forEach((card) => track.appendChild(card));
+      activeIndex = nextIndex;
+      resetTrack();
+      updateDots();
+    }
+
+    function goNext() {
+      if (isMoving || cards.length <= perView) return;
+      const step = getStep();
+      if (!step) return;
+
+      isMoving = true;
+      setControlsDisabled(true);
+      track.style.transform = `translateX(${-step}px)`;
+
+      window.setTimeout(() => {
+        const first = getVisibleCards()[0];
+        if (first) track.appendChild(first);
+        activeIndex = (activeIndex + 1) % cards.length;
+        resetTrack();
+        isMoving = false;
+        setControlsDisabled(false);
+        updateDots();
+      }, reduce ? 0 : 620);
+    }
+
+    function goPrev() {
+      if (isMoving || cards.length <= perView) return;
+      const visible = getVisibleCards();
+      const first = visible[0];
+      const last = visible[visible.length - 1];
+      if (!first || !last) return;
+
+      isMoving = true;
+      setControlsDisabled(true);
+      track.insertBefore(last, first);
+      const step = getStep();
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-step}px)`;
+      track.offsetHeight;
+      track.style.transition = '';
+
+      window.requestAnimationFrame(() => {
+        track.style.transform = 'translateX(0)';
+      });
+
+      window.setTimeout(() => {
+        activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+        resetTrack();
+        isMoving = false;
+        setControlsDisabled(false);
+        updateDots();
+      }, reduce ? 0 : 620);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto() {
+      stopAuto();
+      if (reduce || cards.length <= perView) return;
+      autoTimer = window.setInterval(goNext, 3400);
+    }
+
+    prev?.addEventListener('click', () => {
+      goPrev();
+      startAuto();
+    });
+
+    next?.addEventListener('click', () => {
+      goNext();
+      startAuto();
+    });
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        perView = getPerView();
+        carousel.style.setProperty('--research-collab-per-view', perView);
+        resetTrack();
+        startAuto();
+      }, 120);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAuto();
+      else startAuto();
+    });
+
+    carousel.style.setProperty('--research-collab-per-view', perView);
+    renderDots();
+    startAuto();
+  }
+
+  window.addEventListener('DOMContentLoaded', initResearchCollaboratorCarousel);
+})();
