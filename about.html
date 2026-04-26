@@ -3,22 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About — Lakshan Madhushanka Bandara</title>
-    <meta name="description" content="About Lakshan Madhushanka Bandara — lecturer & researcher in medical imaging, AI, and robotics.">
+    <title>About | Lakshan Madhushanka Bandara</title>
+    <meta name="description" content="About Lakshan Madhushanka Bandara, lecturer and researcher in medical imaging, AI, and robotics." />
     <link rel="icon" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Font Awesome (icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script defer src="script.js"></script>
   </head>
-  <body>
-    <!-- Header -->
+  <body class="about-page">
     <header class="site-header">
       <div class="container row">
         <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">&#9776;</button>
         <nav class="nav" id="siteNav">
           <a href="lecturing.html">Lecturing</a>
           <a href="research-publications.html">Research & Publication</a>
@@ -28,210 +27,240 @@
           <a href="blog.html">My Blog</a>
           <a href="travel.html">Travel</a>
           <a href="contact.html">Contact</a>
-          <button id="themeToggle" aria-label="Toggle theme">☾</button>
+          <button id="themeToggle" aria-label="Toggle theme">&#9790;</button>
         </nav>
       </div>
     </header>
 
     <main id="top">
-      <!-- Hero (animated) -->
-      <section class="hero container will-animate">
-        <div class="hero-text">
-          <h1>Hi, I'm <br><span class="grad grad-anim">Lakshan Madhushanka Bandara</span>.</h1>
-          <p class="lead">• I work as a Lecturer & researcher in <strong>Computer Engineering</strong> — working on <strong>Image Processing</strong>, <strong>AI</strong> and <strong>robotics</strong>.</p>
-          <p class="lead">• I also volunteer in <strong>Humanitarian Activities</strong>, <strong>Climate and Sustainablility</strong>, <strong>Pre-University STEM Education</strong>.</p>
-
-          <!-- Social -->
-          <ul class="social will-animate-stagger" style="display:flex;gap:2rem;list-style:none;padding:0;margin:.75rem 0 0;font-size:1.5rem;">
+      <section class="container about-hero will-animate" aria-labelledby="aboutHeroTitle">
+        <div class="about-hero-card">
+          <p class="section-kicker">About Me</p>
+          <h1 id="aboutHeroTitle">Hi, I'm <span class="grad grad-anim">Lakshan Madhushanka Bandara</span>.</h1>
+          <div class="about-hero-copy">
+            <p class="lead">I work as a Lecturer & researcher in <strong>Computer Engineering</strong> &mdash; working on <strong>Image Processing</strong>, <strong>AI</strong> and <strong>robotics</strong>.</p>
+            <p class="lead">I also volunteer in <strong>Humanitarian Activities</strong>, <strong>Climate and Sustainablility</strong>, <strong>Pre-University STEM Education</strong>.</p>
+          </div>
+          <ul class="social about-social will-animate-stagger" aria-label="Professional profiles">
             <li>
-              <a class="inline" href="https://scholar.google.com/citations?user=CIf6nxcAAAAJ&hl=en"
-                 target="_blank" rel="noreferrer" aria-label="Google Scholar">
+              <a class="inline" href="https://scholar.google.com/citations?user=CIf6nxcAAAAJ&hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar">
                 <i class="fa-solid fa-graduation-cap"></i>
               </a>
             </li>
             <li>
-              <a class="inline" href="https://www.linkedin.com/in/Lakshan-Madhushanka"
-                 target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <a class="inline" href="https://www.linkedin.com/in/Lakshan-Madhushanka" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
               </a>
             </li>
             <li>
-              <a class="inline" href="https://x.com/lakyshan"
-                 target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+              <a class="inline" href="https://www.researchgate.net/profile/Lakshan-Madhushanka" target="_blank" rel="noreferrer" aria-label="ResearchGate">
+                <i class="fa-brands fa-researchgate"></i>
+              </a>
+            </li>
+            <li>
+              <a class="inline" href="https://github.com/Lakshan-Madhushanka" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </li>
+            <li>
+              <a class="inline" href="https://x.com/lakyshan" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
                 <i class="fa-brands fa-x-twitter"></i>
               </a>
             </li>
           </ul>
         </div>
 
-        <div class="hero-art">
-          <img src="assets/Lakshan.jpg" alt="Profile portrait" />
-        
-
-        <!-- Action buttons -->
-          <div class="hero-actions will-animate-stagger" style="margin-top:2rem">
+        <aside class="about-profile-panel will-animate-stagger" aria-label="Profile downloads">
+          <div class="about-photo-frame">
+            <img src="assets/Lakshan.jpg" alt="Portrait of Lakshan Madhushanka Bandara" />
+          </div>
+          <div class="about-actions">
             <a class="btn" href="assets/Lakshan.jpg" download>
-              <i class="fa-solid fa-id-badge" style="margin-right:.45rem"></i> Download Photo
+              <i class="fa-solid fa-id-badge" aria-hidden="true"></i>
+              Download Photo
             </a>
             <a class="btn primary" href="assets/Lakshan_Madhushanka_Bandara_CV.pdf" download>
-              <i class="fa-solid fa-file-lines" style="margin-right:.45rem"></i> Download CV
+              <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+              Download CV
             </a>
           </div>
-
-
-
-
-          
+        </aside>
       </section>
 
+      <section class="container about-highlight-grid reveal" aria-label="Profile highlights">
+        <article class="about-highlight-card">
+          <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+          <h2>Lecturer</h2>
+          <p>Computer Engineering teaching, student mentoring, and academic supervision.</p>
+        </article>
+        <article class="about-highlight-card">
+          <i class="fa-solid fa-brain" aria-hidden="true"></i>
+          <h2>Research Focus</h2>
+          <p>Artificial intelligence, medical imaging, image processing, and robotics.</p>
+        </article>
+        <article class="about-highlight-card">
+          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          <h2>Engineering Base</h2>
+          <p>Electrical and Electronic Engineering foundation from the University of Peradeniya.</p>
+        </article>
+        <article class="about-highlight-card">
+          <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+          <h2>Service</h2>
+          <p>IEEE, humanitarian, sustainability, and pre-university STEM volunteering.</p>
+        </article>
+      </section>
 
+      <section id="about" class="container section">
+        <div class="about-section-head reveal">
+          <p class="section-kicker">Profile</p>
+          <h2 class="fancy-head">Biography & Memberships</h2>
+        </div>
+        <div class="about-intro-grid">
+          <article class="about-panel about-card will-animate" aria-label="Biography">
+            <div class="bio-heading">
+              <span class="bio-heading-icon" aria-hidden="true"><i class="fa-solid fa-user-graduate"></i></span>
+              <div>
+                <h3>Biography</h3>
+                <p>A brief profile of my academic path, research direction, recognitions, and service work.</p>
+              </div>
+            </div>
+            <div class="about-copy">
+              <p>
+                I'm <strong>Lakshan Madhushanka</strong>, an Electrical and Electronic Engineer turned Lecturer in Computer Engineering with a deep passion for <strong>Artificial Intelligence</strong>, <strong>Robotics</strong>, and <strong>Intelligent Systems</strong>. I graduated from the <strong>Faculty of Engineering, University of Peradeniya</strong>, where I specialized in <strong>Communication</strong>, <strong>Power Systems</strong>, and <strong>Advanced Control Systems</strong>.
+              </p>
+              <p>
+                Currently, I serve as a Lecturer at the <strong>University of Sri Jayewardenepura</strong>, where I contribute to research at the <strong>AI and Biomedical Engineering Research Group</strong>, focusing on intelligent healthcare systems and medical imaging.
+              </p>
+              <p>
+                My work has been nationally recognized with awards including the <strong>Silver Medal</strong> from the Sri Lanka Inventors Commission, the <strong>Eng. E.W. Karunarathna Award</strong> from the Institution of Engineers, Sri Lanka, the <strong>W.P. Jayasekara Prize</strong> for the best undergraduate project in Electrical and Electronics Engineering, and the <strong>Prof. Suhada Jayasuriya Scholarship Grant</strong> for the best Robotics and Control project.
+              </p>
+              <p>
+                Beyond academia, I am an active <strong>IEEE volunteer</strong> at section, regional, and global levels, having served with <strong>IEEE HTB</strong>, <strong>IEEE Region 10 SAC</strong>, and the <strong>IEEE Sri Lanka Section</strong>. I was honored as an <strong>IEEE STEM Champion in 2023</strong> and received the <strong>IEEE Sri Lanka Section Outstanding Volunteer Award (Student Category) in 2022</strong>.
+              </p>
+            </div>
+          </article>
 
+          <article class="about-panel membership-card will-animate" aria-label="Professional Memberships and Responsibilities">
+            <div class="membership-heading">
+              <span class="membership-heading-icon" aria-hidden="true"><i class="fa-solid fa-certificate"></i></span>
+              <div>
+                <h3>Professional Memberships & Responsibilities</h3>
+                <p>Active professional affiliations and IEEE leadership responsibilities across engineering, computing, and biomedical engineering communities.</p>
+              </div>
+            </div>
+            <h4 class="membership-subhead">Memberships</h4>
+            <ul class="mships stepped about-memberships">
+              <li class="mship">
+                <div class="m-logo"><img src="assets/logos/ieee.svg" alt="IEEE logo" /></div>
+                <div class="m-content">
+                  <a class="org inline" href="https://www.ieee.org/" target="_blank" rel="noopener">
+                    The Institute of Electrical and Electronics Engineers (IEEE)
+                  </a>
+                  <ul class="grades">
+                    <li><span class="grade">Student Member</span> <span class="years">(2018-2022)</span></li>
+                    <li><span class="grade strong">Member <span class="abbr">(MIEEE)</span></span> <span class="years">(2022-Present)</span></li>
+                  </ul>
+                </div>
+              </li>
 
-  <section id="about" class="container section">
-  <h2 class="reveal fancy-head">About</h2>
-  <div class="grid two about-layout">
-    <!-- About card -->
-    <div class="about-card will-animate" aria-label="Biography">
-      <h3 class="reveal fancy-head">Biography</h3>
-      <section id="about" class="container">
-  <p>
-    I’m <strong>Lakshan Madhushanka</strong>, an Electrical and Electronic Engineer turned Lecturer in Computer Engineering with a deep passion for <strong>Artificial Intelligence</strong>, <strong>Robotics</strong>, and <strong>Intelligent Systems</strong>. I graduated from the <strong>Faculty of Engineering, University of Peradeniya</strong>, where I specialized in <strong>Communication</strong>, <strong>Power Systems</strong>, and <strong>Advanced Control Systems</strong>.
-  </p>
+              <li class="mship">
+                <div class="m-logo"><img src="assets/logos/iesl.jpg" alt="IESL logo" /></div>
+                <div class="m-content">
+                  <a class="org inline" href="https://iesl.lk/" target="_blank" rel="noopener">
+                    The Institution of Engineers Sri Lanka (IESL)
+                  </a>
+                  <ul class="grades">
+                    <li><span class="grade">Student Member</span> <span class="years">(2019-2022)</span></li>
+                    <li><span class="grade strong">Associate Member <span class="abbr">(AMIESL)</span></span> <span class="years">(2022-Present)</span></li>
+                  </ul>
+                </div>
+              </li>
 
-  <p>
-    Currently, I serve as a Lecturer at the <strong>University of Sri Jayewardenepura</strong>, where I contribute to research at the <strong>AI and Biomedical Engineering Research Group</strong>, focusing on intelligent healthcare systems and medical imaging.
-  </p>
+              <li class="mship">
+                <div class="m-logo"><img src="assets/logos/ecsl.png" alt="ECSL logo" /></div>
+                <div class="m-content">
+                  <a class="org inline" href="https://ecsl.lk/" target="_blank" rel="noopener">
+                    The Engineering Council Sri Lanka (ECSL)
+                  </a>
+                  <ul class="grades">
+                    <li><span class="grade strong">Registered Engineer</span> <span class="years">(2021-Present)</span></li>
+                  </ul>
+                </div>
+              </li>
 
-  <p>
-    My work has been nationally recognized with awards including the <strong>Silver Medal</strong> from the Sri Lanka Inventors Commission, the <strong>Eng. E.W. Karunarathna Award</strong> from the Institution of Engineers, Sri Lanka, the <strong>W.P. Jayasekara Prize</strong> for the best undergraduate project in Electrical and Electronics Engineering, and the <strong>Prof. Suhada Jayasuriya Scholarship Grant</strong> for the best Robotics and Control project.
-  </p>
+              <li class="mship">
+                <div class="m-logo"><img src="assets/logos/ieee-cs.png" alt="IEEE Computer Society logo" /></div>
+                <div class="m-content">
+                  <a class="org inline" href="https://www.computer.org/" target="_blank" rel="noopener">
+                    The IEEE Computer Society
+                  </a>
+                  <ul class="grades">
+                    <li><span class="grade strong">Member</span> <span class="years">(2020-Present)</span></li>
+                  </ul>
+                </div>
+              </li>
 
-  <p>
-    Beyond academia, I am an active <strong>IEEE volunteer</strong> at section, regional, and global levels, having served with <strong>IEEE HTB</strong>, <strong>IEEE Region 10 SAC</strong>, and the <strong>IEEE Sri Lanka Section</strong>. I was honored as an <strong>IEEE STEM Champion in 2023</strong> and received the <strong>IEEE Sri Lanka Section Outstanding Volunteer Award (Student Category) in 2022</strong>.
-  </p>
-</section>
+              <li class="mship">
+                <div class="m-logo"><img src="assets/logos/ieee-embs.jpeg" alt="IEEE EMBS logo" /></div>
+                <div class="m-content">
+                  <a class="org inline" href="https://www.embs.org/" target="_blank" rel="noopener">
+                    The IEEE Engineering in Medicine and Biology Society
+                  </a>
+                  <ul class="grades">
+                    <li><span class="grade strong">Member</span> <span class="years">(2022-Present)</span></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <div class="responsibilities-block" aria-label="IEEE leadership responsibilities">
+              <div class="responsibility-heading">
+                <div>
+                  <h4 class="membership-subhead">IEEE Leadership Responsibilities</h4>
+                  <p>Recent leadership roles reported through IEEE vTools.</p>
+                </div>
+                <span class="responsibility-note">Recent vTools reported</span>
+              </div>
+              <ol class="responsibility-timeline">
+                <li>
+                  <span class="responsibility-year">2022</span>
+                  <span class="responsibility-role">Chair, IEEE Sri Lanka Section SIGHT</span>
+                </li>
+                <li>
+                  <span class="responsibility-year">2023</span>
+                  <span class="responsibility-role">Student Activities Chair, IEEE Sri Lanka Section</span>
+                </li>
+                <li>
+                  <span class="responsibility-year">2024</span>
+                  <span class="responsibility-role">Treasurer, IEEE Sri Lanka Section</span>
+                </li>
+                <li>
+                  <span class="responsibility-year">2025</span>
+                  <span class="responsibility-role">Secretary, IEEE EMBS Sri Lanka Chapter</span>
+                </li>
+                <li>
+                  <span class="responsibility-year">2026</span>
+                  <span class="responsibility-role">Vice Chair / Chair Elect, IEEE EMBS Sri Lanka Chapter</span>
+                </li>
+              </ol>
+            </div>
+          </article>
+        </div>
+      </section>
 
-
-    </div>
-
-    
-
-    <!-- Membership card -->
-    <div class="membership-card will-animate" aria-label="Professional Memberships">
-      <h3 class="reveal fancy-head">Professional Memberships</h3>
-      <ul class="mships stepped">
-  <!-- IEEE -->
-  <li class="mship">
-    <div class="m-logo"><img src="assets/logos/ieee.svg" alt="IEEE logo"></div>
-    <div class="m-content">
-      <a class="org inline" href="https://www.ieee.org/" target="_blank" rel="noopener">
-        The Institute of Electrical and Electronics Engineers (IEEE)
-      </a>
-      <ul class="grades">
-        <li>
-          <span class="grade">Student Member</span>
-          <span class="years">(2018–2022)</span>
-        </li>
-        <li>
-          <span class="grade strong">Member <span class="abbr">(MIEEE)</span></span>
-          <span class="years">(2022–Present)</span>
-        </li>
-      </ul>
-    </div>
-  </li>
-
-  <!-- IESL -->
-  <li class="mship">
-    <div class="m-logo"><img src="assets/logos/iesl.jpg" alt="IESL logo"></div>
-    <div class="m-content">
-      <a class="org inline" href="https://iesl.lk/" target="_blank" rel="noopener">
-        The Institution of Engineers Sri Lanka (IESL)
-      </a>
-      <ul class="grades">
-        <li>
-          <span class="grade">Student Member</span>
-          <span class="years">(2019–2022)</span>
-        </li>
-        <li>
-          <span class="grade strong">Associate Member <span class="abbr">(AMIESL)</span></span>
-          <span class="years">(2022–Present)</span>
-        </li>
-      </ul>
-    </div>
-  </li>
-
-  <!-- ECSL -->
-  <li class="mship">
-    <div class="m-logo"><img src="assets/logos/ecsl.png" alt="ECSL logo"></div>
-    <div class="m-content">
-      <a class="org inline" href="https://ecsl.lk/" target="_blank" rel="noopener">
-        The Engineering Council Sri Lanka (ECSL)
-      </a>
-      <ul class="grades">
-        <li>
-          <span class="grade strong">Registered Engineer</span>
-          <span class="years">(2021–Present)</span>
-        </li>
-      </ul>
-    </div>
-  </li>
-
-  <!-- IEEE CS -->
-  <li class="mship">
-    <div class="m-logo"><img src="assets/logos/ieee-cs.png" alt="IEEE CS logo"></div>
-    <div class="m-content">
-      <a class="org inline" href="https://www.computer.org/" target="_blank" rel="noopener">
-        The IEEE Computer Society
-      </a>
-      <ul class="grades">
-        <li>
-          <span class="grade strong">Member</span>
-          <span class="years">(2020–Present)</span>
-        </li>
-      </ul>
-    </div>
-  </li>
-
-  <!-- IEEE EMBS -->
-  <li class="mship">
-    <div class="m-logo"><img src="assets/logos/ieee-embs.jpeg" alt="IEEE EMBS logo"></div>
-    <div class="m-content">
-      <a class="org inline" href="https://www.embs.org/" target="_blank" rel="noopener">
-        The IEEE Engineering in Medicine and Biology Society
-      </a>
-      <ul class="grades">
-        <li>
-          <span class="grade strong">Member</span>
-          <span class="years">(2022–Present)</span>
-        </li>
-      </ul>
-    </div>
-  </li>
-</ul>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-      <!-- TIMELINES (reveal + animate) -->
-      <section class="container section">
-        <!-- Education -->
-         <h2 class="reveal fancy-head">Education</h2>
-        <div class="timeline reveal">
+      <section class="container section about-timeline-section">
+        <div class="about-section-head reveal">
+          <p class="section-kicker">Academic Path</p>
+          <h2 class="fancy-head">Education</h2>
+        </div>
+        <div class="timeline about-academic-timeline reveal">
           <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/uop.png" alt="University logo">
+              <img src="assets/logos/uop.png" alt="University of Peradeniya logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
-                <span class="t-year">2016–2022</span>
-                <h3 class="t-title">B.Sc. Eng. (Hons) — Specialized in Electrical & Electronic Engineering</h3>
+                <span class="t-year">2016-2022</span>
+                <h3 class="t-title">B.Sc. Eng. (Hons) - Specialized in Electrical & Electronic Engineering</h3>
               </header>
               <div class="t-meta">University of Peradeniya</div>
               <p class="t-desc">Focused on embedded systems, computer vision, and machine learning. Final year project on medical image analysis.</p>
@@ -240,98 +269,100 @@
 
           <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/mck.png" alt="USJ logo">
+              <img src="assets/Maliyadeva_Crest.png" alt="Maliyadeva College crest" />
             </div>
             <div class="t-body">
               <header class="t-head">
                 <span class="t-year">2010-2013</span>
-                <h3 class="t-title"> General Certificate of Education (Advanced Level) </h3>
+                <h3 class="t-title">General Certificate of Education (Advanced Level)</h3>
               </header>
               <div class="t-meta">Maliyadeva College, Kurunegala</div>
-              <p class="t-desc"> Physical Science Stream </p>
+              <p class="t-desc">Physical Science Stream</p>
             </div>
           </article>
-        
-         <article class="t-item">
+
+          <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/ubw.png" alt="USJ logo">
+              <img src="assets/balalla.jpg" alt="U.B. Wanninayake National School Balalla logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
                 <span class="t-year">2000-2010</span>
-                <h3 class="t-title"> General Certificate of Education (Ordinary Level) </h3>
+                <h3 class="t-title">General Certificate of Education (Ordinary Level)</h3>
               </header>
-              <div class="t-meta">U.B.Wanninayake National School, Balalla</div>
-              <p class="t-desc"> Best results of the school after 1972. 9'As District 7th (Kurunegala District) </p>
+              <div class="t-meta">U.B. Wanninayake National School, Balalla</div>
+              <p class="t-desc">Best results of the school after 1972. 9'As District 7th (Kurunegala District)</p>
             </div>
           </article>
         </div>
-        <!-- Employment -->
-         <h2 class="reveal fancy-head">Employment</h2>
-        <div class="timeline reveal">
+
+        <div class="about-section-head reveal">
+          <p class="section-kicker">Professional Path</p>
+          <h2 class="fancy-head">Employment</h2>
+        </div>
+        <div class="timeline about-professional-timeline reveal">
           <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/usjp.png" alt="USJ logo">
+              <img src="assets/logos/usjp.png" alt="University of Sri Jayewardenepura logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
-                <span class="t-year">Nov 2023–present</span>
-                <h3 class="t-title">Lecturer in Computer Engineering </h3>
+                <span class="t-year">Nov 2023-present</span>
+                <h3 class="t-title">Lecturer in Computer Engineering</h3>
               </header>
-              <div class="t-meta">Department of Computer Engineering, Faculty of Engineering, University of Sri Jayewardenepura. </div>
-              <p class="t-desc">Teaching computer engineering courses; supervising student projects; Paper setting and Marking </p>
+              <div class="t-meta">Department of Computer Engineering, Faculty of Engineering, University of Sri Jayewardenepura.</div>
+              <p class="t-desc">Teaching computer engineering courses; supervising student projects; paper setting and marking.</p>
             </div>
           </article>
 
           <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/industry.png" alt="Company logo">
+              <img src="assets/logos/uop.png" alt="University of Peradeniya logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
-                <span class="t-year">Nov 2021– Feb 2023</span>
-                <h3 class="t-title">Temporary Instructor (Teaching Assistant) </h3>
+                <span class="t-year">Nov 2021-Feb 2023</span>
+                <h3 class="t-title">Temporary Instructor (Teaching Assistant)</h3>
               </header>
               <div class="t-meta">Department of Electrical and Electronic Engineering, Faculty of Engineering, University of Peradeniya.</div>
-              <p class="t-desc">Conduct Labs and Practicals for the Engineering students, Grading assignments and Quizzes </p>
+              <p class="t-desc">Conducted labs and practicals for engineering students, including grading assignments and quizzes.</p>
             </div>
           </article>
-        
-        
-        <article class="t-item">
+
+          <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/industry.png" alt="Company logo">
+              <img src="assets/ceb_logo.png" alt="Ceylon Electricity Board logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
-                <span class="t-year"> Nov 2019 – Feb 2020</span>
-                <h3 class="t-title">Electrical Engineering Intern </h3>
+                <span class="t-year">Nov 2019-Feb 2020</span>
+                <h3 class="t-title">Electrical Engineering Intern</h3>
               </header>
               <div class="t-meta">Ceylon Electricity Board</div>
-              <p class="t-desc"> This training consisted power generation, transmission and distribution </p>
+              <p class="t-desc">Training covered power generation, transmission, and distribution.</p>
             </div>
           </article>
 
-
-
-             <article class="t-item">
+          <article class="t-item">
             <div class="t-logo">
-              <img src="assets/logos/industry.png" alt="Company logo">
+              <img src="assets/Huawei_Standard_logo.svg.png" alt="Huawei Technologies logo" />
             </div>
             <div class="t-body">
               <header class="t-head">
-                <span class="t-year"> Feb 2019 - Jun 2019</span>
-                <h3 class="t-title">Electrical and Electronic Engineering Intern </h3>
+                <span class="t-year">Feb 2019-Jun 2019</span>
+                <h3 class="t-title">Electrical and Electronic Engineering Intern</h3>
               </header>
-              <div class="t-meta">Huavei Technologies</div>
-              <p class="t-desc"> This training consisted of Core and Aggregaiton Networks. Work in Dialog - Cisco Swap Project </p>
+              <div class="t-meta">Huawei Technologies</div>
+              <p class="t-desc">Training covered core and aggregation networks, with work on the Dialog-Cisco Swap Project.</p>
             </div>
           </article>
         </div>
 
-        <!-- Selected Honors & Recognitions -->
-        <h2 class="reveal fancy-head">Selected Honors & Recognitions</h2>
-        <div class="selected-awards-grid">
+        <div class="about-section-head reveal">
+          <p class="section-kicker">Recognition</p>
+          <h2 class="fancy-head">Selected Honors & Recognitions</h2>
+        </div>
+        <div class="selected-awards-grid about-awards-grid">
           <article class="selected-award-card reveal">
             <span class="selected-award-year">2023</span>
             <h3>IEEE STEM Champion 2023</h3>
@@ -362,42 +393,9 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer container">
-      <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
-      <a class="inline" href="#top">Back to top ↑</a>
+      <small>&copy; <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
+      <a class="inline" href="#top">Back to top &uarr;</a>
     </footer>
-
-    <!-- Main JS -->
-    <script src="script.js"></script>
-
-    <!-- Fallback: first‑load + scroll‑reveal (keeps page animated even if script.js lacks it) -->
-    <script>
-      (function () {
-        // First-load class so .will-animate elements fade in
-        setTimeout(() => document.documentElement.classList.add('page-loaded'), 60);
-
-        // Reveal on scroll
-        const targets = document.querySelectorAll('.reveal');
-        if (!targets.length) return;
-
-        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) { targets.forEach(el => el.classList.add('is-visible')); return; }
-
-        if ('IntersectionObserver' in window) {
-          const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-visible');
-                io.unobserve(e.target);
-              }
-            });
-          }, { threshold: 0.12 });
-          targets.forEach(el => io.observe(el));
-        } else {
-          targets.forEach(el => el.classList.add('is-visible'));
-        }
-      })();
-    </script>
   </body>
 </html>
