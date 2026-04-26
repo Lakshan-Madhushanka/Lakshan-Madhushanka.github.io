@@ -1,112 +1,102 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Travel & Photography — Lakshan</title>
-  <meta name="description" content="Hikes, trips and landscapes I've photographed." />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Travel | Lakshan Madhushanka Bandara</title>
+    <meta name="description" content="A warm travel journal of places, moments, and stories captured by Lakshan Madhushanka Bandara." />
 
-  <link rel="icon" href="assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600..800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Font Awesome (icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Leaflet (map) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <script defer src="script.js"></script>
-</head>
-<body class="travel-page">
-  <!-- Shared Header -->
-  <header class="site-header">
-    <div class="container row">
-      <a class="brand" href="index.html"><span class="grad">Home</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
-      <nav class="nav" id="siteNav">
-        <a href="lecturing.html">Lecturing</a>
-        <a href="sessions.html">Sessions</a>
-        <a href="volunteering.html">Volunteering</a>
-        <a href="blog.html">My Blog</a>
-        <a href="research-publications.html">Research & Publication</a>
-        <a href="travel.html" aria-current="page">Travel</a>
-        <a href="awards.html">Awards & Recognitions</a>
-        <a href="contact.html" class="cta">Contact</a>
-        <button id="themeToggle" aria-label="Toggle theme">☾</button>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <!-- Cinematic hero -->
-    <section class="travel-hero2">
-      <div class="hero-bg">
-        <!-- Replace with your best landscape -->
-        <img src="assets/travel-1.jpg" alt="Mountain sunrise" />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600..800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="travel.css" />
+    <script defer src="script.js"></script>
+    <script defer src="travel.js"></script>
+  </head>
+  <body class="travel-page">
+    <header class="site-header">
+      <div class="container row">
+        <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="nav" id="siteNav">
+          <a href="lecturing.html">Lecturing</a>
+          <a href="research-publications.html">Research & Publication</a>
+          <a href="awards.html">Awards & Recognitions</a>
+          <a href="volunteering.html">Volunteering</a>
+          <a href="sessions.html">Sessions</a>
+          <a href="blog.html">My Blog</a>
+          <a href="travel.html" aria-current="page">Travel</a>
+          <a href="contact.html">Contact</a>
+          <button id="themeToggle" aria-label="Toggle theme">☾</button>
+        </nav>
       </div>
-      <div class="hero-glass">
-        <h1><span class="crest">Travel & Photography</span></h1>
-        <p>Peaks, forests, and quiet light. A running log of places that moved me.</p>
-      </div>
-      <div class="hero-badge"><i class="fa-solid fa-person-hiking"></i></div>
-    </section>
+    </header>
 
-    <!-- Interactive map -->
-    <section class="container section">
-      <h2 class="trail-head"><i class="fa-solid fa-map-location-dot"></i> Trip Map</h2>
-      <p class="muted" style="margin-top:-.4rem">Click pins to see a photo + short note. I’ll keep adding new spots.</p>
-      <div id="tripMap" class="trip-map" aria-label="Trip map"></div>
-    </section>
-
-    <!-- Photo-first trip cards -->
-    <section class="container section">
-      <h2 class="trail-head"><i class="fa-solid fa-camera-retro"></i> Trips</h2>
-      <div class="photo-grid">
-        <!-- Card -->
-        <article class="photo-card">
-          <a href="assets/travel-1.jpg" target="_blank" class="photo">
-            <img src="assets/travel-1.jpg" alt="Knuckles Ridge — sunrise" />
-          </a>
-          <div class="meta">
-            <h3>Knuckles Ridge — Sunrise Traverse</h3>
-            <p class="sub">Central Highlands · Aug 2025 · 12 km</p>
-            <p class="desc">Cloud inversions and hawks catching thermals. Windy ridgeline but unreal light.</p>
+    <main id="top">
+      <section class="travel-hero">
+        <div class="travel-rays" aria-hidden="true"></div>
+        <div class="container travel-hero-inner">
+          <div class="travel-hero-copy will-animate">
+            <p class="travel-kicker">Golden Travel Journal</p>
+            <h1>Travel</h1>
+            <p>A collection of places, moments, and stories captured along the way.</p>
           </div>
-        </article>
+          <div class="travel-collage" id="travelCollage" aria-label="Scattered travel photo collage"></div>
+        </div>
+      </section>
 
-        <article class="photo-card">
-          <a href="assets/travel-2.jpg" target="_blank" class="photo">
-            <img src="assets/travel-2.jpg" alt="Sinharaja Rainforest" />
-          </a>
-          <div class="meta">
-            <h3>Sinharaja — After the Rain</h3>
-            <p class="sub">Lowland Rainforest · May 2025 · 9 km</p>
-            <p class="desc">Emerald trails, sun shafts, and birdsong. Leeches kept us humble.</p>
-          </div>
-        </article>
+      <section class="container travel-section">
+        <div class="travel-section-head">
+          <p class="travel-kicker">Sunlit Frames</p>
+          <h2 class="reveal fancy-head">Featured Moments</h2>
+        </div>
+        <div class="travel-featured" id="travelFeatured"></div>
+      </section>
 
-        <article class="photo-card">
-          <a href="assets/travel-3.jpg" target="_blank" class="photo">
-            <img src="assets/travel-3.jpg" alt="Riverston peaks" />
-          </a>
-          <div class="meta">
-            <h3>Riverston — Cloud Paths</h3>
-            <p class="sub">Matale · Nov 2024 · 7 km</p>
-            <p class="desc">Grassy shoulders with clouds breathing in and out over the ridge.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
+      <section class="container travel-section">
+        <div class="travel-section-head">
+          <p class="travel-kicker">Photo Memories</p>
+          <h2 class="reveal fancy-head">Travel Gallery</h2>
+        </div>
+        <div class="travel-gallery" id="travelGallery"></div>
+      </section>
 
-  <!-- Footer -->
-  <footer class="site-footer container">
-    <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
-    <a class="inline" href="#top">Back to top ↑</a>
-  </footer>
-</body>
+      <section class="container travel-section">
+        <div class="travel-section-head">
+          <p class="travel-kicker">Journal Notes</p>
+          <h2 class="reveal fancy-head">Travel Notes & Stories</h2>
+        </div>
+        <div class="travel-notes">
+          <article class="travel-note reveal">
+            <span>Field note</span>
+            <h3>Quiet Roads, Long Light</h3>
+            <p>[Short travel reflection to be added]</p>
+          </article>
+          <article class="travel-note reveal">
+            <span>Photo memory</span>
+            <h3>When the Sky Turned Gold</h3>
+            <p>[Short travel story to be added]</p>
+          </article>
+          <article class="travel-note reveal">
+            <span>Trail thought</span>
+            <h3>Places That Stay With You</h3>
+            <p>[Short note about a memorable place to be added]</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container travel-section">
+        <div class="travel-closing reveal">
+          <p>More journeys, stories, and photographs will be added soon.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
+      <a class="inline" href="#top">Back to top ↑</a>
+    </footer>
+  </body>
 </html>
