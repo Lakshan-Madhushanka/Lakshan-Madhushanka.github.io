@@ -364,3 +364,218 @@ function initTripMap() {
 window.addEventListener('DOMContentLoaded', () => {
   initTripMap();
 });
+
+// Awards & Recognitions showcase carousel
+(function () {
+  function initAwardsCarousel() {
+    const carousel = document.querySelector('[data-award-carousel]');
+    if (!carousel) return;
+
+    const cards = Array.from(carousel.querySelectorAll('[data-award-card]'));
+    const prev = carousel.querySelector('[data-award-prev]');
+    const next = carousel.querySelector('[data-award-next]');
+    const dotsWrap = carousel.querySelector('[data-award-dots]');
+    const topic = carousel.querySelector('[data-award-topic]');
+    let topicText = carousel.querySelector('[data-award-topic-text]');
+    let topicNext = carousel.querySelector('[data-award-topic-next]');
+    if (!cards.length) return;
+
+    if (topic && !topicText) {
+      topicText = document.createElement('span');
+      topicText.className = 'award-carousel-topic-text';
+      topicText.dataset.awardTopicText = '';
+      topicText.textContent = topic.textContent.trim();
+      topic.textContent = '';
+      topic.appendChild(topicText);
+    }
+
+    if (topic && !topicNext) {
+      topicNext = document.createElement('span');
+      topicNext.className = 'award-carousel-topic-next';
+      topicNext.dataset.awardTopicNext = '';
+      topicNext.setAttribute('aria-hidden', 'true');
+      topic.appendChild(topicNext);
+    }
+
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let active = 0;
+    let autoTimer = null;
+    let transitionTimer = null;
+    let isTransitioning = false;
+    const carouselTransitionMs = 760;
+
+    cards.forEach((card, index) => {
+      card.setAttribute('aria-label', `Recognition ${index + 1} of ${cards.length}`);
+    });
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = '';
+      cards.forEach((card, index) => {
+        const title = card.querySelector('h3')?.textContent?.trim() || `Recognition ${index + 1}`;
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show ${title}`);
+        dot.addEventListener('click', () => goTo(index));
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('button')) : [];
+
+    function render() {
+      cards.forEach((card, index) => {
+        let offset = (index - active + cards.length) % cards.length;
+        if (offset > cards.length / 2) offset -= cards.length;
+
+        card.classList.remove('is-active', 'is-prev', 'is-next', 'is-far-prev', 'is-far-next', 'is-hidden-prev', 'is-hidden-next');
+        card.setAttribute('aria-hidden', index === active ? 'false' : 'true');
+
+        if (offset === 0) card.classList.add('is-active');
+        else if (offset === 1) card.classList.add('is-next');
+        else if (offset === -1) card.classList.add('is-prev');
+        else if (offset === 2) card.classList.add('is-far-next');
+        else if (offset === -2) card.classList.add('is-far-prev');
+        else if (offset > 0) card.classList.add('is-hidden-next');
+        else card.classList.add('is-hidden-prev');
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('is-active', index === active);
+        dot.setAttribute('aria-current', index === active ? 'true' : 'false');
+      });
+    }
+
+    function goTo(index, options = {}) {
+      const target = (index + cards.length) % cards.length;
+      if (target === active) return;
+      const nextCategory = cards[target]?.dataset.awardCategory || '';
+      const shouldAnimateTopic = topic && topicText && topicText.textContent.trim() !== nextCategory;
+
+      if (reduce || options.immediate) {
+        active = target;
+        render();
+        showTopic(nextCategory);
+        return;
+      }
+
+      if (isTransitioning) {
+        return;
+      }
+
+      isTransitioning = true;
+      setControlsDisabled(true);
+      carousel.classList.add('is-transitioning');
+      if (shouldAnimateTopic) {
+        prepareTopic(nextCategory);
+        topic?.classList.add('is-changing');
+      }
+
+      window.clearTimeout(transitionTimer);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          active = target;
+          render();
+        });
+      });
+
+      transitionTimer = window.setTimeout(() => {
+        if (shouldAnimateTopic) showTopic(nextCategory);
+        carousel.classList.remove('is-transitioning');
+        isTransitioning = false;
+        setControlsDisabled(false);
+      }, carouselTransitionMs);
+    }
+
+    function setControlsDisabled(disabled) {
+      [prev, next, ...dots].forEach((control) => {
+        if (!control) return;
+        control.disabled = disabled;
+        control.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+      });
+    }
+
+    function prepareTopic(nextText) {
+      if (!topicNext) return;
+      topicNext.textContent = nextText;
+    }
+
+    function showTopic(nextText) {
+      if (!topic || !topicText) return;
+      topicText.textContent = nextText;
+      if (topicNext) topicNext.textContent = '';
+      topic.classList.remove('is-changing');
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto() {
+      if (reduce || cards.length < 2) return;
+      stopAuto();
+      autoTimer = window.setInterval(() => goTo(active + 1), 5200);
+    }
+
+    prev?.addEventListener('click', () => {
+      goTo(active - 1);
+      startAuto();
+    });
+    next?.addEventListener('click', () => {
+      goTo(active + 1);
+      startAuto();
+    });
+
+    carousel.tabIndex = 0;
+    carousel.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goTo(active - 1);
+        startAuto();
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goTo(active + 1);
+        startAuto();
+      }
+    });
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    carousel.addEventListener('focusin', stopAuto);
+    carousel.addEventListener('focusout', startAuto);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAuto();
+      else startAuto();
+    });
+
+    if (reduce) {
+      cards.forEach(card => card.setAttribute('aria-hidden', 'false'));
+      showTopic(cards[active]?.dataset.awardCategory || '');
+      return;
+    }
+
+    render();
+    showTopic(cards[active]?.dataset.awardCategory || '');
+    startAuto();
+  }
+
+  function initAwardsImageFallbacks() {
+    document.querySelectorAll('.awards-showcase-page .award-photo img').forEach((image) => {
+      image.addEventListener('error', () => {
+        const frame = image.closest('.award-photo');
+        if (!frame) return;
+        frame.classList.add('is-missing');
+        image.setAttribute('aria-hidden', 'true');
+      }, { once: true });
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    initAwardsCarousel();
+    initAwardsImageFallbacks();
+  });
+})();
