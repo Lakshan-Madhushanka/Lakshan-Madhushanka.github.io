@@ -30,7 +30,7 @@ siteNav?.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     if (siteNav.classList.contains('open')) {
       siteNav.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle?.setAttribute('aria-expanded', 'false');
     }
   });
 });
@@ -65,35 +65,6 @@ window.addEventListener('DOMContentLoaded', () => {
   targets.forEach(el => io.observe(el));
 })();
 
-
-
-// First-load toggle so the .will-animate / stagger play once
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => document.documentElement.classList.add('page-loaded'), 60);
-});
-
-// Scroll-reveal for elements with .reveal
-(function () {
-  const nodes = document.querySelectorAll('.reveal');
-  if (!nodes.length) return;
-
-  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || !('IntersectionObserver' in window)) {
-    nodes.forEach(el => el.classList.add('is-visible'));
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  nodes.forEach(el => io.observe(el));
-})();
-
 // Make tiles tappable on touch devices (toggle open)
 (function () {
   const tiles = document.querySelectorAll('.reveal-card');
@@ -108,10 +79,10 @@ window.addEventListener('DOMContentLoaded', () => {
         t.classList.toggle('open');
       }
     });
-    // Touch/click: only toggle on touch‑centric devices
+    // Touch/click: only toggle on touch-centric devices
     if (isTouch) {
       t.addEventListener('click', (e) => {
-        // Don’t close immediately when clicking links inside
+        // Do not close immediately when clicking links inside
         if (e.target.closest('a')) return;
         t.classList.toggle('open');
       });
@@ -142,6 +113,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   let i = 0, paused = false;
   const area = document.querySelector('.news-card .ticker');
+  if (!area) return;
 
   // start state
   items.forEach((li, idx) => li.classList.toggle('active', idx === 0));
@@ -167,8 +139,22 @@ window.addEventListener('DOMContentLoaded', () => {
   const listEl = document.getElementById('blogTicker');
   if (!listEl) return;
 
-  const makeItem = (title, anchor, active = false) =>
-    `<li${active ? ' class="active"' : ''}><a class="inline" href="blog.html${anchor}">${title}</a></li>`;
+  const makeItem = (title, anchor, active = false) => {
+    const item = document.createElement('li');
+    if (active) item.classList.add('active');
+
+    const link = document.createElement('a');
+    link.className = 'inline';
+    link.href = `blog.html${anchor}`;
+    link.textContent = title;
+
+    item.appendChild(link);
+    return item;
+  };
+
+  const replaceTickerItems = (items) => {
+    listEl.replaceChildren(...items);
+  };
 
   try {
     const res = await fetch('blog.html', { cache: 'no-cache' });
@@ -176,22 +162,16 @@ window.addEventListener('DOMContentLoaded', () => {
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    // Try several sensible structures:
-    // 1) <article id="..."> with inner <h1|h2|h3|.post-title>
-    // 2) Headings with their own ids: <h2 id="...">Title</h2>
-    // 3) Any element with id starting "post-" where its text is the title
     let posts = [];
 
-    // Preferred: articles with IDs
     doc.querySelectorAll('article[id]').forEach(art => {
       const titleEl = art.querySelector('h1, h2, h3, .post-title');
       const title = titleEl?.textContent?.trim();
       const id = art.id;
-      const date = art.getAttribute('data-date'); // optional ISO date, e.g. 2025-08-10
+      const date = art.getAttribute('data-date');
       if (title && id) posts.push({ title, anchor: `#${id}`, date });
     });
 
-    // Fallback: headings with IDs
     if (posts.length === 0) {
       doc.querySelectorAll('h2[id], h3[id]').forEach(h => {
         const title = h.textContent?.trim();
@@ -201,7 +181,6 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Fallback: any element whose id starts with "post-"
     if (posts.length === 0) {
       doc.querySelectorAll('[id^="post-"]').forEach(el => {
         const title = el.textContent?.trim();
@@ -211,32 +190,33 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Sort by date if provided, else keep document order (newest usually at top of blog)
     if (posts.some(p => p.date)) {
       posts.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
     }
 
-    // Limit how many we show
     posts = posts.slice(0, 6);
 
-    // Render
     if (posts.length) {
-      listEl.innerHTML = posts.map((p, i) => makeItem(p.title, p.anchor, i === 0)).join('');
+      replaceTickerItems(posts.map((p, i) => makeItem(p.title, p.anchor, i === 0)));
     } else {
-      listEl.innerHTML = `<li class="active">Add posts to your blog to populate Highlights</li>`;
+      const item = document.createElement('li');
+      item.className = 'active';
+      item.textContent = 'Add posts to your blog to populate Highlights';
+      replaceTickerItems([item]);
     }
   } catch (err) {
-    listEl.innerHTML = `<li class="active">Couldn’t load blog posts</li>`;
-    // console.warn(err);
+    const item = document.createElement('li');
+    item.className = 'active';
+    item.textContent = "Couldn't load blog posts";
+    replaceTickerItems([item]);
   }
 })();
-
 
 
 function animateCount(node, to, duration = 1200) {
   const start = 0, t0 = performance.now();
   const ease = t => t * (2 - t);
-  function frame(now){
+  function frame(now) {
     const p = Math.min(1, (now - t0) / duration);
     node.textContent = Math.floor(start + (to - start) * ease(p)).toLocaleString();
     if (p < 1) requestAnimationFrame(frame);
@@ -246,35 +226,9 @@ function animateCount(node, to, duration = 1200) {
 
 async function initVisitorCounter() {
   const el = document.getElementById('visitorCount');
-  if (!el) return;
-
-  // 🔗 paste YOUR Apps Script Web App URL here:
-  const URL = 'https://script.google.com/macros/s/AKfycbx9fmAcq6NDykzWiTqjqo5c2Odc6g6omp_jKcTfmnvYxN9bMMg6vEQShAw5GvzKuMV3/exec';
-
-  try {
-    const res = await fetch(URL, { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    if (typeof data.value === 'number') {
-      animateCount(el, data.value, 1200);
-      return;
-    }
-    throw new Error('Bad payload');
-  } catch (e) {
-    console.error('[counter]', e);
-    el.textContent = '—';
-  }
-}
-
-window.addEventListener('DOMContentLoaded', initVisitorCounter);
-
-
-async function initVisitorCounter() {
-  const el = document.getElementById('visitorCount');
   const pill = document.getElementById('visitPill');
   if (!el || !pill) return;
 
-  // mark pill ready so it pops in
   pill.classList.add('ready');
 
   try {
@@ -283,20 +237,18 @@ async function initVisitorCounter() {
     const { value } = await res.json();
     if (typeof value === 'number') {
       animateCount(el, value, 1200);
-
-      // one-time pulse to draw attention
-      pill.classList.remove('pulse'); // reset if navigated back
+      pill.classList.remove('pulse');
       requestAnimationFrame(() => pill.classList.add('pulse'));
       return;
     }
     throw new Error('Bad payload');
   } catch (e) {
     console.warn('[counter] unavailable:', e);
-    el.textContent = '—';
+    el.textContent = '-';
   }
 }
 
-
+window.addEventListener('DOMContentLoaded', initVisitorCounter);
 // ===== Travel slider =====
 function initTravelSlider() {
   const root = document.getElementById('travelSlider');
