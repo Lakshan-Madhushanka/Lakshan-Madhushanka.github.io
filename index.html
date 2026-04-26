@@ -33,7 +33,7 @@
       </div>
     </header>
 
-    <main id="top">
+    <main id="top" class="home-page">
 
       
 
@@ -42,9 +42,8 @@
       <section class="hero container will-animate">
         <div class="hero-text">
           <h1>Hi, I'm <span class="grad grad-anim">Lakshan</span>.</h1>
-          <p class="lead">• I work as a Lecturer & researcher in <strong>Computer Engineering</strong> — working on <strong>Image Processing</strong>, <strong>AI</strong> and <strong>robotics</strong>.</p>
-          <p class="lead">• I also volunteer in <strong>Humanitarian Activities</strong>, <strong>Climate and Sustainablility</strong>, and <strong>Pre-University STEM Education</strong>.</p>
-          
+          <p class="lead hero-lead">I work as a Lecturer & researcher in <strong>Computer Engineering</strong> — working on <strong>Image Processing</strong>, <strong>AI</strong> and <strong>robotics</strong>.</p>
+          <p class="lead hero-lead">I also volunteer in <strong>Humanitarian Activities</strong>, <strong>Climate and Sustainablility</strong>, and <strong>Pre-University STEM Education</strong>.</p>
           <div class="hero-actions hero-actions-home will-animate-stagger">
             <a class="btn primary" href="about.html"> More About Me </a>
             <a class="btn" href="contact.html">Get in touch</a>
@@ -58,7 +57,9 @@
           </ul>
         </div>
         <div class="hero-art">
-          <img src="assets/Lakshan.jpg" alt="Profile illustration" />
+          <div class="home-photo-frame">
+            <img src="assets/Lakshan.jpg" alt="Profile illustration" />
+          </div>
           <div class="visit-pill" id="visitPill" aria-live="polite">
             <i class="fa-solid fa-eye" aria-hidden="true"></i>
             <span class="num" id="visitorCount">0</span>
@@ -67,6 +68,43 @@
         </div>
       </section>
 
+      <section class="container home-impact-strip reveal" aria-label="Credibility highlights">
+        <article>
+          <div class="impact-tile-head">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            <h3>Engineering Foundation</h3>
+          </div>
+          <p>Electrical and Electronic Engineering graduate from the Faculty of Engineering, University of Peradeniya, with a strong foundation in systems, signal processing, and intelligent technologies.</p>
+        </article>
+        <article>
+          <div class="impact-tile-head">
+            <i class="fa-solid fa-brain" aria-hidden="true"></i>
+            <h3>Academic Role</h3>
+          </div>
+          <p>Lecturer at the University of Sri Jayewardenepura, contributing to teaching, student supervision, curriculum development, and academic mentoring.</p>
+        </article>
+        <article>
+          <div class="impact-tile-head">
+            <i class="fa-solid fa-award" aria-hidden="true"></i>
+            <h3>Award-Winning Engineering Background</h3>
+          </div>
+          <p>Recognized for award-winning engineering project work, reflecting practical problem-solving, innovation, and research-oriented engineering design.</p>
+        </article>
+        <article>
+          <div class="impact-tile-head">
+            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+            <h3>Research & Publications</h3>
+          </div>
+          <p>Published researcher in AI, biomedical image processing, and applied machine learning, with best paper/presenter recognition and journal/conference reviewer service.</p>
+        </article>
+        <article>
+          <div class="impact-tile-head">
+            <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+            <h3>Leadership & Community Impact</h3>
+          </div>
+          <p>Active IEEE and community leader involved in initiating, planning, designing, and contributing to volunteer-driven community service projects.</p>
+        </article>
+      </section>
 
       <!-- EXPLORE: section heading reveals; tiles stagger in -->
       <section class="container section">
@@ -110,6 +148,31 @@
             <div class="icon badge badge-8"><i class="fa-solid fa-envelope-open-text"></i></div>
             <div class="tile-title">Contact</div><p class="meta">Get in touch</p>
           </a>
+        </div>
+      </section>
+
+      <section class="container section home-collab-section">
+        <div class="home-section-head">
+          <p class="kicker">Collaboration & Service</p>
+          <h2 class="reveal fancy-head">Academic, Research & Community Engagement</h2>
+          <p class="home-section-subtitle">I welcome meaningful academic, research, teaching, and community-focused collaborations in areas aligned with engineering, artificial intelligence, biomedical imaging, robotics, and social impact.</p>
+        </div>
+        <div class="home-collab-grid">
+          <article class="home-collab-card reveal">
+            <div class="home-card-icon"><i class="fa-solid fa-flask" aria-hidden="true"></i></div>
+            <h3>Research Collaboration</h3>
+            <p>I am open to research collaborations in robotics, automation, biomedical image processing, computer vision, artificial intelligence, and applied machine learning.</p>
+          </article>
+          <article class="home-collab-card reveal">
+            <div class="home-card-icon"><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i></div>
+            <h3>Sessions & Invited Lectures</h3>
+            <p>I am available for sessions, workshops, and invited lectures on topics related to computer vision, biomedical imaging, robotics, artificial intelligence, image processing, and emerging engineering technologies.</p>
+          </article>
+          <article class="home-collab-card reveal">
+            <div class="home-card-icon"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></div>
+            <h3>Volunteering & Community Engagement</h3>
+            <p>I am interested in volunteering and community-focused initiatives related to arts and culture, children, civil rights and social action, disaster and humanitarian relief, education, environment, human rights, poverty alleviation, science and technology, and social services.</p>
+          </article>
         </div>
       </section>
     </main>
