@@ -1,20 +1,20 @@
-
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lakshan Madhushanka Bandara | Portfolio</title>
-    <meta name="description" content="Lecturer & Researcher — teaching, sessions, volunteering, blog, research & publications, travel.">
-    <link rel="icon" href="assets/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Lecturing & Mentoring | Lakshan Madhushanka Bandara</title>
+    <meta name="description" content="Courses and teaching contributions by Lakshan Madhushanka Bandara." />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-        <header class="site-header">
+    <header class="site-header">
       <div class="container row">
         <a class="brand" href="index.html"><span class="grad grad-anim">Home</span></a>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">☰</button>
@@ -32,195 +32,275 @@
       </div>
     </header>
 
-    <main id="top">
+    <main id="top" class="lecturing-page">
+      <section class="container lecturing-hero">
+        <div class="lecturing-hero-copy">
+          <h1>Lecturing &<br><span>Mentoring</span></h1>
+          <p>
+            Teaching, mentoring, supervision, and knowledge-sharing across computing, artificial intelligence,
+            software development, data mining, intelligent systems, and emerging engineering technologies.
+          </p>
+          <div class="lecturing-hero-chips" aria-label="Teaching contribution areas">
+            <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i> University Teaching</span>
+            <span><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Visiting Lecturing</span>
+            <span><i class="fa-solid fa-user-graduate" aria-hidden="true"></i> Student Mentoring</span>
+            <span><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Course Coordination</span>
+            <span><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Project Supervision</span>
+            <span><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> Academic Sessions</span>
+          </div>
+        </div>
+        <div class="lecturing-hero-art" aria-hidden="true">
+          <i class="fa-solid fa-book-open"></i>
+          <i class="fa-solid fa-graduation-cap"></i>
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+      </section>
 
-     <section class="container section">
-  <h2 class="reveal fancy-head"> University of Sri Jayewardenepura</h2>
+      <section class="container lecturing-block" aria-labelledby="appointmentsTitle">
+        <h2 id="appointmentsTitle">Teaching Appointments</h2>
+        <div class="teaching-appointments-grid">
+          <article class="teaching-appointment-card usj">
+            <span class="appointment-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>University of Sri Jayewardenepura</h3>
+            <p class="appointment-role">Role: Lecturer</p>
+            <span class="appointment-status">Current / Main Academic Role</span>
+            <p>Contributing to teaching, student supervision, curriculum-related activities, and academic mentoring in computing and engineering-related areas.</p>
+          </article>
+          <article class="teaching-appointment-card uop">
+            <span class="appointment-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>University of Peradeniya</h3>
+            <p class="appointment-role">Role: Teaching Contribution</p>
+            <span class="appointment-status">Previous Teaching Experience</span>
+            <p>Teaching experience connected to engineering and computing education.</p>
+          </article>
+          <article class="teaching-appointment-card ucl">
+            <span class="appointment-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>UCL</h3>
+            <p class="appointment-role">Role: Visiting Lecturer</p>
+            <span class="appointment-status">Current Visiting Lecturer</span>
+            <p>Delivering teaching and academic sessions for computing and technology-related modules.</p>
+          </article>
+          <article class="teaching-appointment-card luxway">
+            <span class="appointment-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></span>
+            <h3>Luxway Campus</h3>
+            <p class="appointment-role">Role: Visiting Lecturer</p>
+            <span class="appointment-status">Current Visiting Lecturer</span>
+            <p>Supporting teaching, knowledge sharing, and student learning in computing and technology-related areas.</p>
+          </article>
+        </div>
+      </section>
 
-  <div class="tiles will-animate-stagger">
-    <!-- Course Tile -->
-    <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO1201</span>
-        <h3 class="title">Introduction to Computer Systems</h3>
-        <p class="uni"> Role : Lecturer</p>
-        <p class="uni"> Semester : 01</p>
-        <p class="uni"> Year : 2025</p>
-      </div>
+      <section class="container section lecturing-course-section" aria-labelledby="courseCarouselTitle">
+        <div class="section-head">
+          <h2 id="courseCarouselTitle" class="reveal fancy-head">Courses & Teaching Contributions</h2>
+        </div>
 
-      <div class="topics">
-        <span>Networking</span>
-        <span>IP Addresses</span>
-        <span>Network Security</span>
-      </div>
+        <div class="course-filter-row reveal" role="tablist" aria-label="Filter courses by institution">
+          <button type="button" class="course-filter is-active" data-course-filter="all" aria-selected="true">All</button>
+          <button type="button" class="course-filter" data-course-filter="usj" aria-selected="false">University of Sri Jayewardenepura</button>
+          <button type="button" class="course-filter" data-course-filter="uop" aria-selected="false">University of Peradeniya</button>
+          <button type="button" class="course-filter" data-course-filter="ucl" aria-selected="false">UCL</button>
+          <button type="button" class="course-filter" data-course-filter="luxway" aria-selected="false">Luxway Campus</button>
+        </div>
 
-      <div class="tile-actions">
-        <a class="btn more" href="https://lms.eng.sjp.ac.lk/course/view.php?id=666">More →</a>
-      </div>
-    </article>
+        <div class="course-carousel reveal" data-course-carousel>
+          <button class="course-carousel-btn course-carousel-prev" type="button" aria-label="Previous course" data-course-prev>&larr;</button>
 
-  <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO3353</span>
-        <h3 class="title">Data Mining</h3>
-        <p class="uni"> Role : Course Coordinator/ <n/> Lecturer</p>
-        <p class="uni"> Semester : 05</p>
-        <p class="uni"> Year : 2024 - Present </p>
-      </div>
+          <div class="course-carousel-viewport" data-course-viewport>
+            <div class="course-carousel-track" data-course-track>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO1201">
+                <div class="course-card-top">
+                  <span class="course-code">CO1201</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Introduction to Computer Systems</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>Lecturer</dd></div>
+                  <div><dt>Semester</dt><dd>01</dd></div>
+                  <div><dt>Year</dt><dd>2025</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Networking</span>
+                  <span>IP Addresses</span>
+                  <span>Network Security</span>
+                </div>
+                <a class="course-resource-link" href="https://lms.eng.sjp.ac.lk/course/view.php?id=666">Course resource →</a>
+              </article>
 
-      <div class="topics">
-        <span>Association Rules</span>
-        <span>Classification</span>
-        <span>Clustering</span>
-      </div>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO3353">
+                <div class="course-card-top">
+                  <span class="course-code">CO3353</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Data Mining</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>Course Coordinator / Lecturer</dd></div>
+                  <div><dt>Semester</dt><dd>05</dd></div>
+                  <div><dt>Year</dt><dd>2024 - Present</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Association Rules</span>
+                  <span>Classification</span>
+                  <span>Clustering</span>
+                </div>
+                <a class="course-resource-link" href="https://lms.eng.sjp.ac.lk/course/view.php?id=95">Course resource →</a>
+              </article>
 
-      <div class="tile-actions">
-        <a class="btn more" href="https://lms.eng.sjp.ac.lk/course/view.php?id=95">More →</a>
-      </div>
-    </article>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO3205">
+                <div class="course-card-top">
+                  <span class="course-code">CO3205</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Intelligent systems</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>Course Coordinator / Lecturer</dd></div>
+                  <div><dt>Semester</dt><dd>06</dd></div>
+                  <div><dt>Year</dt><dd>2025</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Search</span>
+                  <span>Logical Agents</span>
+                  <span>First Order Logics</span>
+                  <span>Planning</span>
+                </div>
+                <a class="course-resource-link" href="https://lms.eng.sjp.ac.lk/course/view.php?id=747">Course resource →</a>
+              </article>
 
-     <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO3205</span>
-        <h3 class="title">Intelligent systems</h3>
-        <p class="uni"> Role : Course Coordinator/ <n/> Lecturer</p>
-        <p class="uni"> Semester : 06</p>
-        <p class="uni"> Year : 2025</p>
-      </div>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO4204">
+                <div class="course-card-top">
+                  <span class="course-code">CO4204</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Computer vision and image processing</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>Lecturer</dd></div>
+                  <div><dt>Semester</dt><dd>07</dd></div>
+                  <div><dt>Year</dt><dd>2023 - Present</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Spatial Filtering</span>
+                  <span>Hough Transform</span>
+                  <span>Perspective Projection</span>
+                  <span>Stereo Vision</span>
+                </div>
+                <a class="course-resource-link" href="https://lms.eng.sjp.ac.lk/course/view.php?id=700">Course resource →</a>
+              </article>
 
-      <div class="topics">
-        <span>Search</span>
-        <span>Logical Agents</span>
-        <span>First Order Logics</span>
-         <span>Planning</span>
-      </div>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO4254">
+                <div class="course-card-top">
+                  <span class="course-code">CO4254</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Machine Learning</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>Course Coordinator / Lecturer</dd></div>
+                  <div><dt>Semester</dt><dd>08</dd></div>
+                  <div><dt>Year</dt><dd>2024 - Present</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Statistical Methods</span>
+                  <span>MLPs</span>
+                  <span>SOM, K-mean</span>
+                  <span>ACO</span>
+                  <span>Fuzzy</span>
+                  <span>SVM</span>
+                </div>
+                <a class="course-resource-link" href="https://lms.eng.sjp.ac.lk/course/view.php?id=370">Course resource →</a>
+              </article>
 
-      <div class="tile-actions">
-        <a class="btn more" href="https://lms.eng.sjp.ac.lk/course/view.php?id=747">More →</a>
-      </div>
-    </article>
+              <article class="course-card" data-course-card data-institution="uop" data-course-code="CO3242">
+                <div class="course-card-top">
+                  <span class="course-code">CO3242</span>
+                  <span class="course-institution">University of Peradeniya</span>
+                </div>
+                <h2>Machine Learning</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>[Role to be added]</dd></div>
+                  <div><dt>Semester</dt><dd>[Semester to be added]</dd></div>
+                  <div><dt>Year</dt><dd>2024, 2025</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Supervised</span>
+                  <span>Unsupervised</span>
+                  <span>Neural Nets</span>
+                  <span>Evaluation</span>
+                </div>
+                <a class="course-resource-link" href="resources/co3242.html">Course resource →</a>
+              </article>
 
-   
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO2211">
+                <div class="course-card-top">
+                  <span class="course-code">CO2211</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Data Structures & Algorithms</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>[Role to be added]</dd></div>
+                  <div><dt>Semester</dt><dd>[Semester to be added]</dd></div>
+                  <div><dt>Year</dt><dd>[Year to be added]</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>Sorting</span>
+                  <span>Graphs</span>
+                  <span>DP</span>
+                  <span>Complexity</span>
+                </div>
+                <a class="course-resource-link" href="resources/co2211.html">Course resource →</a>
+              </article>
 
-     <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO4204</span>
-        <h3 class="title">Computer vision and image processing</h3>
-        <p class="uni"> Role : Lecturer</p>
-        <p class="uni"> Semester : 07</p>
-        <p class="uni"> Year : 2023 - Present </p>
-      </div>
+              <article class="course-card" data-course-card data-institution="usj" data-course-code="CO3xxx">
+                <div class="course-card-top">
+                  <span class="course-code">CO3xxx</span>
+                  <span class="course-institution">University of Sri Jayewardenepura</span>
+                </div>
+                <h2>Embedded Systems</h2>
+                <dl class="course-meta">
+                  <div><dt>Role</dt><dd>[Role to be added]</dd></div>
+                  <div><dt>Semester</dt><dd>[Semester to be added]</dd></div>
+                  <div><dt>Year</dt><dd>[Year to be added]</dd></div>
+                </dl>
+                <div class="course-topics" aria-label="Key topics">
+                  <span>ARM</span>
+                  <span>RTOS</span>
+                  <span>Peripherals</span>
+                  <span>IoT</span>
+                </div>
+                <a class="course-resource-link" href="resources/co3xxx.html">Course resource →</a>
+              </article>
+            </div>
+          </div>
 
-      <div class="topics">
-        <span>Spatial Filtering</span>
-        <span>Hough Transform</span>
-        <span>Perspective Projection</span>
-         <span>Stereo Vision</span>
-      </div>
+          <button class="course-carousel-btn course-carousel-next" type="button" aria-label="Next course" data-course-next>&rarr;</button>
+          <div class="course-carousel-dots" data-course-dots aria-label="Course carousel navigation"></div>
+          <p class="course-empty" data-course-empty hidden>No courses are listed for this institution yet.</p>
+        </div>
+      </section>
 
-      <div class="tile-actions">
-        <a class="btn more" href="https://lms.eng.sjp.ac.lk/course/view.php?id=700">More →</a>
-      </div>
-    </article>
+      <section class="container lecturing-block" aria-labelledby="supervisionTitle">
+        <h2 id="supervisionTitle">Project Supervision</h2>
+        <div class="teaching-feature-grid">
+          <article><i class="fa-solid fa-users" aria-hidden="true"></i><h3>Final-Year Undergraduate Projects</h3><p>Supervising undergraduate students from problem identification to implementation, evaluation, documentation, and presentation.</p></article>
+          <article><i class="fa-solid fa-brain" aria-hidden="true"></i><h3>AI & Machine Learning Projects</h3><p>Guiding students working on supervised learning, deep learning, predictive modelling, model evaluation, and applied AI systems.</p></article>
+          <article><i class="fa-solid fa-camera" aria-hidden="true"></i><h3>Computer Vision Applications</h3><p>Mentoring projects involving image processing, object detection, segmentation, classification, and real-world vision-based applications.</p></article>
+          <article><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i><h3>Healthcare & Biomedical AI</h3><p>Supporting projects related to medical imaging, healthcare prediction, assistive technologies, and biomedical data analysis.</p></article>
+          <article><i class="fa-solid fa-globe" aria-hidden="true"></i><h3>Web-Based Intelligent Systems</h3><p>Supervising web applications that integrate intelligent features, recommendation systems, dashboards, and decision-support tools.</p></article>
+          <article><i class="fa-solid fa-robot" aria-hidden="true"></i><h3>Robotics & Embedded AI</h3><p>Guiding projects connected to robotics, embedded systems, sensors, automation, and intelligent control applications.</p></article>
+          <article><i class="fa-solid fa-file-pen" aria-hidden="true"></i><h3>Research Writing & Documentation</h3><p>Helping students structure technical reports, literature reviews, methodology sections, evaluations, and academic-style project documentation.</p></article>
+          <article><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i><h3>Presentation & Demonstration Skills</h3><p>Mentoring students to communicate technical work clearly through presentations, demonstrations, posters, and viva preparation.</p></article>
+        </div>
+      </section>
 
-       <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO4254</span>
-        <h3 class="title">Machine Learning</h3>
-        <p class="uni"> Role : Course Coordinator/ <n/> Lecturer</p>
-        <p class="uni"> Semester : 08</p>
-        <p class="uni"> Year : 2024 - Present </p>
-      </div>
-
-      <div class="topics">
-        <span>Statistical Methods</span>
-        <span>MLPs</span>
-        <span>SOM, K-mean</span>
-        <span>ACO</span>
-        <span>Fuzzy</span>
-        <span>SVM</span>
-      </div>
-
-      <div class="tile-actions">
-        <a class="btn more" href="https://lms.eng.sjp.ac.lk/course/view.php?id=370">More →</a>
-      </div>
-    </article>
-
-    <!-- Add more tiles by duplicating the <article> block -->
-  </div>
-</section>
-
-
-
-      <section class="container section">
-  <h2 class="reveal fancy-head"> University of Peradeniya</h2>
-  <div class="tiles will-animate-stagger">
-    <!-- Course Tile -->
-    <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO3242</span>
-        <h3 class="title">Machine Learning</h3>
-        <p class="uni"> Conducted years: 2024,2025</p>
-      </div>
-
-      <div class="topics">
-        <span>Supervised</span>
-        <span>Unsupervised</span>
-        <span>Neural Nets</span>
-        <span>Evaluation</span>
-      </div>
-
-      <div class="tile-actions">
-        <a class="btn more" href="resources/co3242.html">More →</a>
-      </div>
-    </article>
-
-    <!-- Course Tile -->
-    <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO2211</span>
-        <h3 class="title">Data Structures & Algorithms</h3>
-        <p class="uni">University of Sri Jayewardenepura</p>
-      </div>
-
-      <div class="topics">
-        <span>Sorting</span>
-        <span>Graphs</span>
-        <span>DP</span>
-        <span>Complexity</span>
-      </div>
-
-      <div class="tile-actions">
-        <a class="btn more" href="resources/co2211.html">More →</a>
-      </div>
-    </article>
-
-    <!-- Course Tile -->
-    <article class="tile course reveal">
-      <div class="course-head">
-        <span class="code">CO3xxx</span>
-        <h3 class="title">Embedded Systems</h3>
-        <p class="uni">University of Sri Jayewardenepura</p>
-      </div>
-
-      <div class="topics">
-        <span>ARM</span>
-        <span>RTOS</span>
-        <span>Peripherals</span>
-        <span>IoT</span>
-      </div>
-
-      <div class="tile-actions">
-        <a class="btn more" href="resources/co3xxx.html">More →</a>
-      </div>
-    </article>
-
-    <!-- Add more tiles by duplicating the <article> block -->
-  </div>
-</section>
-
-
+      <section class="container lecturing-cta">
+        <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
+        <div>
+          <h2>Interested in project supervision, mentoring, or an academic discussion?</h2>
+          <p>I am open to student mentoring discussions, invited sessions, project supervision conversations, and academic collaborations related to computing, AI, computer vision, biomedical imaging, robotics, and software development.</p>
+        </div>
+        <a class="btn primary" href="contact.html">Contact Me →</a>
+      </section>
     </main>
+
     <footer class="site-footer container">
       <small>© <span id="year"></span> Lakshan Madhushanka Bandara. All rights reserved.</small>
       <a class="inline" href="#top">Back to top ↑</a>
