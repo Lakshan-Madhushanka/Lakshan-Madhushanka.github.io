@@ -9689,3 +9689,252 @@ body {
     display: none;
   }
 }
+
+/* Sessions page layout refinement */
+.sessions-page .sessions-featured-section {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sessions-page .sessions-org-section {
+  margin-top: clamp(1rem, 2.5vw, 1.8rem);
+}
+
+/* Static page hero illustrations */
+.session-hero-visual {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.session-hero-visual img {
+  border-radius: 28px;
+  display: block;
+  height: auto;
+  max-height: clamp(260px, 42vw, 500px);
+  max-width: min(100%, 680px);
+  object-fit: contain;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  .session-hero-visual {
+    order: initial;
+  }
+}
+
+@media (max-width: 720px) {
+  .session-hero-visual img {
+    max-height: 320px;
+  }
+}
+
+/* Shared icon and title spacing fixes */
+.session-section-head,
+.vol-section-head.row-head,
+.research-impact-title,
+.course-card-top,
+.impact-tile-head {
+  min-width: 0;
+}
+
+.session-section-head {
+  align-items: flex-start;
+  display: flex;
+}
+
+.session-section-head .session-line-icon,
+.teaching-feature-grid i,
+.teaching-area-grid i,
+.teaching-resource-grid i,
+.vol-impact-grid i,
+.vol-section-head i,
+.research-story-strip i,
+.home-explore-grid i {
+  flex-shrink: 0;
+}
+
+.session-section-head h2,
+.session-section-head > div,
+.teaching-feature-grid h3,
+.teaching-area-grid h3,
+.teaching-resource-grid h3,
+.vol-impact-grid span,
+.vol-project-card h3,
+.vol-grant-card h3,
+.vol-recognition-card h3,
+.research-project-card h4,
+.publication-card h3,
+.session-topic-grid h3,
+.session-talk-body h3,
+.home-explore-grid span {
+  min-width: 0;
+}
+
+.research-hero-art,
+.volunteering-line-art,
+.session-hero-visual::before,
+.session-hero-visual::after {
+  pointer-events: none;
+}
+
+/* Shared topic card title consistency */
+.course-card h2,
+.teaching-appointment-card h3,
+.teaching-feature-grid h3,
+.teaching-area-grid h3,
+.teaching-resource-grid h3,
+.research-project-card h4,
+.publication-card h3,
+.research-story-strip h3,
+.vol-impact-grid span,
+.vol-timeline-card h3,
+.vol-project-card h3,
+.vol-grant-card h3,
+.vol-recognition-grid h3,
+.session-feature-content h3,
+.session-talk-body h3,
+.session-topic-grid h3,
+.home-explore-grid span {
+  display: -webkit-box;
+  font-size: clamp(.96rem, 1.25vw, 1.08rem);
+  line-height: 1.28;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.home-featured-tile h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Homepage featured spacing refinement */
+.home-featured-section {
+  margin-bottom: clamp(.8rem, 2vw, 1.25rem);
+}
+
+.home-featured-carousel {
+  padding-bottom: 1rem;
+}
+
+.home-explore-section {
+  margin-top: clamp(.6rem, 1.7vw, 1rem);
+}
+
+.home-explore-section h2 {
+  margin-bottom: .85rem;
+}
+
+@media (max-width: 900px) {
+  .home-featured-section {
+    margin-bottom: .75rem;
+  }
+
+  .home-explore-section {
+    margin-top: .75rem;
+  }
+}
+
+/* Homepage featured carousel dots removal */
+.home-featured-dots,
+.home-featured-dots button {
+  display: none !important;
+}
+
+/* Homepage explore website section */
+.home-explore-grid {
+  gap: clamp(.85rem, 2vw, 1.05rem);
+}
+
+.home-explore-grid a {
+  --explore-accent: #00d4ff;
+  align-items: center;
+  isolation: isolate;
+  min-height: 142px;
+  overflow: hidden;
+  padding: 1.15rem;
+  position: relative;
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--surface), white 4%), color-mix(in oklab, var(--surface), transparent 12%)),
+    radial-gradient(circle at 16% 18%, color-mix(in oklab, var(--explore-accent), transparent 72%), transparent 8rem);
+  border-color: color-mix(in oklab, var(--explore-accent), transparent 70%);
+  box-shadow:
+    0 18px 46px color-mix(in oklab, #020617, transparent 84%),
+    inset 0 1px 0 rgba(255, 255, 255, .09);
+}
+
+.home-explore-grid a::before {
+  background:
+    radial-gradient(circle at 12% 20%, color-mix(in oklab, var(--explore-accent), transparent 18%) 0 1px, transparent 1.6px),
+    linear-gradient(110deg, transparent 0 36%, color-mix(in oklab, var(--explore-accent), transparent 72%) 47%, transparent 58% 100%);
+  background-size: 22px 22px, 100% 100%;
+  content: "";
+  inset: -35% -25%;
+  opacity: .42;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-10%);
+  z-index: -1;
+}
+
+.home-explore-grid a::after {
+  background: linear-gradient(112deg, transparent, rgba(255, 255, 255, .2), transparent);
+  content: "";
+  inset: -42% auto -42% -80%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-20%) rotate(9deg);
+  transition: opacity .24s ease, transform .48s cubic-bezier(.22, 1, .36, 1);
+  width: 60%;
+}
+
+.home-explore-grid a:hover::after,
+.home-explore-grid a:focus-visible::after {
+  opacity: .72;
+  transform: translateX(250%) rotate(9deg);
+}
+
+.home-explore-grid a:nth-child(2) { --explore-accent: #8b5cf6; }
+.home-explore-grid a:nth-child(3) { --explore-accent: #3b82f6; }
+.home-explore-grid a:nth-child(4) { --explore-accent: #00e0c6; }
+.home-explore-grid a:nth-child(5) { --explore-accent: #38bdf8; }
+.home-explore-grid a:nth-child(6) { --explore-accent: #a78bfa; }
+.home-explore-grid a:nth-child(7) { --explore-accent: #0ea5e9; }
+.home-explore-grid a:nth-child(8) { --explore-accent: #22d3ee; }
+
+.home-explore-grid i {
+  align-items: center;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--explore-accent), transparent 70%), color-mix(in oklab, var(--surface), transparent 18%));
+  border: 1px solid color-mix(in oklab, var(--explore-accent), transparent 44%);
+  border-radius: 18px;
+  box-shadow:
+    0 12px 32px color-mix(in oklab, var(--explore-accent), transparent 76%),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+  color: var(--explore-accent) !important;
+  display: inline-flex;
+  height: 3.6rem;
+  justify-content: center;
+  margin-bottom: .7rem;
+  width: 3.6rem;
+}
+
+.home-explore-grid span {
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 520px) {
+  .home-explore-grid a {
+    min-height: 126px;
+    padding: 1rem;
+  }
+}
