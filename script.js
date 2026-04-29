@@ -35,6 +35,55 @@ siteNav?.querySelectorAll('a').forEach(a => {
   });
 });
 
+// Copy text buttons
+(() => {
+  const buttons = document.querySelectorAll('[data-copy-target]');
+  if (!buttons.length) return;
+
+  function copyWithFallback(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.top = '-9999px';
+    document.body.appendChild(area);
+    area.select();
+    const copied = document.execCommand('copy');
+    area.remove();
+    return copied ? Promise.resolve() : Promise.reject(new Error('Copy failed'));
+  }
+
+  buttons.forEach((button) => {
+    const defaultLabel = button.querySelector('span')?.textContent || 'Copy';
+
+    button.addEventListener('click', async () => {
+      const target = document.querySelector(button.dataset.copyTarget);
+      const text = target?.innerText.replace(/\s+\n/g, '\n').trim();
+      if (!text) return;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          await copyWithFallback(text);
+        }
+
+        button.classList.add('is-copied');
+        button.querySelector('span').textContent = 'Copied';
+        window.setTimeout(() => {
+          button.classList.remove('is-copied');
+          button.querySelector('span').textContent = defaultLabel;
+        }, 1600);
+      } catch {
+        button.querySelector('span').textContent = 'Try again';
+        window.setTimeout(() => {
+          button.querySelector('span').textContent = defaultLabel;
+        }, 1600);
+      }
+    });
+  });
+})();
+
 
 // First-load animation toggle
 window.addEventListener('DOMContentLoaded', () => {
@@ -846,6 +895,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!track || cards.length < 2) return;
 
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const slideDuration = reduce ? 0 : 860;
     let activeIndex = 0;
     let perView = getPerView();
     let autoTimer = null;
@@ -869,7 +919,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function resetTrack() {
       track.style.transition = 'none';
-      track.style.transform = 'translateX(0)';
+      track.style.transform = 'translate3d(0, 0, 0)';
       track.offsetHeight;
       track.style.transition = '';
     }
@@ -928,7 +978,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       isMoving = true;
       setControlsDisabled(true);
-      track.style.transform = `translateX(${-step}px)`;
+      track.style.transform = `translate3d(${-step}px, 0, 0)`;
 
       window.setTimeout(() => {
         const first = getVisibleCards()[0];
@@ -938,7 +988,7 @@ window.addEventListener('DOMContentLoaded', () => {
         isMoving = false;
         setControlsDisabled(false);
         updateDots();
-      }, reduce ? 0 : 620);
+      }, slideDuration);
     }
 
     function goPrev() {
@@ -953,12 +1003,12 @@ window.addEventListener('DOMContentLoaded', () => {
       track.insertBefore(last, first);
       const step = getStep();
       track.style.transition = 'none';
-      track.style.transform = `translateX(${-step}px)`;
+      track.style.transform = `translate3d(${-step}px, 0, 0)`;
       track.offsetHeight;
       track.style.transition = '';
 
       window.requestAnimationFrame(() => {
-        track.style.transform = 'translateX(0)';
+        track.style.transform = 'translate3d(0, 0, 0)';
       });
 
       window.setTimeout(() => {
@@ -967,7 +1017,7 @@ window.addEventListener('DOMContentLoaded', () => {
         isMoving = false;
         setControlsDisabled(false);
         updateDots();
-      }, reduce ? 0 : 620);
+      }, slideDuration);
     }
 
     function stopAuto() {
@@ -980,7 +1030,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function startAuto() {
       stopAuto();
       if (reduce || cards.length <= perView) return;
-      autoTimer = window.setInterval(goNext, 3400);
+      autoTimer = window.setInterval(goNext, 4300);
     }
 
     prev?.addEventListener('click', () => {
