@@ -5653,7 +5653,8 @@ body {
     width: 100%;
     margin-inline: 0;
     padding: .65rem .7rem 5.35rem;
-    perspective: 900px;
+    overflow: hidden;
+    perspective: none;
   }
 
   .awards-showcase-page .award-carousel-prev {
@@ -5671,9 +5672,11 @@ body {
   }
 
   .awards-showcase-page .award-carousel-stage {
-    height: 500px;
+    height: 470px;
     margin-top: .4rem;
-    perspective: 900px;
+    overflow: hidden;
+    perspective: none;
+    transform-style: flat;
   }
 
   .awards-showcase-page .award-carousel-card {
@@ -5683,25 +5686,48 @@ body {
     border-radius: 24px;
     gap: .35rem;
     transform-origin: center center;
+    backface-visibility: visible;
+    transform-style: flat;
+    transition:
+      transform 560ms cubic-bezier(.22, 1, .36, 1),
+      opacity 420ms ease,
+      box-shadow 420ms ease,
+      border-color 420ms ease;
+  }
+
+  .awards-showcase-page .award-carousel-stage .award-carousel-card::after {
+    display: none;
   }
 
   .awards-showcase-page .award-carousel-card.is-active {
-    transform: translate3d(-50%, -50%, 46px) scale(1) rotateX(0deg);
-    animation: mobileAwardCardGlow 4.8s ease-in-out infinite;
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    animation: none;
+    filter: none;
+    box-shadow:
+      0 24px 58px rgba(0, 0, 0, .46),
+      0 0 28px rgba(246, 215, 122, .18),
+      inset 0 1px 0 rgba(255, 255, 255, .22);
+  }
+
+  .awards-showcase-page .award-carousel-card.is-active::before {
+    animation: none;
+    opacity: .32;
+    transform: rotate(16deg) translateX(118%);
   }
 
   .awards-showcase-page .award-carousel-card.is-prev {
-    opacity: .36;
+    opacity: 0;
     z-index: 18;
-    transform: translate3d(-50%, calc(-50% - 112px), -90px) scale(.82) rotateX(-10deg);
-    filter: blur(.2px) saturate(.78) brightness(.82);
+    transform: translate3d(calc(-50% - 105vw), -50%, 0) scale(.96);
+    filter: none;
   }
 
   .awards-showcase-page .award-carousel-card.is-next {
-    opacity: .36;
+    opacity: 0;
     z-index: 18;
-    transform: translate3d(-50%, calc(-50% + 112px), -90px) scale(.82) rotateX(10deg);
-    filter: blur(.2px) saturate(.78) brightness(.82);
+    transform: translate3d(calc(-50% + 105vw), -50%, 0) scale(.96);
+    filter: none;
   }
 
   .awards-showcase-page .award-carousel-card.is-far-prev,
@@ -5709,7 +5735,8 @@ body {
   .awards-showcase-page .award-carousel-card.is-hidden-prev,
   .awards-showcase-page .award-carousel-card.is-hidden-next {
     opacity: 0;
-    transform: translate3d(-50%, -50%, -160px) scale(.68);
+    transform: translate3d(-50%, -50%, 0) scale(.96);
+    filter: none;
   }
 
   .awards-showcase-page .award-carousel-card h3 {
@@ -5740,7 +5767,7 @@ body {
       radial-gradient(ellipse at center, rgba(255, 251, 221, .92) 0 8%, rgba(246, 215, 122, .5) 30%, rgba(139, 108, 255, .16) 58%, transparent 78%);
     filter: blur(7px);
     box-shadow: none;
-    animation: mobileAwardAura 4.6s ease-in-out infinite;
+    animation: none;
   }
 
   .awards-showcase-page .award-carousel-stage::after {
@@ -5761,7 +5788,7 @@ body {
     box-shadow:
       0 0 28px rgba(246, 215, 122, .34),
       inset 0 1px 0 rgba(255, 255, 255, .46);
-    animation: mobileAwardAura 5.8s ease-in-out infinite reverse;
+    animation: none;
   }
 
   .award-category-card {
