@@ -5285,6 +5285,35 @@ body {
   70%, 100% { background-position: -120% 50%, 0 0; }
 }
 
+@keyframes mobileAwardAura {
+  0%, 100% {
+    opacity: .58;
+    transform: translateX(-50%) perspective(var(--mobile-award-floor-perspective, 420px)) rotateX(var(--mobile-award-floor-tilt, 68deg)) scale(.96);
+  }
+  50% {
+    opacity: .88;
+    transform: translateX(-50%) perspective(var(--mobile-award-floor-perspective, 420px)) rotateX(var(--mobile-award-floor-tilt, 68deg)) scale(1.04);
+  }
+}
+
+@keyframes mobileAwardCardGlow {
+  0%, 100% {
+    filter: brightness(1);
+    box-shadow:
+      0 24px 58px rgba(0, 0, 0, .46),
+      0 0 28px rgba(246, 215, 122, .18),
+      inset 0 1px 0 rgba(255, 255, 255, .22);
+  }
+  50% {
+    filter: brightness(1.06);
+    box-shadow:
+      0 30px 72px rgba(0, 0, 0, .52),
+      0 0 44px rgba(246, 215, 122, .32),
+      0 0 42px rgba(139, 108, 255, .18),
+      inset 0 1px 0 rgba(255, 255, 255, .26);
+  }
+}
+
 .awards-showcase-page .award-carousel-card.is-prev {
   transform: translate3d(calc(-50% - 284px), -50%, -78px) rotateY(10deg) scale(.9);
 }
@@ -5620,38 +5649,119 @@ body {
   }
 
   .awards-showcase-page .award-carousel {
-    min-height: 730px;
+    min-height: 620px;
     width: 100%;
     margin-inline: 0;
-    padding: 1rem 1rem 6.8rem;
+    padding: .65rem .7rem 5.35rem;
+    perspective: 900px;
   }
 
   .awards-showcase-page .award-carousel-prev {
-    left: .35rem;
+    left: .65rem;
+    top: auto;
+    bottom: 1rem;
+    transform: none;
   }
 
   .awards-showcase-page .award-carousel-next {
-    right: .35rem;
+    top: auto;
+    right: .65rem;
+    bottom: 1rem;
+    transform: none;
   }
 
   .awards-showcase-page .award-carousel-stage {
-    height: 580px;
+    height: 500px;
+    margin-top: .4rem;
+    perspective: 900px;
   }
 
   .awards-showcase-page .award-carousel-card {
-    width: calc(100% - .5rem);
-    height: 480px;
+    width: min(100% - .4rem, 23rem);
+    height: 410px;
+    padding: 1.05rem;
+    border-radius: 24px;
+    gap: .35rem;
+    transform-origin: center center;
+  }
+
+  .awards-showcase-page .award-carousel-card.is-active {
+    transform: translate3d(-50%, -50%, 46px) scale(1) rotateX(0deg);
+    animation: mobileAwardCardGlow 4.8s ease-in-out infinite;
+  }
+
+  .awards-showcase-page .award-carousel-card.is-prev {
+    opacity: .36;
+    z-index: 18;
+    transform: translate3d(-50%, calc(-50% - 112px), -90px) scale(.82) rotateX(-10deg);
+    filter: blur(.2px) saturate(.78) brightness(.82);
+  }
+
+  .awards-showcase-page .award-carousel-card.is-next {
+    opacity: .36;
+    z-index: 18;
+    transform: translate3d(-50%, calc(-50% + 112px), -90px) scale(.82) rotateX(10deg);
+    filter: blur(.2px) saturate(.78) brightness(.82);
+  }
+
+  .awards-showcase-page .award-carousel-card.is-far-prev,
+  .awards-showcase-page .award-carousel-card.is-far-next,
+  .awards-showcase-page .award-carousel-card.is-hidden-prev,
+  .awards-showcase-page .award-carousel-card.is-hidden-next {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, -160px) scale(.68);
+  }
+
+  .awards-showcase-page .award-carousel-card h3 {
+    font-size: clamp(1.1rem, 5vw, 1.38rem);
+    line-height: 1.16;
+  }
+
+  .awards-showcase-page .award-carousel-card p:not(.award-org) {
+    font-size: .92rem;
+    line-height: 1.5;
+  }
+
+  .award-card-icon {
+    width: 2.72rem;
+    height: 2.72rem;
   }
 
   .awards-showcase-page .award-carousel-stage::before {
-    bottom: -2.55rem;
-    width: min(86%, 420px);
+    --mobile-award-floor-perspective: 420px;
+    --mobile-award-floor-tilt: 68deg;
+    left: 50%;
+    bottom: 1.1rem;
+    width: min(82%, 18rem);
+    height: 4.35rem;
+    border-radius: 999px;
+    transform: translateX(-50%) perspective(420px) rotateX(68deg);
+    background:
+      radial-gradient(ellipse at center, rgba(255, 251, 221, .92) 0 8%, rgba(246, 215, 122, .5) 30%, rgba(139, 108, 255, .16) 58%, transparent 78%);
+    filter: blur(7px);
+    box-shadow: none;
+    animation: mobileAwardAura 4.6s ease-in-out infinite;
   }
 
   .awards-showcase-page .award-carousel-stage::after {
-    bottom: -2.25rem;
-    width: min(82%, 360px);
-    letter-spacing: .1em;
+    --mobile-award-floor-perspective: 400px;
+    --mobile-award-floor-tilt: 64deg;
+    content: "";
+    left: 50%;
+    bottom: 2.65rem;
+    width: min(64%, 13rem);
+    min-height: 1.2rem;
+    padding: 0;
+    border-radius: 999px;
+    transform: translateX(-50%) perspective(400px) rotateX(64deg);
+    background:
+      linear-gradient(90deg, transparent, rgba(255, 246, 190, .7), transparent),
+      linear-gradient(180deg, rgba(246, 215, 122, .46), rgba(197, 138, 43, .18));
+    border: 0;
+    box-shadow:
+      0 0 28px rgba(246, 215, 122, .34),
+      inset 0 1px 0 rgba(255, 255, 255, .46);
+    animation: mobileAwardAura 5.8s ease-in-out infinite reverse;
   }
 
   .award-category-card {
@@ -9817,6 +9927,157 @@ body {
   }
 }
 
+/* Subtle neural firing hero effect */
+.hero-neural-firing {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .68;
+}
+
+.hero-neural-firing::before,
+.hero-neural-firing::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-neural-firing::before {
+  width: 62%;
+  height: 58%;
+  top: 24%;
+  right: 8%;
+  background:
+    radial-gradient(circle at 18% 36%, rgba(0, 238, 255, 1) 0 3px, rgba(0, 226, 255, .36) 4px, transparent 9px),
+    radial-gradient(circle at 34% 62%, rgba(164, 143, 255, .92) 0 3px, rgba(149, 122, 255, .32) 4px, transparent 9px),
+    radial-gradient(circle at 48% 42%, rgba(34, 190, 255, .92) 0 3px, rgba(0, 178, 255, .28) 4px, transparent 9px),
+    radial-gradient(circle at 62% 58%, rgba(0, 238, 255, .86) 0 3px, rgba(0, 226, 255, .26) 4px, transparent 9px),
+    radial-gradient(circle at 78% 38%, rgba(164, 143, 255, .82) 0 3px, rgba(149, 122, 255, .24) 4px, transparent 9px);
+  background-size:
+    220px 150px,
+    260px 180px,
+    300px 210px,
+    340px 230px,
+    280px 200px;
+  filter:
+    drop-shadow(0 0 10px rgba(0, 212, 255, .60))
+    drop-shadow(0 0 18px rgba(124, 92, 255, .34));
+  animation: neuralFiringDrift 18s ease-in-out infinite;
+  border-radius: 999px;
+}
+
+.hero-neural-firing::after {
+  width: 46%;
+  height: 38%;
+  top: 34%;
+  right: 15%;
+  background:
+    radial-gradient(circle at 24% 34%, rgba(0, 226, 255, .52) 0 4px, rgba(0, 226, 255, .15) 6px, transparent 14px),
+    radial-gradient(circle at 46% 58%, rgba(149, 122, 255, .42) 0 4px, rgba(149, 122, 255, .14) 6px, transparent 14px),
+    radial-gradient(circle at 72% 42%, rgba(0, 178, 255, .40) 0 4px, rgba(0, 178, 255, .12) 6px, transparent 14px);
+  background-size:
+    260px 180px,
+    310px 210px,
+    280px 190px;
+  opacity: .42;
+  transform: translate3d(0, 0, 0);
+  animation: neuralPulseGlow 9s ease-in-out infinite;
+  border-radius: 999px;
+  filter: blur(.2px) drop-shadow(0 0 12px rgba(0, 212, 255, .28));
+}
+
+.lecturing-hero .hero-neural-firing {
+  opacity: .56;
+}
+
+.lecturing-hero .hero-neural-firing::before {
+  width: 54%;
+  height: 42%;
+  top: 43%;
+  right: 13%;
+}
+
+.lecturing-hero .hero-neural-firing::after {
+  width: 42%;
+  height: 30%;
+  top: 51%;
+  right: 18%;
+}
+
+.research-agreed-hero .hero-neural-firing {
+  opacity: .72;
+}
+
+.research-agreed-hero .hero-neural-firing::before {
+  width: 62%;
+  height: 54%;
+  top: 22%;
+  right: 7%;
+}
+
+.research-agreed-hero .hero-neural-firing::after {
+  width: 50%;
+  height: 40%;
+  top: 31%;
+  right: 12%;
+}
+
+.sessions-hero .hero-neural-firing {
+  opacity: .62;
+}
+
+.sessions-hero .hero-neural-firing::before {
+  width: 58%;
+  height: 46%;
+  top: 30%;
+  right: 9%;
+}
+
+.sessions-hero .hero-neural-firing::after {
+  width: 46%;
+  height: 34%;
+  top: 39%;
+  right: 14%;
+}
+
+@keyframes neuralFiringDrift {
+  0% {
+    opacity: .44;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  28% {
+    opacity: .86;
+  }
+  50% {
+    opacity: .62;
+    transform: translate3d(2.5%, -1.8%, 0) scale(1.018);
+  }
+  76% {
+    opacity: .90;
+  }
+  100% {
+    opacity: .44;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes neuralPulseGlow {
+  0% {
+    opacity: .24;
+    transform: translate3d(0, 0, 0) scale(.98);
+  }
+  45% {
+    opacity: .56;
+    transform: translate3d(1.2%, -.8%, 0) scale(1.025);
+  }
+  100% {
+    opacity: .24;
+    transform: translate3d(0, 0, 0) scale(.98);
+  }
+}
+
 .session-hero-visual {
   align-items: center;
   display: flex;
@@ -9880,6 +10141,18 @@ body {
     animation: none;
   }
 
+  .hero-neural-firing {
+    opacity: .16;
+  }
+
+  .hero-neural-firing::before {
+    animation-duration: 24s;
+  }
+
+  .hero-neural-firing::after {
+    animation: none;
+  }
+
   .session-hero-visual img {
     max-height: none;
   }
@@ -9898,6 +10171,11 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-neural-overlay {
+    animation: none !important;
+  }
+
+  .hero-neural-firing::before,
+  .hero-neural-firing::after {
     animation: none !important;
   }
 }
