@@ -24,29 +24,28 @@ body.travel-page {
 }
 
 .travel-page .site-header {
-  background: color-mix(in oklab, #1e120b, transparent 14%);
-  border-bottom-color: rgba(246, 199, 90, .18);
+  background: transparent;
+  border-bottom-color: transparent;
 }
 
 .light .travel-page .site-header {
-  background: color-mix(in oklab, #fff4d8, transparent 10%);
+  background: transparent;
 }
 
 .travel-page .nav a,
 .travel-page #themeToggle,
 .travel-page .menu-toggle {
-  color: color-mix(in oklab, var(--travel-cream), transparent 18%);
+  color: color-mix(in oklab, var(--text), var(--muted) 42%);
 }
 
 .light .travel-page .nav a,
 .light .travel-page #themeToggle,
 .light .travel-page .menu-toggle {
-  color: color-mix(in oklab, var(--travel-brown), transparent 12%);
+  color: color-mix(in oklab, var(--text), var(--muted) 42%);
 }
 
-.travel-page .nav a:hover,
-.travel-page .inline:hover {
-  background: rgba(246, 199, 90, .16);
+.travel-page .nav a:hover {
+  background: rgba(0, 212, 255, .065);
 }
 
 .travel-hero {
