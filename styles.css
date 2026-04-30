@@ -9683,6 +9683,140 @@ body {
 }
 
 /* Static page hero illustrations */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 620px;
+}
+
+/* Hero image final blending fix */
+.page-hero-art {
+  position: absolute;
+  top: 0;
+  right: -2vw;
+  bottom: 0;
+  z-index: 1;
+  width: min(62vw, 880px);
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.page-hero-art::before,
+.page-hero-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.page-hero-art::before {
+  z-index: 2;
+  background:
+    linear-gradient(90deg,
+      rgba(5, 9, 20, 1) 0%,
+      rgba(5, 9, 20, .86) 14%,
+      rgba(5, 9, 20, .32) 36%,
+      rgba(5, 9, 20, .04) 58%,
+      rgba(5, 9, 20, .30) 82%,
+      rgba(5, 9, 20, .92) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(5, 9, 20, .96) 0%,
+      rgba(5, 9, 20, .18) 18%,
+      rgba(5, 9, 20, .04) 48%,
+      rgba(5, 9, 20, .22) 76%,
+      rgba(5, 9, 20, .96) 100%
+    );
+}
+
+.page-hero-art::after {
+  z-index: 3;
+  background:
+    linear-gradient(90deg,
+      rgba(5, 9, 20, .92) 0%,
+      transparent 26%,
+      transparent 72%,
+      rgba(5, 9, 20, .85) 100%
+    );
+}
+
+.page-hero-art .page-hero-image {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 92%;
+  max-height: none;
+  transform: translateY(-50%);
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  object-fit: cover;
+  object-position: center right;
+  opacity: .88;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.page-hero-art > i,
+.page-hero-art .research-circuit-field {
+  display: none !important;
+}
+
+.lecturing-hero .page-hero-image {
+  opacity: .84;
+}
+
+.research-agreed-hero .page-hero-art::after {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 9, 20, .95) 0%,
+      transparent 30%,
+      transparent 76%,
+      rgba(5, 9, 20, .88) 100%
+    );
+}
+
+.sessions-hero .page-hero-image {
+  opacity: .86;
+}
+
+/* Hero neural light overlay */
+.hero-neural-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    linear-gradient(112deg, transparent 0 36%, rgba(0, 212, 255, .12) 46%, rgba(139, 108, 255, .1) 55%, transparent 67%);
+  mix-blend-mode: screen;
+  opacity: .42;
+  transform: translate3d(-2%, 0, 0);
+  animation: heroNeuralDrift 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroNeuralDrift {
+  from {
+    transform: translate3d(-3%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.04);
+  }
+}
+
 .session-hero-visual {
   align-items: center;
   display: flex;
@@ -9692,12 +9826,12 @@ body {
 }
 
 .session-hero-visual img {
-  border-radius: 28px;
+  border-radius: 0;
   display: block;
-  height: auto;
-  max-height: clamp(260px, 42vw, 500px);
-  max-width: min(100%, 680px);
-  object-fit: contain;
+  height: 92%;
+  max-height: none;
+  max-width: none;
+  object-fit: cover;
   position: relative;
   width: 100%;
   z-index: 1;
@@ -9709,9 +9843,62 @@ body {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
+  .page-hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .page-hero-art {
+    width: 100%;
+    right: 0;
+    opacity: .45;
+  }
+
+  .page-hero-art .page-hero-image {
+    right: -22%;
+    width: 125%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero-art::before {
+    background:
+      linear-gradient(90deg,
+        rgba(5, 9, 20, .98) 0%,
+        rgba(5, 9, 20, .90) 55%,
+        rgba(5, 9, 20, .72) 100%
+      ),
+      linear-gradient(180deg,
+        rgba(5, 9, 20, .95) 0%,
+        transparent 45%,
+        rgba(5, 9, 20, .95) 100%
+      );
+  }
+
+  .hero-neural-overlay {
+    opacity: .24;
+    animation: none;
+  }
+
   .session-hero-visual img {
-    max-height: 320px;
+    max-height: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-hero-art {
+    opacity: .3;
+  }
+
+  .page-hero-art .page-hero-image {
+    right: -38%;
+    width: 145%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-neural-overlay {
+    animation: none !important;
   }
 }
 
