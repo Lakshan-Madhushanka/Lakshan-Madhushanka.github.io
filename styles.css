@@ -4374,6 +4374,7 @@ body {
 .awards-showcase-section {
   position: relative;
   overflow: hidden;
+  margin-top: -2cm;
 }
 
 .awards-showcase-subtitle {
@@ -5058,6 +5059,43 @@ body {
   100% { background-position: 180% 50%, 0 0; }
 }
 
+/* Awards generated podium image integration */
+.awards-podium-wrap {
+  position: absolute;
+  left: calc(50% + 9.9mm);
+  bottom: calc(clamp(1.2rem, 3vw, 2.4rem) - 2.7cm);
+  z-index: 1;
+  width: min(920px, 82vw);
+  height: clamp(190px, 21vw, 285px);
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  opacity: .88;
+  transform: translateX(-50%);
+}
+
+.awards-podium-wrap::before,
+.awards-podium-wrap::after {
+  display: none;
+}
+
+.awards-podium-image {
+  position: absolute;
+  left: 50%;
+  bottom: -2%;
+  z-index: 1;
+  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 18px rgba(245, 199, 107, 0.30))
+    drop-shadow(0 0 34px rgba(255, 214, 120, 0.18))
+    drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
+}
+
 .awards-showcase-page .kicker {
   color: var(--award-gold);
   letter-spacing: .18em;
@@ -5084,10 +5122,10 @@ body {
 }
 
 .awards-showcase-page .award-carousel {
-  min-height: 640px;
+  min-height: calc(640px + 2.7cm);
   width: min(100vw - 2rem, 1280px);
   margin-inline: calc(50% - min(50vw - 1rem, 640px));
-  padding: 1.8rem 5.6rem 7.2rem;
+  padding: 1.8rem 5.6rem calc(1.2rem + 2.7cm);
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -5105,6 +5143,7 @@ body {
 
 .awards-showcase-page .award-carousel-stage {
   position: relative;
+  z-index: 4;
   height: 500px;
   margin-top: 1rem;
   transform-style: preserve-3d;
@@ -5134,8 +5173,9 @@ body {
 }
 
 .awards-showcase-page .award-carousel-stage::before {
+  display: none;
   position: absolute;
-  content: "";
+  content: none;
   left: 50%;
   bottom: -3.45rem;
   width: min(74%, 560px);
@@ -5158,8 +5198,9 @@ body {
 }
 
 .awards-showcase-page .award-carousel-stage::after {
+  display: none;
   position: absolute;
-  content: "Recognition Showcase";
+  content: none;
   left: 50%;
   bottom: -3.05rem;
   width: min(74%, 560px);
@@ -5202,7 +5243,8 @@ body {
 }
 
 .awards-showcase-page .award-carousel::after {
-  content: "";
+  content: none;
+  display: none;
   position: absolute;
   left: 50%;
   bottom: .15rem;
@@ -5819,6 +5861,23 @@ body {
   .recognition-moments-head {
     align-items: start;
   }
+}
+
+@media (max-width: 600px) {
+  .awards-podium-wrap {
+    bottom: 4.8rem;
+    width: min(460px, 92vw);
+    height: 150px;
+    opacity: .68;
+  }
+
+  .awards-podium-image {
+    bottom: 0;
+    filter:
+      drop-shadow(0 0 12px rgba(245, 199, 107, 0.22))
+      drop-shadow(0 16px 32px rgba(0, 0, 0, 0.48));
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -7316,6 +7375,109 @@ body {
   text-decoration: none;
 }
 
+/* Research review contributions */
+.research-review-section {
+  padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+.research-review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(.9rem, 2vw, 1.15rem);
+}
+
+.research-review-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .95rem;
+  min-width: 0;
+  padding: clamp(1rem, 2.4vw, 1.25rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--research-line), transparent 8%);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--surface), transparent 12%), color-mix(in oklab, var(--surface), transparent 34%)),
+    radial-gradient(circle at 10% 16%, color-mix(in oklab, var(--research-cyan), transparent 86%), transparent 12rem);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 22px 60px color-mix(in oklab, #020617, transparent 84%);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.research-review-card::after {
+  content: "";
+  position: absolute;
+  inset: -55% auto -55% -75%;
+  width: 52%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent, rgba(255, 255, 255, .15), transparent);
+  transform: translateX(-20%) rotate(10deg);
+  transition: opacity .24s ease, transform .48s cubic-bezier(.22, 1, .36, 1);
+}
+
+.research-review-card:hover,
+.research-review-card:focus-within {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--research-cyan), transparent 55%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 24px 62px color-mix(in oklab, var(--research-cyan), transparent 88%);
+}
+
+.research-review-card:hover::after,
+.research-review-card:focus-within::after {
+  opacity: .7;
+  transform: translateX(255%) rotate(10deg);
+}
+
+.review-icon {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid color-mix(in oklab, var(--research-cyan), transparent 62%);
+  border-radius: 14px;
+  color: var(--research-cyan);
+  background: color-mix(in oklab, var(--research-cyan), transparent 88%);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--research-cyan), transparent 88%);
+}
+
+.research-review-card:nth-child(2) .review-icon {
+  color: color-mix(in oklab, var(--research-purple), white 18%);
+  background: color-mix(in oklab, var(--research-purple), transparent 86%);
+  border-color: color-mix(in oklab, var(--research-purple), transparent 60%);
+}
+
+.review-kicker {
+  width: fit-content;
+  margin: 0 0 .48rem;
+  padding: .25rem .58rem;
+  border: 1px solid color-mix(in oklab, var(--research-cyan), transparent 70%);
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--research-cyan), white 12%);
+  background: color-mix(in oklab, var(--research-cyan), transparent 90%);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.research-review-card h3 {
+  margin: 0 0 .45rem;
+  color: var(--text);
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  line-height: 1.32;
+}
+
+.research-review-card p:not(.review-kicker) {
+  margin: 0;
+  color: var(--muted);
+  font-size: .92rem;
+  line-height: 1.55;
+}
+
 /* Compact grants section */
 .compact-grants-section {
   padding-top: clamp(1rem, 3vw, 2rem);
@@ -7425,12 +7587,14 @@ body {
   .metric-left,
   .metric-right,
   .research-story-strip,
+  .research-review-grid,
   .compact-grant-list {
     grid-template-columns: 1fr;
   }
 
   .research-collab-card,
   .publication-compact-card,
+  .research-review-card,
   .research-quote-cta {
     grid-template-columns: 1fr;
   }
@@ -7444,6 +7608,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .research-collab-card,
   .research-evidence-card,
+  .research-review-card,
+  .research-review-card::after,
   .publication-compact-card {
     transition: none !important;
   }
@@ -8196,6 +8362,120 @@ body {
   color: var(--muted);
 }
 
+.volunteering-current-roles-section {
+  margin-top: calc(clamp(-5rem, -7vw, -3.2rem) - 6cm);
+}
+
+.vol-current-role-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.8rem, 1.8vw, 1rem);
+}
+
+.volunteering-current-roles-section .vol-section-head {
+  margin-top: 0;
+  margin-bottom: clamp(1.25rem, 2.2vw, 1.7rem);
+}
+
+.vol-current-role-card {
+  position: relative;
+  display: grid;
+  gap: .55rem;
+  min-width: 0;
+  min-height: 168px;
+  padding: .95rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--vol-cyan), transparent 72%);
+  border-radius: 16px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03)),
+    radial-gradient(circle at 18% 12%, color-mix(in oklab, var(--vol-cyan), transparent 84%), transparent 9rem),
+    color-mix(in oklab, var(--surface), transparent 28%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 18px 48px color-mix(in oklab, #020617, transparent 86%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.vol-current-role-card::after {
+  content: "";
+  position: absolute;
+  inset: -55% auto -55% -86%;
+  width: 62%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent, rgba(255, 255, 255, .16), transparent);
+  transform: translateX(-18%) rotate(10deg);
+  transition: opacity .24s ease, transform .48s cubic-bezier(.22, 1, .36, 1);
+}
+
+.vol-current-role-card:hover,
+.vol-current-role-card:focus-within {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--vol-cyan), transparent 54%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 22px 56px color-mix(in oklab, var(--vol-cyan), transparent 88%);
+}
+
+.vol-current-role-card:hover::after,
+.vol-current-role-card:focus-within::after {
+  opacity: .7;
+  transform: translateX(250%) rotate(10deg);
+}
+
+.vol-current-role-card i {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid color-mix(in oklab, var(--vol-cyan), transparent 62%);
+  border-radius: 12px;
+  color: var(--vol-cyan);
+  background: color-mix(in oklab, var(--vol-cyan), transparent 88%);
+  box-shadow: 0 0 16px color-mix(in oklab, var(--vol-cyan), transparent 88%);
+}
+
+.vol-current-role-card:nth-child(2n) i {
+  color: color-mix(in oklab, var(--vol-purple), white 18%);
+  border-color: color-mix(in oklab, var(--vol-purple), transparent 60%);
+  background: color-mix(in oklab, var(--vol-purple), transparent 86%);
+}
+
+.vol-current-role-card:nth-child(3n) i {
+  color: color-mix(in oklab, var(--vol-gold), white 12%);
+  border-color: color-mix(in oklab, var(--vol-gold), transparent 62%);
+  background: color-mix(in oklab, var(--vol-gold), transparent 88%);
+}
+
+.vol-current-role-card span {
+  width: fit-content;
+  padding: .24rem .52rem;
+  border: 1px solid color-mix(in oklab, var(--vol-cyan), transparent 70%);
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--vol-cyan), white 10%);
+  background: color-mix(in oklab, var(--vol-cyan), transparent 90%);
+  font-size: .7rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.vol-current-role-card h3 {
+  margin: .1rem 0 0;
+  color: var(--text);
+  font-size: .98rem;
+  line-height: 1.28;
+}
+
+.vol-current-role-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.45;
+}
+
 .vol-section-head.row-head {
   display: flex;
   align-items: end;
@@ -8731,6 +9011,7 @@ body {
 
   .vol-project-grid,
   .vol-grant-grid,
+  .vol-current-role-grid,
   .vol-recognition-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -8771,6 +9052,7 @@ body {
   .vol-project-grid,
   .vol-grant-grid,
   .vol-recognition-grid,
+  .vol-current-role-grid,
   .vol-impact-grid {
     grid-template-columns: 1fr;
   }
@@ -8822,6 +9104,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .vol-project-card,
+  .vol-current-role-card,
+  .vol-current-role-card::after,
   .vol-gallery-grid img,
   .volunteer-photo-card,
   .volunteer-photo-card::before,
@@ -10043,7 +10327,12 @@ body {
 }
 
 .sessions-page .sessions-org-section {
-  margin-top: clamp(1rem, 2.5vw, 1.8rem);
+  margin-top: 1cm;
+}
+
+.sessions-page .sessions-org-section .session-section-head {
+  margin-top: 0;
+  margin-bottom: clamp(1.2rem, 2.2vw, 1.75rem);
 }
 
 /* Premium glass navigation bar */
@@ -10905,6 +11194,78 @@ body {
   .volunteering-hero,
   .sessions-hero {
     min-height: min(620px, calc(100vh - 86px));
+  }
+}
+
+/* First content block alignment across key subpages */
+.lecturing-block:first-of-type,
+.research-collab-section,
+.sessions-org-section {
+  padding-top: 0;
+  margin-top: clamp(1.15rem, 2.3vw, 1.8rem);
+}
+
+.volunteering-current-roles-section {
+  padding-top: 0;
+  margin-top: calc(clamp(-5rem, -7vw, -3.2rem) + 1.5cm);
+}
+
+.lecturing-block:first-of-type h2,
+.research-collab-section .section-head h2,
+.volunteering-current-roles-section .vol-section-head h2,
+.sessions-org-section .session-section-head h2 {
+  margin-top: 0;
+  font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+  line-height: 1.15;
+}
+
+.lecturing-block:first-of-type h2,
+.research-collab-section .section-head,
+.volunteering-current-roles-section .vol-section-head,
+.sessions-org-section .session-section-head {
+  margin-bottom: clamp(1.15rem, 2vw, 1.55rem);
+}
+
+/* Shared subpage hero topic alignment */
+@media (min-width: 901px) {
+  .lecturing-hero .page-hero-content,
+  .research-agreed-hero .page-hero-content,
+  .volunteering-hero .page-hero-content,
+  .sessions-hero .page-hero-content {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lecturing-hero .page-split-title,
+  .research-agreed-hero .page-split-title,
+  .volunteering-hero .page-split-title,
+  .sessions-hero .page-split-title {
+    margin-bottom: clamp(1rem, 1.8vw, 1.25rem);
+  }
+
+  .lecturing-hero p,
+  .research-hero-copy .lead,
+  .volunteering-hero .lead,
+  .sessions-hero .lead {
+    min-height: 4.1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .lecturing-hero-chips,
+  .research-hero-actions,
+  .volunteering-chip-grid,
+  .session-chip-row {
+    margin-top: clamp(1.2rem, 2vw, 1.55rem);
+  }
+
+  .volunteering-hero-phrase {
+    margin-bottom: .55rem;
+  }
+
+  .volunteering-hero .lead {
+    min-height: 3.35rem;
   }
 }
 
