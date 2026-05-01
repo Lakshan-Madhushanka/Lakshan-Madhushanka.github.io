@@ -5066,7 +5066,7 @@ body {
   bottom: calc(clamp(1.2rem, 3vw, 2.4rem) - 2.7cm);
   z-index: 1;
   width: min(920px, 82vw);
-  height: clamp(190px, 21vw, 285px);
+  height: clamp(230px, 25vw, 340px);
   margin: 0;
   overflow: hidden;
   pointer-events: none;
@@ -5083,7 +5083,7 @@ body {
 .awards-podium-image {
   position: absolute;
   left: 50%;
-  bottom: -2%;
+  bottom: -1%;
   z-index: 1;
   transform: translateX(-50%);
   display: block;
@@ -5867,7 +5867,7 @@ body {
   .awards-podium-wrap {
     bottom: 4.8rem;
     width: min(460px, 92vw);
-    height: 150px;
+    height: 180px;
     opacity: .68;
   }
 
@@ -10616,6 +10616,29 @@ body {
 .page-hero {
   position: relative;
   overflow: hidden;
+  border: 1px solid color-mix(in oklab, #00d4ff, transparent 86%);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--surface), transparent 8%), color-mix(in oklab, var(--surface), transparent 48%) 62%),
+    radial-gradient(circle at 78% 22%, color-mix(in oklab, #00d4ff, transparent 82%), transparent 28rem),
+    radial-gradient(circle at 18% 82%, color-mix(in oklab, #8b5cf6, transparent 86%), transparent 24rem);
+  box-shadow:
+    0 24px 70px color-mix(in oklab, #020617, transparent 82%),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+  isolation: isolate;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 34%),
+    radial-gradient(circle at 82% 24%, rgba(0, 212, 255, .11), transparent 20rem),
+    radial-gradient(circle at 18% 76%, rgba(124, 92, 255, .10), transparent 18rem);
 }
 
 .page-hero-content {
@@ -10745,6 +10768,76 @@ body {
       rgba(5, 9, 20, .16) 82%,
       rgba(5, 9, 20, .68) 100%
     );
+}
+
+/* Full-bleed subpage hero image backgrounds */
+.lecturing-hero .page-hero-art,
+.research-agreed-hero .page-hero-art,
+.volunteering-hero .page-hero-art,
+.sessions-hero .page-hero-art {
+  inset: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.lecturing-hero .page-hero-image,
+.research-agreed-hero .page-hero-image,
+.volunteering-hero .page-hero-image,
+.sessions-hero .page-hero-image {
+  top: 50%;
+  right: -4%;
+  width: 112%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.lecturing-hero .page-hero-art::before,
+.research-agreed-hero .page-hero-art::before,
+.volunteering-hero .page-hero-art::before,
+.sessions-hero .page-hero-art::before {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 9, 20, .94) 0%,
+      rgba(5, 9, 20, .82) 24%,
+      rgba(5, 9, 20, .46) 48%,
+      rgba(5, 9, 20, .12) 70%,
+      rgba(5, 9, 20, .54) 100%
+    ),
+    linear-gradient(180deg,
+      rgba(5, 9, 20, .82) 0%,
+      rgba(5, 9, 20, .10) 30%,
+      rgba(5, 9, 20, .10) 68%,
+      rgba(5, 9, 20, .82) 100%
+    );
+}
+
+.lecturing-hero .page-hero-art::after,
+.research-agreed-hero .page-hero-art::after,
+.volunteering-hero .page-hero-art::after,
+.sessions-hero .page-hero-art::after {
+  background:
+    radial-gradient(circle at 80% 50%, transparent 0%, transparent 42%, rgba(5, 9, 20, .42) 78%, rgba(5, 9, 20, .86) 100%),
+    linear-gradient(90deg, rgba(5, 9, 20, .88) 0%, transparent 34%, transparent 76%, rgba(5, 9, 20, .76) 100%);
+}
+
+.lecturing-hero .page-hero-image {
+  opacity: .80;
+}
+
+.research-agreed-hero .page-hero-image {
+  opacity: .84;
+  object-position: 72% center;
+}
+
+.sessions-hero .page-hero-image {
+  opacity: .82;
+}
+
+.volunteering-hero .page-hero-image {
+  right: -8%;
+  width: 118%;
+  opacity: .88;
 }
 
 /* Volunteering hero image */
@@ -12358,10 +12451,10 @@ body {
   background: none !important;
   color: #f8fbff !important;
   display: block;
-  font-size: clamp(3rem, 7vw, 5.6rem) !important;
+  font-size: clamp(2.35rem, 6vw, 4.5rem) !important;
   font-weight: 800 !important;
   letter-spacing: 0 !important;
-  line-height: 1.02 !important;
+  line-height: .98 !important;
   margin: 0 !important;
   max-width: 820px;
 }
@@ -12372,6 +12465,96 @@ body {
 
 .nowrap {
   white-space: nowrap;
+}
+
+.lecturing-hero .page-hero-content,
+.research-agreed-hero .page-hero-content,
+.volunteering-hero .page-hero-content,
+.sessions-hero .page-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(.75rem, 1.5vw, 1rem);
+}
+
+.lecturing-hero .page-split-title,
+.research-agreed-hero .page-split-title,
+.volunteering-hero .page-split-title,
+.sessions-hero .page-split-title {
+  max-width: 760px;
+  margin-bottom: 0 !important;
+}
+
+.lecturing-hero p,
+.research-hero-copy .lead,
+.volunteering-hero .lead,
+.sessions-hero .lead {
+  max-width: 690px;
+  min-height: 0 !important;
+  margin: 0 !important;
+  color: color-mix(in oklab, var(--text), var(--muted) 22%);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.55;
+}
+
+.volunteering-hero-phrase {
+  margin: 0 !important;
+  color: color-mix(in oklab, #f5c76b, white 10%);
+  font-size: clamp(1.03rem, 1.5vw, 1.22rem);
+  font-weight: 850;
+}
+
+.lecturing-hero-chips,
+.volunteering-chip-grid,
+.session-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: clamp(.25rem, .8vw, .55rem) !important;
+}
+
+.lecturing-hero-chips span,
+.volunteering-chip-grid span,
+.session-chip-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  min-height: 2.05rem;
+  padding: .38rem .68rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, #00d4ff, transparent 68%);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .018)),
+    color-mix(in oklab, var(--surface), transparent 26%);
+  color: color-mix(in oklab, var(--text), white 3%);
+  box-shadow:
+    0 8px 22px color-mix(in oklab, #020617, transparent 88%),
+    inset 0 1px 0 rgba(255, 255, 255, .10);
+  font-size: .82rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.lecturing-hero-chips span:nth-child(2n),
+.volunteering-chip-grid span:nth-child(2n),
+.session-chip-row span:nth-child(2n) {
+  border-color: color-mix(in oklab, #8b5cf6, transparent 64%);
+}
+
+.lecturing-hero-chips i,
+.volunteering-chip-grid i {
+  color: #00d4ff;
+}
+
+.research-hero-actions {
+  gap: .72rem;
+  margin-top: clamp(.35rem, .9vw, .65rem) !important;
+}
+
+.research-hero-actions .btn {
+  min-height: 2.55rem;
+  padding: .62rem .95rem;
+  border-radius: 999px;
 }
 
 .sessions-hero .page-split-title,
@@ -12394,7 +12577,76 @@ body {
 
 @media (max-width: 640px) {
   .page-split-title {
-    font-size: clamp(2.45rem, 13vw, 4rem) !important;
+    font-size: clamp(2.05rem, 13vw, 3rem) !important;
+    line-height: .98 !important;
+  }
+
+  .lecturing-hero .page-hero-content,
+  .research-agreed-hero .page-hero-content,
+  .volunteering-hero .page-hero-content,
+  .sessions-hero .page-hero-content {
+    gap: .75rem;
+  }
+
+  .lecturing-hero-chips span,
+  .volunteering-chip-grid span,
+  .session-chip-row span {
+    min-height: 1.95rem;
+    padding: .34rem .58rem;
+    font-size: .76rem;
+  }
+}
+
+/* Match key page hero frames to the homepage hero sizing */
+.about-hero,
+.lecturing-hero,
+.research-agreed-hero,
+.volunteering-hero,
+.sessions-hero {
+  width: min(1148px, calc(100% - 2rem));
+  margin-inline: auto;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding-left: clamp(1rem, 2.4vw, 1.8rem);
+  padding-right: clamp(1rem, 2.4vw, 1.8rem);
+  padding-top: clamp(3.4rem, 6vw, 5rem) !important;
+  padding-bottom: clamp(.65rem, 1.4vw, 1.05rem) !important;
+}
+
+.lecturing-hero,
+.research-agreed-hero,
+.volunteering-hero,
+.sessions-hero {
+  min-height: min(590px, calc(100vh - 86px)) !important;
+}
+
+.about-hero {
+  min-height: min(590px, calc(100vh - 86px));
+}
+
+.about-hero::before {
+  inset: .8rem -1.5rem .15rem;
+}
+
+.about-hero-card {
+  min-height: auto;
+}
+
+@media (max-width: 900px) {
+  .about-hero,
+  .lecturing-hero,
+  .research-agreed-hero,
+  .volunteering-hero,
+  .sessions-hero {
+    width: min(1100px, 92%);
+    min-height: auto !important;
+    gap: 1.4rem;
+    padding-top: 3.2rem !important;
+    padding-bottom: .75rem !important;
+  }
+
+  .about-hero::before {
+    inset: .75rem -.5rem 0;
   }
 }
 
