@@ -3299,9 +3299,14 @@ body {
   inset: 2.4rem -.8rem .7rem;
   border-radius: 28px;
   background:
-    linear-gradient(135deg, color-mix(in oklab, var(--surface), transparent 16%), color-mix(in oklab, var(--surface), transparent 34%)),
+    linear-gradient(90deg, color-mix(in oklab, var(--surface), transparent 12%) 0%, color-mix(in oklab, var(--surface), transparent 30%) 48%, color-mix(in oklab, var(--surface), transparent 62%) 100%),
+    linear-gradient(180deg, color-mix(in oklab, var(--bg), transparent 20%) 0%, transparent 38%, color-mix(in oklab, var(--bg), transparent 30%) 100%),
     radial-gradient(circle at 16% 12%, color-mix(in oklab, var(--accent), transparent 78%), transparent 22rem),
-    linear-gradient(112deg, transparent 0 32%, rgba(255, 238, 196, .08) 44%, rgba(124, 92, 255, .08) 54%, transparent 66%);
+    linear-gradient(112deg, transparent 0 32%, rgba(255, 238, 196, .08) 44%, rgba(124, 92, 255, .08) 54%, transparent 66%),
+    url("assets/hero/about.png");
+  background-position: center, center, center, center, center right;
+  background-size: cover, cover, auto, cover, 118% auto;
+  background-repeat: no-repeat;
   border: 1px solid color-mix(in oklab, var(--muted), transparent 84%);
   box-shadow: 0 26px 70px color-mix(in oklab, var(--ring), transparent 72%);
   z-index: -1;
@@ -3470,10 +3475,12 @@ body {
 }
 
 .about-actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: center;
   gap: .75rem;
+  width: min(100%, 25rem);
+  margin-inline: auto;
 }
 
 .about-actions .btn {
@@ -3604,6 +3611,207 @@ body {
 
 .about-section-head .fancy-head {
   margin-top: .25rem;
+}
+
+/* About current affiliations */
+.current-affiliations {
+  padding-top: 0;
+}
+
+.current-affiliations h2 {
+  margin-top: 0;
+  margin-bottom: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.affiliation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.95rem, 1.8vw, 1.15rem);
+}
+
+.affiliation-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  row-gap: .28rem;
+  width: 100%;
+  min-height: 132px;
+  overflow: hidden;
+  padding: .75rem .82rem .8rem;
+  border: 1px solid rgba(71, 148, 255, .3);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .028)),
+    radial-gradient(circle at 14% 16%, rgba(0, 200, 255, .13), transparent 9rem),
+    rgba(5, 17, 37, .68);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 20px 55px rgba(0, 0, 0, .22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.affiliation-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: .68rem;
+  min-height: 3.05rem;
+}
+
+.affiliation-head > div {
+  min-width: 0;
+}
+
+.affiliation-logo {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.affiliation-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(2, 6, 23, .18));
+}
+
+.affiliation-icon {
+  color: #00d4ff;
+  font-size: 1.25rem;
+}
+
+.affiliation-card::before {
+  content: "";
+  position: absolute;
+  inset: -38% -24%;
+  z-index: -1;
+  opacity: .42;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(0, 200, 255, .16) 0 1px, transparent 1.6px),
+    linear-gradient(110deg, transparent 0 36%, rgba(255, 255, 255, .1) 47%, transparent 58% 100%);
+  background-size: 22px 22px, 100% 100%;
+}
+
+.affiliation-card::after {
+  content: "";
+  position: absolute;
+  inset: -42% auto -42% -82%;
+  width: 62%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(112deg, transparent, rgba(255, 255, 255, .18), transparent);
+  transform: translateX(-20%) rotate(9deg);
+  transition: opacity .24s ease, transform .48s cubic-bezier(.22, 1, .36, 1);
+}
+
+.affiliation-card:hover::after,
+.affiliation-card:focus-within::after {
+  opacity: .72;
+  transform: translateX(250%) rotate(9deg);
+}
+
+.affiliation-card:hover,
+.affiliation-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(0, 200, 255, .42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .16),
+    0 24px 60px rgba(0, 200, 255, .14);
+}
+
+.affiliation-institution {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.18;
+}
+
+.affiliation-institution a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.affiliation-institution a:hover,
+.affiliation-institution a:focus-visible {
+  color: #00d4ff;
+}
+
+.affiliation-role {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  align-self: start;
+  width: fit-content;
+  max-width: 100%;
+  margin: .28rem 0 .3rem !important;
+  padding: .26rem .52rem .26rem .34rem;
+  border: 1px solid rgba(124, 92, 255, .28);
+  border-radius: 999px;
+  color: #eef4ff;
+  background:
+    linear-gradient(135deg, rgba(124, 92, 255, .16), rgba(0, 200, 255, .07)),
+    rgba(10, 19, 42, .34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+  font-size: .77rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.affiliation-role span {
+  display: inline-flex;
+  align-items: center;
+  padding: .16rem .34rem;
+  border-radius: 999px;
+  color: #8fefff;
+  background: rgba(0, 200, 255, .12);
+  border: 1px solid rgba(0, 200, 255, .2);
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+
+.affiliation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+}
+
+.affiliation-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: .36rem .68rem;
+  border: 1px solid color-mix(in oklab, #8b5cf6, transparent 68%);
+  border-radius: 999px;
+  background: rgba(124, 92, 255, .08);
+  color: color-mix(in oklab, var(--text), var(--muted) 8%);
+  font-size: .8rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 900px) {
+  .affiliation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .affiliation-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .about-intro-grid {
@@ -4249,8 +4457,9 @@ body {
   }
 
   .about-actions .btn {
-    width: 100%;
     justify-content: center;
+    min-width: 0;
+    padding-inline: .75rem;
   }
 
   .about-highlight-grid {
@@ -10348,6 +10557,7 @@ body {
 
 .nav-container {
   position: relative;
+  width: min(1196px, calc(100% - 2rem));
   min-height: 54px;
   padding: .46rem .6rem;
   border: 1px solid rgba(0, 212, 255, .16);
@@ -10521,6 +10731,7 @@ body {
   }
 
   .site-header .nav-container {
+    width: min(1100px, 92%);
     min-height: 52px;
     padding: .42rem .48rem;
   }
@@ -11585,6 +11796,7 @@ body {
 /* Homepage final premium alignment */
 .home-page .hero {
   align-items: center;
+  width: min(1148px, calc(100% - 2rem));
   padding-top: clamp(3.4rem, 6vw, 5rem);
   padding-bottom: clamp(.65rem, 1.4vw, 1.05rem);
 }
@@ -11598,8 +11810,8 @@ body {
     radial-gradient(circle at 78% 22%, color-mix(in oklab, #00d4ff, transparent 86%), transparent 28rem),
     radial-gradient(circle at 18% 82%, color-mix(in oklab, #8b5cf6, transparent 90%), transparent 24rem),
     url("assets/hero/background home.png");
-  background-position: center, center, center, center, calc(100% - 3cm) center;
-  background-size: cover, cover, auto, auto, 118% auto;
+  background-position: center, center, center, center, calc(100% - 0cm) center;
+  background-size: cover, cover, auto, auto, 150% auto;
   background-repeat: no-repeat;
   box-shadow:
     0 24px 70px color-mix(in oklab, #020617, transparent 82%),
@@ -12603,7 +12815,7 @@ body {
 .research-agreed-hero,
 .volunteering-hero,
 .sessions-hero {
-  width: min(1148px, calc(100% - 2rem));
+  width: min(1196px, calc(100% - 2rem));
   margin-inline: auto;
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
@@ -12628,11 +12840,118 @@ body {
   inset: .8rem -1.5rem .15rem;
 }
 
+.about-hero {
+  width: min(1196px, calc(100% - 2rem));
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+}
+
 .about-hero-card {
+  min-height: auto;
+  align-content: center;
+  gap: clamp(.75rem, 1.5vw, 1rem);
+  padding: 0;
+}
+
+.about-hero-card h1 {
+  max-width: 760px;
+  font-size: clamp(2.35rem, 6vw, 4.5rem);
+  line-height: .98;
+}
+
+.about-hero-copy {
+  max-width: 690px;
+  gap: .55rem;
+}
+
+.about-hero-copy .lead {
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.55;
+}
+
+.about-actions {
+  width: min(100%, 20.5rem);
+  gap: .55rem;
+}
+
+.about-actions .btn {
+  min-height: 2.35rem;
+  padding: .52rem .72rem;
+  font-size: .78rem;
+  line-height: 1.1;
+}
+
+.about-actions i {
+  margin-right: .32rem;
+}
+
+/* About hero matched to homepage dimensions */
+.about-hero {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  width: min(1148px, calc(100% - 2rem));
+  padding-left: clamp(.35rem, 1vw, .75rem);
+  padding-top: clamp(3.4rem, 6vw, 5rem) !important;
+  padding-bottom: clamp(.65rem, 1.4vw, 1.05rem) !important;
+}
+
+.about-hero::before {
+  inset: .8rem -1.5rem .15rem;
+  border-color: color-mix(in oklab, #00d4ff, transparent 86%);
+  background:
+    linear-gradient(90deg, color-mix(in oklab, var(--surface), transparent 18%) 0%, color-mix(in oklab, var(--surface), transparent 38%) 42%, color-mix(in oklab, var(--surface), transparent 74%) 100%),
+    linear-gradient(180deg, color-mix(in oklab, var(--bg), transparent 26%) 0%, transparent 38%, color-mix(in oklab, var(--bg), transparent 34%) 100%),
+    radial-gradient(circle at 78% 22%, color-mix(in oklab, #00d4ff, transparent 86%), transparent 28rem),
+    radial-gradient(circle at 18% 82%, color-mix(in oklab, #8b5cf6, transparent 90%), transparent 24rem),
+    url("assets/hero/about.png");
+  background-position: center, center, center, center, center right;
+  background-size: cover, cover, auto, auto, 118% auto;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 24px 70px color-mix(in oklab, #020617, transparent 82%),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.about-profile-panel {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: .9rem;
   min-height: auto;
 }
 
+.about-photo-frame {
+  width: min(390px, 86vw);
+}
+
+.page-loaded .about-photo-frame img {
+  animation: photoFloat 6s ease-in-out 1s infinite alternate;
+}
+
+.about-social {
+  gap: .7rem;
+  margin-top: 1.15rem;
+}
+
+.about-social a {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .035)),
+    color-mix(in oklab, var(--surface), transparent 16%);
+  border: 1px solid color-mix(in oklab, var(--muted), transparent 82%);
+  box-shadow: 0 12px 28px color-mix(in oklab, var(--ring), transparent 78%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 @media (max-width: 900px) {
+  .home-page .hero {
+    width: min(1100px, 92%);
+  }
+
   .about-hero,
   .lecturing-hero,
   .research-agreed-hero,
@@ -12645,8 +12964,32 @@ body {
     padding-bottom: .75rem !important;
   }
 
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
   .about-hero::before {
     inset: .75rem -.5rem 0;
+  }
+}
+
+/* Standard first-section spacing after matched hero boxes */
+.about-hero + .section,
+.lecturing-hero + .lecturing-block,
+.research-agreed-hero + .research-collab-section,
+.volunteering-hero + .volunteering-current-roles-section,
+.sessions-hero + .sessions-org-section {
+  padding-top: 0 !important;
+  margin-top: calc(clamp(1.15rem, 2.3vw, 1.8rem) + 1cm) !important;
+}
+
+@media (max-width: 640px) {
+  .about-hero + .section,
+  .lecturing-hero + .lecturing-block,
+  .research-agreed-hero + .research-collab-section,
+  .volunteering-hero + .volunteering-current-roles-section,
+  .sessions-hero + .sessions-org-section {
+    margin-top: clamp(.95rem, 4vw, 1.3rem) !important;
   }
 }
 
