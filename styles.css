@@ -12168,15 +12168,15 @@ body {
     width: 100%;
   }
 
-  .home-page .hero-lead {
+  .home-page .hero-actions-home {
     order: 3;
   }
 
-  .home-page .hero-actions-home {
+  .home-page .home-social {
     order: 4;
   }
 
-  .home-page .home-social {
+  .home-page .hero-lead {
     order: 5;
   }
 
