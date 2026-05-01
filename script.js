@@ -1072,71 +1072,38 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('DOMContentLoaded', initResearchCollaboratorCarousel);
 })();
 
-// Homepage featured carousel
+// Homepage latest updates bar
 (function () {
-  function initHomepageFeaturedCarousel() {
-    const carousel = document.querySelector('[data-home-featured-carousel]');
-    if (!carousel) return;
+  function initHomepageLatestUpdates() {
+    const bar = document.querySelector('[data-latest-updates]');
+    if (!bar) return;
 
-    const groups = Array.from(carousel.querySelectorAll('[data-home-featured-group]'));
-    const dotsWrap = carousel.querySelector('[data-home-featured-dots]');
-    const prev = document.querySelector('[data-home-featured-prev]');
-    const next = document.querySelector('[data-home-featured-next]');
-    if (!groups.length) return;
+    const items = Array.from(bar.querySelectorAll('.update-item'));
+    if (!items.length) return;
 
+    const statusType = bar.querySelector('[data-update-type]');
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let active = Math.max(0, groups.findIndex(group => group.classList.contains('is-active')));
+    let active = Math.max(0, items.findIndex(item => item.classList.contains('active')));
     let timer = null;
-    let isChanging = false;
-    const collectMs = reduce ? 0 : 520;
-    const intervalMs = 4600;
-
-    function renderDots() {
-      if (!dotsWrap) return;
-      dotsWrap.innerHTML = '';
-      groups.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Show featured group ${index + 1}`);
-        dot.addEventListener('click', () => {
-          goTo(index);
-          start();
-        });
-        dotsWrap.appendChild(dot);
-      });
-    }
-
-    function updateDots() {
-      if (!dotsWrap) return;
-      dotsWrap.querySelectorAll('button').forEach((dot, index) => {
-        const isActive = index === active;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-      });
-    }
+    const intervalMs = 3500;
 
     function show(index) {
-      groups.forEach((group, groupIndex) => {
-        const isActive = groupIndex === index;
-        group.classList.toggle('is-active', isActive);
-        group.classList.remove('is-collecting');
-        group.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      items.forEach((item, itemIndex) => {
+        const isActive = itemIndex === index;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        item.tabIndex = isActive ? 0 : -1;
       });
-      updateDots();
+
+      const item = items[index];
+      if (statusType && item?.dataset.updateTypeValue) {
+        statusType.textContent = item.dataset.updateTypeValue;
+      }
     }
 
     function goTo(index) {
-      if (isChanging || index === active) return;
-      const nextIndex = ((index % groups.length) + groups.length) % groups.length;
-      const currentGroup = groups[active];
-      isChanging = true;
-      currentGroup?.classList.add('is-collecting');
-
-      window.setTimeout(() => {
-        active = nextIndex;
-        show(active);
-        isChanging = false;
-      }, collectMs);
+      active = ((index % items.length) + items.length) % items.length;
+      show(active);
     }
 
     function stop() {
@@ -1148,34 +1115,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function start() {
       stop();
-      if (reduce || groups.length < 2) return;
+      if (reduce || items.length < 2) return;
       timer = window.setInterval(() => goTo(active + 1), intervalMs);
     }
 
-    prev?.addEventListener('click', () => {
-      goTo(active - 1);
-      start();
-    });
-
-    next?.addEventListener('click', () => {
-      goTo(active + 1);
-      start();
-    });
-
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('focusin', stop);
-    carousel.addEventListener('focusout', start);
+    bar.addEventListener('mouseenter', stop);
+    bar.addEventListener('mouseleave', start);
+    bar.addEventListener('focusin', stop);
+    bar.addEventListener('focusout', start);
 
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) stop();
       else start();
     });
 
-    renderDots();
     show(active);
     start();
   }
 
-  window.addEventListener('DOMContentLoaded', initHomepageFeaturedCarousel);
+  window.addEventListener('DOMContentLoaded', initHomepageLatestUpdates);
 })();
