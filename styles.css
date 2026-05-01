@@ -12650,3 +12650,23 @@ body {
   }
 }
 
+/* Standard first-section spacing after matched hero boxes */
+.about-hero + .section,
+.lecturing-hero + .lecturing-block,
+.research-agreed-hero + .research-collab-section,
+.volunteering-hero + .volunteering-current-roles-section,
+.sessions-hero + .sessions-org-section {
+  padding-top: 0 !important;
+  margin-top: calc(clamp(1.15rem, 2.3vw, 1.8rem) + 1cm) !important;
+}
+
+@media (max-width: 640px) {
+  .about-hero + .section,
+  .lecturing-hero + .lecturing-block,
+  .research-agreed-hero + .research-collab-section,
+  .volunteering-hero + .volunteering-current-roles-section,
+  .sessions-hero + .sessions-org-section {
+    margin-top: clamp(.95rem, 4vw, 1.3rem) !important;
+  }
+}
+
