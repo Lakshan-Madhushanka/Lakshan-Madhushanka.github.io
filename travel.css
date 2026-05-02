@@ -1046,16 +1046,61 @@ body.journey-page .site-footer a {
 
   .journey-hero {
     grid-template-columns: 1fr;
+    gap: clamp(1.35rem, 5vw, 2.2rem);
     min-height: auto;
-    padding: 3rem 1rem;
+    width: min(100% - 1.4rem, 760px);
+    margin-top: .85rem;
+    padding: clamp(2.2rem, 7vw, 3.2rem) clamp(1rem, 4vw, 1.6rem);
+    border-radius: 28px;
+  }
+
+  .journey-hero::after {
+    right: -7rem;
+    top: -6rem;
+    opacity: .7;
+  }
+
+  .journey-hero h1 {
+    font-size: clamp(3.4rem, 16vw, 5.8rem);
+  }
+
+  .journey-hero-subtitle {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 3.2vw, 1.15rem);
+  }
+
+  .journey-hero-support {
+    font-size: .96rem;
+    line-height: 1.62;
+  }
+
+  .journey-hero-chips {
+    gap: .5rem;
+    margin-top: 1.1rem;
+  }
+
+  .journey-hero-chips span {
+    min-height: 2.05rem;
+    padding: .36rem .66rem;
+    font-size: .8rem;
+  }
+
+  .journey-hero-actions {
+    gap: .55rem;
+    margin-top: 1.1rem;
   }
 
   .journey-memory-stage {
-    min-height: 340px;
+    min-height: clamp(300px, 56vw, 390px);
+    border-radius: 24px;
+  }
+
+  .journey-table-surface {
+    background-position: center bottom;
   }
 
   .journey-memory-photo {
-    width: clamp(86px, 26vw, 128px);
+    width: clamp(72px, 15vw, 108px);
   }
 
   .life-highlight-grid,
@@ -1076,24 +1121,121 @@ body.journey-page .site-footer a {
   .journey-cta-actions {
     margin-top: 0;
   }
+
+  .journey-section {
+    padding-block: clamp(2rem, 5.8vw, 3rem);
+  }
+
+  .journey-section-title {
+    font-size: clamp(1.85rem, 7vw, 2.7rem);
+  }
+
+  .reflection-card p {
+    font-size: clamp(1.2rem, 4.8vw, 1.75rem);
+  }
 }
 
 @media (max-width: 560px) {
+  .journey-main {
+    padding-bottom: 1rem;
+  }
+
   .journey-hero {
-    width: min(100% - 1rem, 94%);
-    border-radius: 24px;
+    width: min(100% - .8rem, 96%);
+    padding: 2rem .9rem 1rem;
+    border-radius: 22px;
+  }
+
+  .journey-eyebrow,
+  .journey-section-kicker {
+    padding: .26rem .62rem;
+    font-size: .72rem;
+  }
+
+  .journey-hero h1 {
+    font-size: clamp(3rem, 18vw, 4.2rem);
+  }
+
+  .journey-hero h1::after,
+  .journey-section-title::after {
+    width: 6.2rem;
+    height: .34rem;
+  }
+
+  .journey-hero-subtitle {
+    line-height: 1.5;
+  }
+
+  .journey-hero-support {
+    font-size: .9rem;
+  }
+
+  .journey-hero-chips {
+    gap: .42rem;
+  }
+
+  .journey-hero-chips span {
+    min-height: 1.95rem;
+    padding: .32rem .56rem;
+    font-size: .74rem;
+  }
+
+  .journey-hero-actions,
+  .journey-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   .journey-memory-stage {
-    min-height: 290px;
+    min-height: clamp(245px, 70vw, 310px);
+    border-radius: 20px;
   }
 
   .journey-table-surface {
-    height: 46%;
+    background-size: cover;
+    background-position: center bottom;
   }
 
   .journey-memory-photo {
-    width: clamp(72px, 21vw, 104px);
+    width: clamp(54px, 17vw, 78px);
+    padding: .32rem;
+    border-radius: 11px;
+  }
+
+  .journey-memory-photo img,
+  .journey-card-photo img,
+  .journey-photo-card img {
+    border-radius: 8px;
+  }
+
+  .journey-memory-photo::before {
+    inset: .32rem;
+    border-radius: 8px;
+    font-size: .58rem;
+  }
+
+  .journey-memory-photo::after {
+    top: -5px;
+    height: 11px;
+  }
+
+  .slot-1 { --slot-left: 4%; --slot-top: 57%; }
+  .slot-2 { --slot-left: 20%; --slot-top: 55%; }
+  .slot-3 { --slot-left: 36%; --slot-top: 58%; }
+  .slot-4 { --slot-left: 52%; --slot-top: 56%; }
+  .slot-5 { --slot-left: 68%; --slot-top: 59%; }
+  .slot-6 { --slot-left: 10%; --slot-top: 73%; }
+  .slot-7 { --slot-left: 27%; --slot-top: 70%; }
+  .slot-8 { --slot-left: 44%; --slot-top: 75%; }
+  .slot-9 { --slot-left: 60%; --slot-top: 71%; }
+  .slot-10 { --slot-left: 75%; --slot-top: 75%; }
+
+  .journey-section {
+    padding-block: 1.8rem;
+  }
+
+  .journey-section-head {
+    margin-bottom: .95rem;
   }
 
   .life-highlight-grid,
@@ -1103,18 +1245,89 @@ body.journey-page .site-footer a {
 
   .journey-photo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+  }
+
+  .life-highlight-card {
+    min-height: auto;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .hobby-grid {
+    gap: .7rem;
+  }
+
+  .hobby-card {
+    min-height: 76px;
+    border-radius: 18px;
+  }
+
+  .hobby-card span {
+    font-size: .98rem;
+  }
+
+  .journey-card {
+    border-radius: 20px;
+  }
+
+  .journey-card-body {
+    padding: .9rem;
   }
 
   .journey-photo-card {
     padding: .45rem .45rem .8rem;
+    border-radius: 18px;
   }
 
   .journey-photo-card figcaption {
     font-size: .78rem;
+    line-height: 1.35;
+  }
+
+  .personal-growth-card,
+  .reflection-card,
+  .journey-cta {
+    border-radius: 22px;
+  }
+
+  .growth-path {
+    min-height: 5.5rem;
+  }
+
+  .growth-path span {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-width: 5px;
+  }
+
+  .reflection-card::before {
+    width: 3.4rem;
+    height: 3.4rem;
   }
 
   .journey-btn {
     width: 100%;
+    min-height: 2.55rem;
+    padding-inline: .85rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .journey-hero {
+    padding-inline: .75rem;
+  }
+
+  .journey-memory-stage {
+    min-height: 230px;
+  }
+
+  .journey-memory-photo {
+    width: clamp(48px, 16vw, 64px);
+  }
+
+  .journey-photo-grid {
+    grid-template-columns: 1fr;
   }
 }
 
