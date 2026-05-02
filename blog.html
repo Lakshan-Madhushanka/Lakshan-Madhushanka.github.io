@@ -15,7 +15,7 @@
     <script defer src="script.js"></script>
     <script defer src="blog.js"></script>
   </head>
-  <body>
+  <body class="blog-notebook-body">
     <header class="site-header">
       <div class="container row nav-container">
         <a class="brand nav-link" href="index.html">Home</a>
@@ -36,133 +36,145 @@
     </header>
 
     <main id="top" class="blog-page">
-      <section class="container blog-hero will-animate">
-        <div class="blog-hero-copy">
-          <h1>My Blog</h1>
-          <p class="lead">Personal notes, reflections, and articles on research, teaching, technology, volunteering, and life.</p>
-          <aside class="blog-hero-note" aria-label="Blog note">
-            <i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
-            <p>Sharing what I learn, explore, and experience along the way.</p>
-          </aside>
-        </div>
-        <div class="blog-desk-visual" aria-label="Notebook visual">
-          <div class="blog-paperclip" aria-hidden="true"></div>
-          <div class="blog-sticky-note">Learn<br />Reflect<br />Share<br />Inspire</div>
-          <div class="blog-notebook">
-            <p>Ideas</p>
-            <span>&rarr; research</span>
-            <span>&rarr; impact</span>
-            <i class="fa-regular fa-lightbulb" aria-hidden="true"></i>
+      <section class="container blog-hero will-animate" aria-labelledby="blogHeroTitle">
+        <div class="blog-hero-content">
+          <p class="blog-kicker">Stories & experiments</p>
+          <h1 id="blogHeroTitle">Blog</h1>
+          <p class="lead">Stories I want to share about science experiments, personal experiences, and lessons I picked up along the way.</p>
+          <div class="blog-hero-tabs" aria-label="Blog themes">
+            <span>Teaching</span>
+            <span>Research</span>
+            <span>Technology</span>
           </div>
-          <div class="blog-pen" aria-hidden="true"></div>
-          <div class="blog-cup" aria-hidden="true"></div>
-          <i class="fa-solid fa-users blog-doodle-users" aria-hidden="true"></i>
-          <i class="fa-solid fa-book-open blog-doodle-book" aria-hidden="true"></i>
         </div>
+        <figure class="blog-sketch-visual" aria-label="Notebook, pen, sticky notes, and learning doodles">
+          <img src="assets/hero/blog.png" alt="Hand-drawn notebook illustration for the blog" />
+          <div class="blog-sketch-fallback" aria-hidden="true">
+            <span class="sketch-note">Ideas</span>
+            <span class="sketch-card">notes<br />drafts<br />questions</span>
+            <span class="sketch-pen"></span>
+            <span class="sketch-bulb"></span>
+          </div>
+        </figure>
       </section>
 
-      <section class="container section blog-feature-grid" aria-label="Featured note and categories">
-        <article class="blog-feature-shell reveal">
-          <h2 class="reveal fancy-head">Featured Note</h2>
-          <div class="blog-feature-paper">
-            <!-- Replace this image path with the actual featured blog image. -->
-            <img src="assets/blog/blog-featured.jpg" alt="AI and healthcare featured blog illustration" />
-            <div class="blog-feature-content">
-              <div class="blog-card-meta">
-                <span class="blog-category">Research</span>
-                <time datetime="2025-04-20">April 20, 2025</time>
-              </div>
-              <h3>AI for Healthcare: Bridging Innovation and Real-World Impact</h3>
-              <p>Exploring how artificial intelligence and machine learning are transforming healthcare through early detection, personalized treatment, and intelligent decision support systems.</p>
-              <a href="#featured-note">Read More &rarr;</a>
-            </div>
+      <section class="container section blog-featured-note" aria-labelledby="featuredNoteTitle">
+        <div class="blog-section-heading">
+          <span class="blog-section-mark">01</span>
+          <h2 id="featuredNoteTitle" class="blog-section-title">Featured Note</h2>
+        </div>
+        <article class="blog-featured-paper reveal" data-category="featured">
+          <div class="paper-tape" aria-hidden="true"></div>
+          <div class="blog-note-meta">
+            <span class="blog-category-label">[Category]</span>
+            <span>[Date]</span>
           </div>
+          <h3>[Featured note title to be added]</h3>
+          <p>[Short featured note excerpt to be added.]</p>
+          <a class="blog-note-link" href="#featuredNoteTitle">Read Note &rarr;</a>
         </article>
+      </section>
 
-        <aside class="blog-category-pad reveal" aria-labelledby="blogCategoriesTitle">
-          <h2 id="blogCategoriesTitle" class="reveal fancy-head">Browse by Category</h2>
-          <nav aria-label="Blog categories">
-            <a href="#latest-notes"><i class="fa-solid fa-microscope" aria-hidden="true"></i> Research</a>
-            <a href="#latest-notes"><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> Teaching</a>
-            <a href="#latest-notes"><i class="fa-solid fa-brain" aria-hidden="true"></i> AI</a>
-            <a href="#latest-notes"><i class="fa-solid fa-microchip" aria-hidden="true"></i> Technology</a>
-            <a href="#latest-notes"><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i> Volunteering</a>
-            <a href="#latest-notes"><i class="fa-regular fa-note-sticky" aria-hidden="true"></i> Reflections</a>
-            <a href="#latest-notes"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i> Travel</a>
-          </nav>
-        </aside>
+      <section class="container section blog-category-section" aria-labelledby="blogCategoriesTitle">
+        <div class="blog-section-heading">
+          <span class="blog-section-mark">02</span>
+          <h2 id="blogCategoriesTitle" class="blog-section-title">Browse by Category</h2>
+        </div>
+        <div class="blog-category-tabs reveal" aria-label="Blog categories">
+          <button class="blog-category-chip is-active" type="button" data-filter="all">All Notes</button>
+          <button class="blog-category-chip" type="button" data-filter="teaching">Teaching</button>
+          <button class="blog-category-chip" type="button" data-filter="research">Research</button>
+          <button class="blog-category-chip" type="button" data-filter="programming">Programming</button>
+          <button class="blog-category-chip" type="button" data-filter="ai">AI</button>
+          <button class="blog-category-chip" type="button" data-filter="reflections">Reflections</button>
+          <button class="blog-category-chip" type="button" data-filter="life">Life</button>
+        </div>
       </section>
 
       <section id="latest-notes" class="container section blog-latest-section" aria-labelledby="latestNotesTitle">
-        <h2 id="latestNotesTitle" class="blog-section-title reveal fancy-head">Latest Notes</h2>
+        <div class="blog-section-heading">
+          <span class="blog-section-mark">03</span>
+          <h2 id="latestNotesTitle" class="blog-section-title">Latest Notes</h2>
+        </div>
         <div class="blog-notes-grid">
-          <article id="post-1" class="blog-note-card reveal">
-            <!-- Replace this image path with the actual blog image. -->
-            <img src="assets/blog/blog-ai.jpg" alt="AI illustration for medical imaging blog note" />
-            <div class="blog-card-meta"><span class="blog-category">AI</span><time datetime="2025-05-10">May 10, 2025</time></div>
-            <h3>Deep Learning Breakthroughs in Medical Imaging</h3>
-            <p>Recent advances in deep learning models and their application in improving diagnostic accuracy.</p>
-            <a href="#post-1">Read More &rarr;</a>
+          <article class="blog-note-card reveal" data-category="research">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Research</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[Research note title to be added]</h3>
+            <p>[Short research note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#latest-notes">Read Note &rarr;</a>
           </article>
-          <article id="post-2" class="blog-note-card reveal">
-            <!-- Replace this image path with the actual blog image. -->
-            <img src="assets/blog/blog-teaching.jpg" alt="Teaching and classroom blog note" />
-            <div class="blog-card-meta"><span class="blog-category">Teaching</span><time datetime="2025-05-05">May 5, 2025</time></div>
-            <h3>Teaching is a Two-Way Learning Experience</h3>
-            <p>Thoughts on engaging students, active learning, and creating meaningful classroom experiences.</p>
-            <a href="#post-2">Read More &rarr;</a>
+          <article class="blog-note-card reveal" data-category="teaching">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Teaching</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[Teaching note title to be added]</h3>
+            <p>[Short teaching note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#latest-notes">Read Note &rarr;</a>
           </article>
-          <article id="post-3" class="blog-note-card reveal">
-            <!-- Replace this image path with the actual blog image. -->
-            <img src="assets/blog/blog-technology.jpg" alt="Technology and IoT blog note" />
-            <div class="blog-card-meta"><span class="blog-category">Technology</span><time datetime="2025-04-28">Apr 28, 2025</time></div>
-            <h3>Building Smart IoT Systems for Real-World Problems</h3>
-            <p>Designing and implementing intelligent IoT solutions that make everyday life easier and more efficient.</p>
-            <a href="#post-3">Read More &rarr;</a>
-          </article>
-          <article id="post-4" class="blog-note-card reveal">
-            <!-- Replace this image path with the actual blog image. -->
-            <img src="assets/blog/blog-volunteering.jpg" alt="Volunteering and community blog note" />
-            <div class="blog-card-meta"><span class="blog-category">Volunteering</span><time datetime="2025-04-12">Apr 12, 2025</time></div>
-            <h3>The Joy of Giving Back to the Community</h3>
-            <p>Reflections on volunteering experiences and the impact we create when we work together.</p>
-            <a href="#post-4">Read More &rarr;</a>
-          </article>
-          <article id="post-5" class="blog-note-card reveal">
-            <!-- Replace this image path with the actual blog image. -->
-            <img src="assets/blog/blog-travel.jpg" alt="Travel and culture blog note" />
-            <div class="blog-card-meta"><span class="blog-category">Travel</span><time datetime="2025-04-12">Apr 12, 2025</time></div>
-            <h3>Travel, Culture and Lifelong Learning</h3>
-            <p>How travelling opens our minds, builds empathy, and inspires new ideas.</p>
-            <a href="#post-5">Read More &rarr;</a>
+          <article class="blog-note-card reveal" data-category="ai">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">AI</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[AI note title to be added]</h3>
+            <p>[Short AI note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#latest-notes">Read Note &rarr;</a>
           </article>
         </div>
       </section>
 
-      <section class="container section blog-reflection-row" aria-label="Reflection notes">
-        <blockquote class="blog-quote-strip reveal">
-          <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
-          <p>Writing helps me reflect, organize ideas, and share what I learn along the way.</p>
-          <i class="fa-solid fa-pencil" aria-hidden="true"></i>
-        </blockquote>
-        <aside class="blog-more-note reveal">
-          <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
-          <p>More reflections and articles will be added soon.</p>
-        </aside>
+      <section class="container section blog-journal-section" aria-labelledby="learningJournalTitle">
+        <div class="blog-section-heading">
+          <span class="blog-section-mark">04</span>
+          <h2 id="learningJournalTitle" class="blog-section-title">Stories & Lessons</h2>
+        </div>
+        <div class="blog-notes-grid blog-journal-grid">
+          <article class="blog-note-card reveal" data-category="programming">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Programming</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[Programming note title to be added]</h3>
+            <p>[Short programming note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#learningJournalTitle">Read Note &rarr;</a>
+          </article>
+          <article class="blog-note-card reveal" data-category="reflections">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Reflections</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[Reflection note title to be added]</h3>
+            <p>[Short reflection note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#learningJournalTitle">Read Note &rarr;</a>
+          </article>
+          <article class="blog-note-card reveal" data-category="life">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Life</span>
+              <span>[Date]</span>
+            </div>
+            <h3>[Life note title to be added]</h3>
+            <p>[Short life note excerpt to be added.]</p>
+            <a class="blog-note-link" href="#learningJournalTitle">Read Note &rarr;</a>
+          </article>
+        </div>
       </section>
 
-      <section class="container section">
-        <div class="blog-bottom-cta reveal">
-          <div>
-            <h2 class="reveal fancy-head">Enjoying the read?</h2>
-            <p>Stay connected for more updates, insights, and new articles.</p>
-            <a class="btn primary" href="contact.html">Let's Connect &rarr;</a>
-          </div>
-          <div class="blog-values">
-            <article><i class="fa-solid fa-cloud-bolt" aria-hidden="true"></i><h3>Reflect</h3><p>Sharing experiences and lessons learned.</p></article>
-            <article><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i><h3>Learn</h3><p>Exploring ideas and building knowledge.</p></article>
-            <article><i class="fa-regular fa-star" aria-hidden="true"></i><h3>Inspire</h3><p>Empowering positive change together.</p></article>
-          </div>
+      <section class="container section blog-closing-note" aria-labelledby="blogClosingTitle">
+        <div class="blog-closing-paper reveal">
+          <p class="blog-kicker">Closing note</p>
+          <h2 id="blogClosingTitle" class="blog-section-title">More notes coming soon</h2>
+          <p>This space will grow with science experiments, reflections, experiences, and lessons as real stories are added.</p>
+          <a class="blog-note-link" href="contact.html">Share an idea &rarr;</a>
         </div>
       </section>
     </main>
