@@ -12793,8 +12793,30 @@ body {
 }
 
 .lecturing-hero-chips i,
-.volunteering-chip-grid i {
+.volunteering-chip-grid i,
+.session-chip-row i {
   color: #00d4ff;
+}
+
+.sessions-hero .session-chip-row {
+  gap: .7rem;
+  margin-top: 1.05rem !important;
+}
+
+.sessions-hero .session-chip-row span {
+  min-height: 2.35rem;
+  padding: .45rem .75rem;
+  border-radius: 10px;
+  border-color: color-mix(in oklab, var(--session-cyan), transparent 68%);
+  background: color-mix(in oklab, var(--surface), transparent 30%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+  color: color-mix(in oklab, var(--text), var(--muted) 8%);
+  font-size: .86rem;
+  font-weight: 800;
+}
+
+.sessions-hero .session-chip-row span:nth-child(2n) {
+  border-color: color-mix(in oklab, var(--session-purple), transparent 62%);
 }
 
 .research-hero-actions {
