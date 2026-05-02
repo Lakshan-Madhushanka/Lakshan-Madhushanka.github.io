@@ -10265,26 +10265,35 @@ body {
 
 .sessions-cta {
   align-items: center;
-  border-radius: 1.1rem;
+  border: 1px solid color-mix(in oklab, var(--session-purple), transparent 50%);
+  border-radius: 22px;
   display: grid;
   gap: 1.2rem;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  padding: clamp(1.1rem, 3vw, 1.6rem);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background:
+    radial-gradient(circle at 6% 50%, color-mix(in oklab, var(--session-purple), transparent 76%), transparent 14rem),
+    radial-gradient(circle at 94% 50%, color-mix(in oklab, var(--session-cyan), transparent 82%), transparent 14rem),
+    color-mix(in oklab, var(--surface), transparent 18%);
+  box-shadow: 0 24px 70px color-mix(in oklab, #020617, transparent 84%);
 }
 
-.sessions-cta .session-line-icon {
-  color: var(--session-purple);
-  height: 4rem;
+.sessions-cta > i {
+  color: color-mix(in oklab, var(--session-cyan), var(--session-purple) 25%);
+  font-size: 2.6rem;
   filter: drop-shadow(0 0 24px color-mix(in oklab, var(--session-purple), transparent 46%));
-  width: 4rem;
 }
 
 .sessions-cta h2 {
-  margin: 0 0 .4rem;
+  color: var(--text);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  margin: 0;
 }
 
 .sessions-cta p {
-  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: .4rem 0 0;
 }
 
 .sessions-cta-actions {
