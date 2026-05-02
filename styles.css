@@ -12723,6 +12723,55 @@ body {
   display: inline;
 }
 
+.page-split-title .title-amp {
+  background: none !important;
+  color: #f8fbff !important;
+  -webkit-text-fill-color: #f8fbff !important;
+}
+
+.lecturing-hero .page-split-title .grad.grad-anim {
+  background: linear-gradient(90deg, var(--accent), #00d4ff, #8ef9f3, var(--accent)) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: sweep 8s ease-in-out infinite !important;
+}
+
+.lecturing-hero.will-animate {
+  opacity: 0;
+  transform: translateY(18px) scale(.985);
+}
+
+.page-loaded .lecturing-hero.will-animate {
+  animation: lecturingHeroLand .75s cubic-bezier(.2, .8, .2, 1) both !important;
+}
+
+.lecturing-hero .page-hero-content,
+.lecturing-hero .page-hero-art {
+  opacity: 0;
+}
+
+.page-loaded .lecturing-hero .page-hero-content {
+  animation: fadeUp .62s ease-out .14s both;
+}
+
+.page-loaded .lecturing-hero .page-hero-art {
+  animation: fadeUp .7s ease-out .24s both;
+}
+
+@keyframes lecturingHeroLand {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -12837,24 +12886,6 @@ body {
   min-height: 2.55rem;
   padding: .62rem .95rem;
   border-radius: 999px;
-}
-
-.sessions-hero .page-split-title,
-.sessions-hero .page-split-title .grad {
-  -webkit-background-clip: initial;
-  background-clip: initial;
-}
-
-.sessions-hero .page-split-title .grad,
-.research-hero-copy .page-split-title .grad,
-.lecturing-hero .page-split-title .grad,
-.volunteering-hero .page-split-title .grad,
-.contact-hero .page-split-title .grad {
-  background: linear-gradient(90deg, var(--accent), #00d4ff, #8ef9f3, var(--accent)) !important;
-  background-size: 300% 100% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
 }
 
 @media (max-width: 640px) {
