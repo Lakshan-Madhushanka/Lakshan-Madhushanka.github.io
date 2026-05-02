@@ -5271,7 +5271,7 @@ body {
 /* Awards generated podium image integration */
 .awards-podium-wrap {
   position: absolute;
-  left: calc(50% + 9.9mm);
+  left: calc(50% + 9.8mm);
   bottom: calc(clamp(1.2rem, 3vw, 2.4rem) - 2.7cm);
   z-index: 1;
   width: min(920px, 82vw);
@@ -10094,6 +10094,16 @@ body {
   transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
 }
 
+.session-topic-grid article > .session-line-icon {
+  display: none;
+}
+
+.sessions-page .session-section-head > .session-line-icon,
+.sessions-page .session-category-grid article > .session-line-icon,
+.sessions-page .sessions-cta > .session-line-icon {
+  display: none;
+}
+
 .session-category-grid article {
   align-items: center;
   display: flex;
@@ -11856,6 +11866,7 @@ body {
 
 .home-photo-frame {
   width: min(390px, 86vw);
+  transform: translateY(-0.3mm);
 }
 
 .home-page .visit-pill {
@@ -11866,6 +11877,10 @@ body {
   opacity: 1;
   margin-top: .4rem;
   max-width: min(100%, 25rem);
+}
+
+.mobile-contact-btn {
+  display: none;
 }
 
 .home-page > .latest-updates-bar,
@@ -12571,18 +12586,42 @@ body {
   .home-page .hero-art {
     order: 2;
     width: 100%;
+    display: contents;
+  }
+
+  .home-photo-frame {
+    order: 2;
   }
 
   .home-page .hero-actions-home {
-    order: 3;
+    order: 4;
+  }
+
+  .home-page .hero-actions-home .btn:not(.primary) {
+    display: none;
   }
 
   .home-page .home-social {
-    order: 4;
+    order: 3;
   }
 
   .home-page .hero-lead {
     order: 5;
+  }
+
+  .home-page .visit-pill {
+    order: 6;
+  }
+
+  .mobile-contact-btn {
+    display: inline-flex;
+    order: 7;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 18rem);
+    min-height: 44px;
+    margin-inline: auto;
+    border-radius: 999px;
   }
 
   .home-page .hero::before {
@@ -12788,6 +12827,65 @@ body {
 }
 
 @media (max-width: 640px) {
+  .about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 1.25rem !important;
+  }
+
+  .about-hero-card,
+  .about-profile-panel {
+    display: contents;
+  }
+
+  .about-hero-card h1 {
+    display: none;
+  }
+
+  .about-mobile-title {
+    display: block;
+    order: 1;
+    max-width: 760px;
+    margin: 0 0 .45rem;
+    font-size: clamp(2.05rem, 13vw, 3rem);
+    line-height: .98;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .about-photo-frame {
+    order: 2;
+    justify-self: center;
+  }
+
+  .about-social {
+    order: 3;
+  }
+
+  .about-actions {
+    order: 4;
+    display: contents;
+  }
+
+  .about-actions .btn.primary {
+    order: 4;
+    display: inline-flex;
+    width: min(100%, 18rem);
+    margin-inline: auto;
+  }
+
+  .about-hero-copy {
+    order: 5;
+  }
+
+  .about-actions .btn:not(.primary) {
+    order: 6;
+    display: inline-flex;
+    width: min(100%, 18rem);
+    margin-inline: auto;
+  }
+
   .page-split-title {
     font-size: clamp(2.05rem, 13vw, 3rem) !important;
     line-height: .98 !important;
@@ -12856,6 +12954,24 @@ body {
   max-width: 760px;
   font-size: clamp(2.35rem, 6vw, 4.5rem);
   line-height: .98;
+}
+
+.about-mobile-title {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .about-hero > .about-mobile-title {
+    display: block !important;
+    order: 1;
+    max-width: 760px;
+    margin: 0 0 .45rem;
+    font-size: clamp(2.05rem, 13vw, 3rem);
+    line-height: .98;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: var(--text);
+  }
 }
 
 .about-hero-copy {
@@ -12984,6 +13100,50 @@ body {
 }
 
 @media (max-width: 640px) {
+  .about-hero {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .about-hero > .about-mobile-title {
+    display: block !important;
+    order: -10 !important;
+  }
+
+  .about-hero > .about-profile-panel,
+  .about-hero > .about-hero-card {
+    display: contents !important;
+  }
+
+  .about-hero > .about-profile-panel {
+    order: -5 !important;
+  }
+
+  .about-hero > .about-hero-card {
+    order: 0 !important;
+  }
+
+  .about-profile-panel .about-photo-frame {
+    order: 1 !important;
+  }
+
+  .about-hero-card .about-social {
+    order: 2 !important;
+  }
+
+  .about-profile-panel .about-actions {
+    order: 3 !important;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    gap: .55rem;
+    flex-wrap: wrap;
+  }
+
+  .about-hero-card .about-hero-copy {
+    order: 4 !important;
+  }
+
   .about-hero + .section,
   .lecturing-hero + .lecturing-block,
   .research-agreed-hero + .research-collab-section,
