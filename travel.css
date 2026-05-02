@@ -48,8 +48,8 @@ body.journey-page .site-header .nav-link {
 }
 
 body.journey-page .site-header .nav-link::after {
-  background: linear-gradient(90deg, var(--journey-orange), var(--journey-yellow), var(--journey-teal));
-  box-shadow: none;
+  background: linear-gradient(90deg, #f6c85f 0%, #fb923c 48%, #38bdf8 100%);
+  box-shadow: 0 0 12px rgba(251, 146, 60, .28);
 }
 
 body.journey-page .site-header .nav-link:hover,
