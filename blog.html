@@ -47,6 +47,26 @@
             <span>Technology</span>
           </div>
         </div>
+        <div class="blog-hero-clock" aria-label="Current time" data-blog-clock>
+          <span class="blog-clock-face" aria-hidden="true">
+            <span class="blog-clock-number blog-clock-number-12">12</span>
+            <span class="blog-clock-number blog-clock-number-3">3</span>
+            <span class="blog-clock-number blog-clock-number-6">6</span>
+            <span class="blog-clock-number blog-clock-number-9">9</span>
+            <span class="blog-clock-hand blog-clock-hour" data-blog-hour></span>
+            <span class="blog-clock-hand blog-clock-minute" data-blog-minute></span>
+            <span class="blog-clock-hand blog-clock-second" data-blog-second></span>
+            <span class="blog-clock-pin"></span>
+          </span>
+        </div>
+        <p class="blog-clock-note" aria-live="polite">
+          now it's time in <span data-blog-clock-location>your place</span>
+          <span data-blog-clock-text>--:--:--</span>
+          <span class="blog-clock-periods">
+            <span data-blog-clock-am>am</span>
+            <span data-blog-clock-pm>pm</span>
+          </span>
+        </p>
         <figure class="blog-sketch-visual" aria-label="Notebook, pen, sticky notes, and learning doodles">
           <img src="assets/hero/blog.png" alt="Hand-drawn notebook illustration for the blog" />
           <div class="blog-sketch-fallback" aria-hidden="true">
@@ -59,20 +79,75 @@
       </section>
 
       <section class="container section blog-featured-note" aria-labelledby="featuredNoteTitle">
-        <div class="blog-section-heading">
-          <span class="blog-section-mark">01</span>
-          <h2 id="featuredNoteTitle" class="blog-section-title">Featured Note</h2>
-        </div>
-        <article class="blog-featured-paper reveal" data-category="featured">
-          <div class="paper-tape" aria-hidden="true"></div>
-          <div class="blog-note-meta">
-            <span class="blog-category-label">[Category]</span>
-            <span>[Date]</span>
+        <div class="blog-featured-layout">
+          <div class="blog-featured-main">
+            <div class="blog-section-heading">
+              <span class="blog-section-mark">01</span>
+              <h2 id="featuredNoteTitle" class="blog-section-title">Featured Note</h2>
+            </div>
+            <article class="blog-featured-paper reveal" data-category="featured">
+              <div class="paper-tape" aria-hidden="true"></div>
+              <div class="blog-note-meta">
+                <span class="blog-category-label">[Category]</span>
+                <span>[Date]</span>
+              </div>
+              <h3>[Featured note title to be added]</h3>
+              <p>[Short featured note excerpt to be added.]</p>
+              <a class="blog-note-link" href="#featuredNoteTitle">Read Note &rarr;</a>
+            </article>
           </div>
-          <h3>[Featured note title to be added]</h3>
-          <p>[Short featured note excerpt to be added.]</p>
-          <a class="blog-note-link" href="#featuredNoteTitle">Read Note &rarr;</a>
-        </article>
+          <aside class="blog-calendar-card reveal" aria-labelledby="blogCalendarTitle">
+            <div class="blog-calendar-head">
+              <span>May</span>
+              <strong id="blogCalendarTitle">2026</strong>
+            </div>
+            <div class="blog-calendar-grid" aria-label="May 2026 calendar">
+              <span class="blog-calendar-day">Sun</span>
+              <span class="blog-calendar-day">Mon</span>
+              <span class="blog-calendar-day">Tue</span>
+              <span class="blog-calendar-day">Wed</span>
+              <span class="blog-calendar-day">Thu</span>
+              <span class="blog-calendar-day">Fri</span>
+              <span class="blog-calendar-day">Sat</span>
+              <span class="blog-calendar-empty" aria-hidden="true"></span>
+              <span class="blog-calendar-empty" aria-hidden="true"></span>
+              <span class="blog-calendar-empty" aria-hidden="true"></span>
+              <span class="blog-calendar-empty" aria-hidden="true"></span>
+              <span class="blog-calendar-empty" aria-hidden="true"></span>
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+              <span>6</span>
+              <span>7</span>
+              <span>8</span>
+              <span>9</span>
+              <span class="is-today" aria-current="date">10</span>
+              <span>11</span>
+              <span>12</span>
+              <span>13</span>
+              <span>14</span>
+              <span>15</span>
+              <span>16</span>
+              <span>17</span>
+              <span>18</span>
+              <span>19</span>
+              <span>20</span>
+              <span>21</span>
+              <span>22</span>
+              <span>23</span>
+              <span>24</span>
+              <span>25</span>
+              <span>26</span>
+              <span>27</span>
+              <span>28</span>
+              <span>29</span>
+              <span>30</span>
+              <span>31</span>
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section class="container section blog-category-section" aria-labelledby="blogCategoriesTitle">
