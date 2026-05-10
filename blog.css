@@ -447,13 +447,27 @@ body.blog-notebook-body .site-header .menu-toggle:focus-visible {
 .blog-clock-periods .is-crossed::after {
   content: "";
   position: absolute;
-  left: -.12em;
-  right: -.12em;
+  left: -.22em;
+  right: -.22em;
   top: 50%;
-  height: 2px;
+  height: .58em;
+  background:
+    linear-gradient(166deg, transparent 0 44%, rgba(217, 109, 79, .88) 45% 53%, transparent 54% 100%),
+    linear-gradient(14deg, transparent 0 42%, rgba(37, 95, 119, .72) 43% 51%, transparent 52% 100%),
+    linear-gradient(176deg, transparent 0 50%, rgba(217, 109, 79, .66) 51% 57%, transparent 58% 100%);
+  transform: rotate(-5deg);
+}
+
+.blog-clock-periods .is-crossed::before {
+  content: "";
+  position: absolute;
+  left: -.16em;
+  right: -.1em;
+  top: 54%;
+  height: 3px;
   border-radius: 999px;
-  background: rgba(217, 109, 79, .72);
-  transform: rotate(-8deg);
+  background: rgba(217, 109, 79, .82);
+  transform: rotate(9deg);
 }
 
 .blog-sketch-visual {

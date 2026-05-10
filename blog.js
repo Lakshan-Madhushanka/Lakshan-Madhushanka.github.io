@@ -14,10 +14,10 @@
     const hourHand = clock.querySelector('[data-blog-hour]');
     const minuteHand = clock.querySelector('[data-blog-minute]');
     const secondHand = clock.querySelector('[data-blog-second]');
-    const locationText = clock.querySelector('[data-blog-clock-location]');
-    const timeText = clock.querySelector('[data-blog-clock-text]');
-    const amText = clock.querySelector('[data-blog-clock-am]');
-    const pmText = clock.querySelector('[data-blog-clock-pm]');
+    const locationText = page.querySelector('[data-blog-clock-location]');
+    const timeText = page.querySelector('[data-blog-clock-text]');
+    const amText = page.querySelector('[data-blog-clock-am]');
+    const pmText = page.querySelector('[data-blog-clock-pm]');
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'your place';
     const placeName = timeZone.split('/').pop().replace(/_/g, ' ');
