@@ -4582,8 +4582,12 @@ body {
 
 .awards-showcase-section {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin-top: -2cm;
+}
+
+.awards-showcase-page .awards-showcase-section {
+  overflow: visible;
 }
 
 .awards-showcase-subtitle {
@@ -5273,7 +5277,7 @@ body {
   position: absolute;
   left: calc(50% + 9.8mm);
   bottom: calc(clamp(1.2rem, 3vw, 2.4rem) - 2.7cm);
-  z-index: 1;
+  z-index: 2;
   width: min(920px, 82vw);
   height: clamp(230px, 25vw, 340px);
   margin: 0;
@@ -5331,33 +5335,59 @@ body {
 }
 
 .awards-showcase-page .award-carousel {
-  min-height: calc(640px + 2.7cm);
-  width: min(100vw - 2rem, 1280px);
-  margin-inline: calc(50% - min(50vw - 1rem, 640px));
-  padding: 1.8rem 5.6rem calc(1.2rem + 2.7cm);
-  background: transparent;
-  border: 0;
-  box-shadow: none;
+  min-height: clamp(520px, 74vh, 760px);
+  width: 100%;
+  margin-inline: 0;
+  padding: clamp(2rem, 5vw, 3.2rem) clamp(2rem, 5vw, 5.6rem) clamp(1.4rem, 3vw, 2.4rem);
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, #00d4ff, transparent 86%);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 16, .18) 0%, rgba(5, 7, 16, .10) 35%, rgba(5, 7, 16, .24) 100%),
+    url("assets/hero/curtain.png");
+  background-position: center 58%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow:
+    0 24px 70px color-mix(in oklab, #020617, transparent 82%),
+    0 0 42px rgba(246, 215, 122, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.awards-showcase-page .award-carousel::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 34%),
+    radial-gradient(circle at 82% 24%, rgba(246, 215, 122, .08), transparent 20rem),
+    radial-gradient(circle at 18% 76%, rgba(139, 108, 255, .08), transparent 18rem);
 }
 
 .awards-showcase-page .award-carousel::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 28;
-  background: linear-gradient(90deg, var(--bg) 0%, transparent 10%, transparent 90%, var(--bg) 100%);
-  animation: none;
+  z-index: 0;
   pointer-events: none;
+  background:
+    radial-gradient(circle at center 36%, rgba(255, 215, 140, .06), transparent 28%),
+    linear-gradient(180deg, rgba(4, 6, 14, .14) 0%, rgba(4, 6, 14, .04) 25%, rgba(4, 6, 14, .24) 100%);
 }
 
 .awards-showcase-page .award-carousel-stage {
   position: relative;
-  z-index: 4;
-  height: 500px;
-  margin-top: 1rem;
+  z-index: 2;
+  height: clamp(420px, 55vh, 500px);
+  margin-top: .35rem;
   transform-style: preserve-3d;
   perspective: 1400px;
   isolation: isolate;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
 }
 
 .awards-showcase-page .award-carousel-stage .award-carousel-card::after {
@@ -5451,33 +5481,15 @@ body {
   animation: awardPodiumShine 5.5s ease-in-out infinite;
 }
 
-.awards-showcase-page .award-carousel::after {
-  content: none;
-  display: none;
-  position: absolute;
-  left: 50%;
-  bottom: .15rem;
-  width: min(70%, 780px);
-  height: 10rem;
-  transform: translateX(-50%) perspective(760px) rotateX(66deg);
-  transform-origin: center top;
-  border-radius: 999px;
-  background:
-    radial-gradient(ellipse at center, rgba(255, 242, 177, .5) 0 14%, rgba(246, 215, 122, .3) 32%, rgba(139, 108, 255, .16) 58%, transparent 78%);
-  filter: blur(9px);
-  pointer-events: none;
-  z-index: 24;
-}
-
 .awards-showcase-page .award-carousel-card {
   position: absolute;
-  width: min(500px, 70vw);
-  height: 340px;
+  width: min(455px, 64vw);
+  height: 312px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: .45rem;
-  padding: 1.35rem;
+  gap: .38rem;
+  padding: 1.15rem;
   color: rgba(246, 242, 255, .88);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .045)),
@@ -5511,12 +5523,23 @@ body {
 
 .awards-showcase-page .award-carousel-card.is-active {
   transform: translate3d(-50%, -50%, 38px) scale(.98) rotateY(0deg);
-  border-color: rgba(246, 215, 122, .66);
+  color: rgba(255, 255, 255, .96);
+  border-color: rgba(246, 215, 122, .78);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .045)),
+    linear-gradient(180deg, rgba(18, 20, 30, .94), rgba(8, 10, 20, .93));
+  backdrop-filter: blur(20px) saturate(1.18);
+  -webkit-backdrop-filter: blur(20px) saturate(1.18);
   box-shadow:
-    0 30px 90px rgba(0, 0, 0, .48),
-    0 0 42px rgba(246, 215, 122, .18),
-    0 0 54px rgba(139, 108, 255, .2),
-    inset 0 1px 0 rgba(255, 255, 255, .22);
+    0 34px 100px rgba(0, 0, 0, .58),
+    0 0 48px rgba(246, 215, 122, .34),
+    0 0 72px rgba(139, 108, 255, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .28),
+    inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+
+.awards-showcase-page .award-carousel-card.is-active::after {
+  opacity: 1;
 }
 
 .awards-showcase-page .award-carousel-card.is-active::before {
@@ -5566,21 +5589,23 @@ body {
 }
 
 .awards-showcase-page .award-carousel-card.is-prev {
-  transform: translate3d(calc(-50% - 284px), -50%, -78px) rotateY(10deg) scale(.9);
+  opacity: .42;
+  transform: translate3d(calc(-50% - 238px), -50%, -78px) rotateY(10deg) scale(.9);
 }
 
 .awards-showcase-page .award-carousel-card.is-next {
-  transform: translate3d(calc(-50% + 284px), -50%, -78px) rotateY(-10deg) scale(.9);
+  opacity: .42;
+  transform: translate3d(calc(-50% + 238px), -50%, -78px) rotateY(-10deg) scale(.9);
 }
 
 .awards-showcase-page .award-carousel-card.is-far-prev {
-  opacity: .3;
-  transform: translate3d(calc(-50% - 430px), -50%, -170px) rotateY(17deg) scale(.82);
+  opacity: .12;
+  transform: translate3d(calc(-50% - 350px), -50%, -170px) rotateY(17deg) scale(.82);
 }
 
 .awards-showcase-page .award-carousel-card.is-far-next {
-  opacity: .3;
-  transform: translate3d(calc(-50% + 430px), -50%, -170px) rotateY(-17deg) scale(.82);
+  opacity: .12;
+  transform: translate3d(calc(-50% + 350px), -50%, -170px) rotateY(-17deg) scale(.82);
 }
 
 .award-card-icon {
@@ -5623,7 +5648,9 @@ body {
 .awards-showcase-page .award-carousel-card h3 {
   margin: .25rem 0 .1rem;
   color: #fff;
-  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-size: clamp(1.12rem, 1.78vw, 1.48rem);
+  line-height: 1.13;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .46);
 }
 
 .awards-showcase-page .award-org {
@@ -5632,12 +5659,24 @@ body {
   font-weight: 700;
 }
 
+.awards-showcase-page .award-carousel-card.is-active .award-org {
+  color: rgba(255, 245, 210, .88);
+}
+
 .awards-showcase-page .award-carousel-card p:not(.award-org) {
   margin: .25rem 0 0;
   color: rgba(246, 242, 255, .74);
+  font-size: .92rem;
+  line-height: 1.48;
+}
+
+.awards-showcase-page .award-carousel-card.is-active p:not(.award-org) {
+  color: rgba(255, 255, 255, .86);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .34);
 }
 
 .awards-showcase-page .award-carousel-btn {
+  z-index: 35;
   color: #fff;
   background: rgba(255, 255, 255, .09);
   border-color: rgba(246, 215, 122, .42);
@@ -5876,6 +5915,13 @@ body {
 }
 
 @media (max-width: 900px) {
+  .awards-showcase-page .award-carousel {
+    min-height: 620px;
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    background-position: center center;
+  }
+
   .awards-showcase-page .award-carousel-card.is-prev {
     transform: translate3d(calc(-50% - 210px), -50%, -84px) rotateY(9deg) scale(.86);
   }
@@ -5900,12 +5946,14 @@ body {
   }
 
   .awards-showcase-page .award-carousel {
-    min-height: 620px;
+    min-height: 500px;
     width: 100%;
     margin-inline: 0;
-    padding: .65rem .7rem 5.35rem;
+    padding: 3rem .7rem 6rem;
     overflow: hidden;
     perspective: none;
+    border-radius: 22px;
+    background-position: center top;
   }
 
   .awards-showcase-page .award-carousel-prev {
@@ -6109,8 +6157,13 @@ body {
 
 /* Lecturing course carousel */
 .lecturing-page {
+  --lecture-cyan: #00d4ff;
+  --lecture-blue: #2377ff;
+  --lecture-purple: #8b5cf6;
+  --lecture-gold: #f6c85f;
+  --lecture-glass: color-mix(in oklab, var(--surface), transparent 18%);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   color: #eef4ff;
 }
 
@@ -6163,7 +6216,7 @@ body {
   letter-spacing: 0;
 }
 
-.lecturing-hero h1 span {
+.lecturing-hero h1 span:not(.grad-anim):not(.title-amp) {
   color: transparent;
   background: linear-gradient(135deg, #9b67ff, #00c8ff);
   -webkit-background-clip: text;
@@ -6258,15 +6311,26 @@ body {
   font-size: 7.4rem;
 }
 
-.lecturing-block {
-  margin-block: clamp(1.8rem, 4vw, 3rem);
+.lecturing-page .section {
+  margin-block: clamp(2rem, 4vw, 3.5rem);
 }
 
-.lecturing-block h2,
-.lecturing-course-section .section-head h2 {
-  margin: 0 0 clamp(1rem, 2.4vw, 1.65rem);
+.lecturing-section-head {
+  margin-bottom: clamp(1rem, 2.2vw, 1.55rem);
+}
+
+.lecturing-section-head h2 {
+  margin: 0;
   color: #f8fbff;
-  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  font-size: clamp(1.45rem, 3vw, 2.05rem);
+  line-height: 1.15;
+}
+
+.lecturing-section-head p {
+  max-width: 68rem;
+  margin: .35rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .teaching-appointments-grid,
@@ -6880,27 +6944,47 @@ body {
 .lecturing-cta {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 1.25rem;
+  gap: 1.2rem;
   align-items: center;
-  margin-block: 1.3rem;
-  padding: 1.1rem;
-  border-radius: 10px;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid color-mix(in oklab, var(--lecture-purple), transparent 50%);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 6% 50%, color-mix(in oklab, var(--lecture-purple), transparent 76%), transparent 14rem),
+    radial-gradient(circle at 94% 50%, color-mix(in oklab, var(--lecture-cyan), transparent 82%), transparent 14rem),
+    var(--lecture-glass);
+  box-shadow: 0 24px 70px color-mix(in oklab, #020617, transparent 84%);
 }
 
 .lecturing-cta > i {
-  color: #8b6cff;
-  font-size: 2.8rem;
+  color: color-mix(in oklab, var(--lecture-cyan), var(--lecture-purple) 25%);
+  font-size: 2.6rem;
+  filter: drop-shadow(0 0 24px color-mix(in oklab, var(--lecture-purple), transparent 46%));
 }
 
 .lecturing-cta h2 {
   margin: 0;
-  color: #fff;
-  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  color: var(--text);
+  font-size: clamp(1.3rem, 3vw, 2rem);
 }
 
 .lecturing-cta p {
-  margin: .35rem 0 0;
-  color: rgba(238, 244, 255, .76);
+  margin: .4rem 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.lecturing-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: flex-end;
+}
+
+.lecturing-cta-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 1100px) {
@@ -6920,6 +7004,15 @@ body {
   .lecturing-course-section {
     --course-per-view: 2;
   }
+
+  .lecturing-cta {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .lecturing-cta-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 640px) {
@@ -6938,6 +7031,19 @@ body {
 
   .lecturing-course-section {
     --course-per-view: 1;
+  }
+
+  .lecturing-cta {
+    text-align: left;
+  }
+
+  .lecturing-cta-actions {
+    justify-content: stretch;
+  }
+
+  .lecturing-cta-actions .btn {
+    justify-content: center;
+    width: 100%;
   }
 
   .course-carousel {
@@ -11521,7 +11627,7 @@ body {
 }
 
 /* First content block alignment across key subpages */
-.lecturing-block:first-of-type,
+.lecturing-appointments-section,
 .research-collab-section,
 .sessions-org-section {
   padding-top: 0;
@@ -11533,7 +11639,7 @@ body {
   margin-top: calc(clamp(-5rem, -7vw, -3.2rem) + 1.5cm);
 }
 
-.lecturing-block:first-of-type h2,
+.lecturing-appointments-section .lecturing-section-head h2,
 .research-collab-section .section-head h2,
 .volunteering-current-roles-section .vol-section-head h2,
 .sessions-org-section .session-section-head h2 {
@@ -11542,7 +11648,7 @@ body {
   line-height: 1.15;
 }
 
-.lecturing-block:first-of-type h2,
+.lecturing-appointments-section .lecturing-section-head,
 .research-collab-section .section-head,
 .volunteering-current-roles-section .vol-section-head,
 .sessions-org-section .session-section-head {
@@ -12720,56 +12826,13 @@ body {
 }
 
 .page-split-title .grad {
-  display: inline;
+  display: inline-block;
 }
 
 .page-split-title .title-amp {
   background: none !important;
   color: #f8fbff !important;
   -webkit-text-fill-color: #f8fbff !important;
-}
-
-.lecturing-hero .page-split-title .grad.grad-anim {
-  background: linear-gradient(90deg, var(--accent), #00d4ff, #8ef9f3, var(--accent)) !important;
-  background-size: 300% 100% !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  animation: sweep 8s ease-in-out infinite !important;
-}
-
-.lecturing-hero.will-animate {
-  opacity: 0;
-  transform: translateY(18px) scale(.985);
-}
-
-.page-loaded .lecturing-hero.will-animate {
-  animation: lecturingHeroLand .75s cubic-bezier(.2, .8, .2, 1) both !important;
-}
-
-.lecturing-hero .page-hero-content,
-.lecturing-hero .page-hero-art {
-  opacity: 0;
-}
-
-.page-loaded .lecturing-hero .page-hero-content {
-  animation: fadeUp .62s ease-out .14s both;
-}
-
-.page-loaded .lecturing-hero .page-hero-art {
-  animation: fadeUp .7s ease-out .24s both;
-}
-
-@keyframes lecturingHeroLand {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 .nowrap {
@@ -13153,7 +13216,7 @@ body {
 
 /* Standard first-section spacing after matched hero boxes */
 .about-hero + .section,
-.lecturing-hero + .lecturing-block,
+.lecturing-hero + .lecturing-appointments-section,
 .research-agreed-hero + .research-collab-section,
 .volunteering-hero + .volunteering-current-roles-section,
 .sessions-hero + .sessions-org-section {
@@ -13207,11 +13270,230 @@ body {
   }
 
   .about-hero + .section,
-  .lecturing-hero + .lecturing-block,
+  .lecturing-hero + .lecturing-appointments-section,
   .research-agreed-hero + .research-collab-section,
   .volunteering-hero + .volunteering-current-roles-section,
   .sessions-hero + .sessions-org-section {
     margin-top: clamp(.95rem, 4vw, 1.3rem) !important;
   }
+}
+
+/* Lecturing landing rebuild */
+.lecturing-landing {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
+  align-items: center;
+  min-height: min(620px, calc(100vh - 86px)) !important;
+  overflow: hidden;
+  padding-block: clamp(3.6rem, 7vw, 5.4rem) clamp(1.1rem, 2.8vw, 1.7rem) !important;
+}
+
+.lecturing-landing::before {
+  content: "";
+  position: absolute;
+  inset: .75rem -1.5rem 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 20, .94) 0%, rgba(5, 9, 20, .74) 38%, rgba(5, 9, 20, .28) 68%, rgba(5, 9, 20, .74) 100%),
+    radial-gradient(circle at 16% 24%, color-mix(in oklab, var(--lecture-gold), transparent 86%), transparent 22rem),
+    radial-gradient(circle at 76% 28%, color-mix(in oklab, var(--lecture-cyan), transparent 82%), transparent 28rem),
+    radial-gradient(circle at 48% 82%, color-mix(in oklab, var(--lecture-purple), transparent 86%), transparent 30rem);
+}
+
+.lecturing-landing::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -1.5rem;
+  z-index: 3;
+  width: min(64%, 800px);
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(5, 9, 20, .98) 0%, rgba(5, 9, 20, .92) 56%, rgba(5, 9, 20, .56) 82%, transparent 100%);
+}
+
+.lecturing-landing .page-hero-content {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(.78rem, 1.5vw, 1rem);
+  max-width: 720px;
+}
+
+.lecturing-landing .page-split-title {
+  position: relative;
+  z-index: 45;
+  max-width: 760px;
+  margin: 0 !important;
+  color: #f8fbff !important;
+  font-size: clamp(2.7rem, 6.6vw, 5.05rem) !important;
+  line-height: 1.02 !important;
+  text-wrap: balance;
+  text-shadow: 0 18px 40px rgba(0, 0, 0, .5);
+}
+
+.lecturing-landing .page-split-title .grad {
+  padding-bottom: .08em;
+}
+
+.lecturing-landing .page-split-title .title-amp {
+  background: none !important;
+  color: #f8fbff !important;
+  -webkit-text-fill-color: #f8fbff !important;
+}
+
+.lecturing-hero h1 span.grad.grad-anim {
+  background-image: linear-gradient(90deg, var(--accent), #00d4ff, #8ef9f3, var(--accent)) !important;
+  background-size: 300% 100% !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: lecturingTitleGradientSweep 8s ease-in-out infinite !important;
+}
+
+@keyframes lecturingTitleGradientSweep {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.lecturing-landing .lead {
+  max-width: 690px;
+  min-height: 0 !important;
+  margin: 0 !important;
+  color: color-mix(in oklab, var(--text), var(--muted) 18%);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.58;
+}
+
+.lecturing-landing .lecturing-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: .2rem !important;
+}
+
+.lecturing-landing .lecturing-hero-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  min-height: 2.15rem;
+  padding: .42rem .72rem;
+  border: 1px solid color-mix(in oklab, var(--lecture-cyan), transparent 68%);
+  border-radius: 10px;
+  color: color-mix(in oklab, var(--text), white 3%);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .02)),
+    color-mix(in oklab, var(--surface), transparent 30%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09);
+  font-size: .82rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.lecturing-landing .lecturing-hero-chips span:nth-child(2n) {
+  border-color: color-mix(in oklab, var(--lecture-purple), transparent 62%);
+}
+
+.lecturing-landing .lecturing-hero-chips i {
+  color: var(--lecture-cyan);
+}
+
+.lecturing-landing .page-hero-art {
+  position: absolute;
+  inset: 0 -9% 0 30%;
+  z-index: 1;
+  width: auto;
+  min-height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  transform-origin: center right;
+}
+
+.lecturing-landing .hero-neural-overlay,
+.lecturing-landing .hero-neural-firing {
+  z-index: 4;
+}
+
+.lecturing-landing .page-hero-art::before {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 20, .96) 0%, rgba(5, 9, 20, .74) 28%, rgba(5, 9, 20, .30) 54%, rgba(5, 9, 20, .10) 72%, rgba(5, 9, 20, .70) 100%),
+    linear-gradient(180deg, rgba(5, 9, 20, .84) 0%, rgba(5, 9, 20, .06) 34%, rgba(5, 9, 20, .82) 100%);
+}
+
+.lecturing-landing .page-hero-art::after {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 76% 52%, transparent 0%, transparent 36%, rgba(5, 9, 20, .42) 74%, rgba(5, 9, 20, .88) 100%),
+    linear-gradient(90deg, rgba(5, 9, 20, .88) 0%, transparent 34%, transparent 76%, rgba(5, 9, 20, .74) 100%);
+}
+
+.lecturing-landing .page-hero-image {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 106%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: 74% center;
+  opacity: .88;
+  filter: saturate(1.12) contrast(1.06) brightness(1.04);
+  transform: translateY(-50%);
+}
+
+@media (max-width: 900px) {
+  .lecturing-landing {
+    grid-template-columns: 1fr;
+    min-height: auto !important;
+    padding-top: 3.2rem !important;
+  }
+
+  .lecturing-landing .page-hero-image {
+    opacity: .58;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .lecturing-landing {
+    padding-top: 2.6rem !important;
+    padding-bottom: .9rem !important;
+  }
+
+  .lecturing-landing .page-split-title {
+    font-size: clamp(2.25rem, 13vw, 3.2rem) !important;
+  }
+
+  .lecturing-landing .page-hero-image {
+    opacity: .42;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lecturing-landing .page-split-title,
+  .lecturing-landing .lead,
+  .lecturing-landing .lecturing-hero-chips,
+  .lecturing-landing .page-hero-art {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
 }
 

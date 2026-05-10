@@ -34,10 +34,10 @@
     </header>
 
     <main id="top" class="lecturing-page">
-      <section class="container lecturing-hero page-hero will-animate">
+      <section class="container lecturing-hero lecturing-landing page-hero will-animate" aria-labelledby="lecturingHeroTitle">
         <div class="lecturing-hero-copy page-hero-content">
-          <h1 class="page-split-title">Lecturing<br><span class="title-amp">&amp;</span><br><span class="grad grad-anim">Mentoring</span></h1>
-          <p>
+          <h1 id="lecturingHeroTitle" class="page-split-title">Lecturing<br><span class="title-amp">&amp;</span><br><span class="grad grad-anim nowrap">Mentoring</span></h1>
+          <p class="lead">
             Teaching, mentoring, supervision, and knowledge-sharing across computing, artificial intelligence,
             software development, data mining, intelligent systems, and emerging engineering technologies.
           </p>
@@ -47,17 +47,19 @@
             <span><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Research Supervision</span>
           </div>
         </div>
-        <div class="page-hero-art lecturing-hero-art">
-          <img class="page-hero-image" src="assets/hero/lecturing.png" alt="Illustration representing lecturing, mentoring, university teaching, and academic guidance">
-          <div class="hero-neural-overlay" aria-hidden="true"></div>
-          <div class="hero-neural-firing" aria-hidden="true"></div>
+        <div class="page-hero-art lecturing-hero-art" aria-hidden="true">
+          <img class="page-hero-image" src="assets/hero/lecturing.png" alt="">
+          <div class="hero-neural-overlay"></div>
+          <div class="hero-neural-firing"></div>
         </div>
       </section>
 
-      <section class="container lecturing-block" aria-labelledby="appointmentsTitle">
-        <h2 id="appointmentsTitle" class="reveal fancy-head">Teaching Appointments</h2>
-        <div class="teaching-appointments-grid">
-          <article class="teaching-appointment-card usj reveal">
+      <section class="container section lecturing-appointments-section" aria-labelledby="appointmentsTitle">
+        <div class="lecturing-section-head">
+          <h2 id="appointmentsTitle" class="reveal fancy-head">Teaching Appointments</h2>
+        </div>
+        <div class="teaching-appointments-grid reveal">
+          <article class="teaching-appointment-card usj">
             <div class="appointment-head">
               <span class="appointment-icon logo-mark"><img src="assets/logos/usjp.png" alt="" aria-hidden="true"></span>
               <div>
@@ -67,7 +69,7 @@
             <span class="appointment-years">Nov 2023 - Present</span>
             <p class="appointment-role"><span>Role</span>Lecturer</p>
           </article>
-          <article class="teaching-appointment-card uop reveal">
+          <article class="teaching-appointment-card uop">
             <div class="appointment-head">
               <span class="appointment-icon logo-mark"><img src="assets/logos/uop.png" alt="" aria-hidden="true"></span>
               <div>
@@ -77,7 +79,7 @@
             <span class="appointment-years">Nov 2022 - Feb 2023</span>
             <p class="appointment-role"><span>Role</span>Teaching Assistant</p>
           </article>
-          <article class="teaching-appointment-card ucl reveal">
+          <article class="teaching-appointment-card ucl">
             <div class="appointment-head">
               <span class="appointment-icon logo-mark"><img src="assets/logos/UCL_logo.png" alt="" aria-hidden="true"></span>
               <div>
@@ -87,7 +89,7 @@
             <span class="appointment-years">March 2026 - Present</span>
             <p class="appointment-role"><span>Role</span>Visiting Lecturer</p>
           </article>
-          <article class="teaching-appointment-card luxway reveal">
+          <article class="teaching-appointment-card luxway">
             <div class="appointment-head">
               <span class="appointment-icon logo-mark"><img src="assets/logos/luxway.png" alt="" aria-hidden="true"></span>
               <div>
@@ -101,7 +103,7 @@
       </section>
 
       <section class="container section lecturing-course-section" aria-labelledby="courseCarouselTitle">
-        <div class="section-head">
+        <div class="lecturing-section-head">
           <h2 id="courseCarouselTitle" class="reveal fancy-head">Courses & Teaching Contributions</h2>
         </div>
 
@@ -114,7 +116,7 @@
         </div>
 
         <div class="course-carousel reveal" data-course-carousel>
-          <button class="course-carousel-btn course-carousel-prev" type="button" aria-label="Previous course" data-course-prev>&larr;</button>
+          <button class="course-carousel-btn course-carousel-prev" type="button" aria-label="Previous course" data-course-prev><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
 
           <div class="course-carousel-viewport" data-course-viewport>
             <div class="course-carousel-track" data-course-track>
@@ -280,15 +282,17 @@
             </div>
           </div>
 
-          <button class="course-carousel-btn course-carousel-next" type="button" aria-label="Next course" data-course-next>&rarr;</button>
+          <button class="course-carousel-btn course-carousel-next" type="button" aria-label="Next course" data-course-next><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
           <div class="course-carousel-dots" data-course-dots aria-label="Course carousel navigation"></div>
           <p class="course-empty" data-course-empty hidden>No courses are listed for this institution yet.</p>
         </div>
       </section>
 
-      <section class="container lecturing-block" aria-labelledby="supervisionTitle">
-        <h2 id="supervisionTitle" class="reveal fancy-head">Project Supervision</h2>
-        <div class="teaching-feature-grid">
+      <section class="container section lecturing-supervision-section" aria-labelledby="supervisionTitle">
+        <div class="lecturing-section-head">
+          <h2 id="supervisionTitle" class="reveal fancy-head">Project Supervision</h2>
+        </div>
+        <div class="teaching-feature-grid reveal">
           <article><i class="fa-solid fa-users" aria-hidden="true"></i><h3>Final-Year Undergraduate Projects</h3><p>Supervising undergraduate students from problem identification to implementation, evaluation, documentation, and presentation.</p></article>
           <article><i class="fa-solid fa-brain" aria-hidden="true"></i><h3>AI & Machine Learning Projects</h3><p>Guiding students working on supervised learning, deep learning, predictive modelling, model evaluation, and applied AI systems.</p></article>
           <article><i class="fa-solid fa-camera" aria-hidden="true"></i><h3>Computer Vision Applications</h3><p>Mentoring projects involving image processing, object detection, segmentation, classification, and real-world vision-based applications.</p></article>
@@ -300,13 +304,18 @@
         </div>
       </section>
 
-      <section class="container lecturing-cta">
-        <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
-        <div>
-          <h2>Interested in project supervision, mentoring, or an academic discussion?</h2>
-          <p>I am open to student mentoring discussions, invited sessions, project supervision conversations, and academic collaborations related to computing, AI, computer vision, biomedical imaging, robotics, and software development.</p>
+      <section class="container section lecturing-invite-section" aria-labelledby="lecturingInviteTitle">
+        <div class="lecturing-cta reveal">
+          <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
+          <div>
+            <h2 id="lecturingInviteTitle">Interested in project supervision, mentoring, or an academic discussion?</h2>
+            <p>I am open to student mentoring discussions, invited sessions, project supervision conversations, and academic collaborations related to computing, AI, computer vision, biomedical imaging, robotics, and software development.</p>
+          </div>
+          <div class="lecturing-cta-actions">
+            <a class="btn primary" href="contact.html">Contact Me &rarr;</a>
+            <a class="btn" href="sessions.html">View Sessions &rarr;</a>
+          </div>
         </div>
-        <a class="btn primary" href="contact.html">Contact Me →</a>
       </section>
     </main>
 
