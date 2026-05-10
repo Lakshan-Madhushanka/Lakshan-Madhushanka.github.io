@@ -46,6 +46,57 @@
     setInterval(updateClock, 1000);
   }
 
+  const calendar = page.querySelector('[data-blog-calendar]');
+  if (calendar) {
+    const monthLabel = page.querySelector('[data-blog-calendar-month]');
+    const yearLabel = page.querySelector('[data-blog-calendar-year]');
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const monthName = new Intl.DateTimeFormat([], { month: 'long' }).format(today);
+    const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    if (monthLabel) monthLabel.textContent = monthName;
+    if (yearLabel) yearLabel.textContent = String(year);
+    calendar.setAttribute('aria-label', `${monthName} ${year} calendar`);
+    calendar.replaceChildren();
+
+    dayNames.forEach((day) => {
+      const item = document.createElement('span');
+      item.className = 'blog-calendar-day';
+      item.textContent = day;
+      calendar.append(item);
+    });
+
+    for (let index = 0; index < firstDay; index += 1) {
+      const empty = document.createElement('span');
+      empty.className = 'blog-calendar-empty';
+      empty.setAttribute('aria-hidden', 'true');
+      calendar.append(empty);
+    }
+
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const item = document.createElement('span');
+      const number = document.createElement('span');
+      number.className = 'blog-calendar-number';
+      number.textContent = String(day);
+
+      item.className = 'blog-calendar-date';
+      item.append(number);
+      if (day < today.getDate()) {
+        item.classList.add('is-crossed-date');
+      }
+      if (day === today.getDate()) {
+        item.classList.add('is-today');
+        item.setAttribute('aria-current', 'date');
+        item.setAttribute('aria-label', `Today, ${monthName} ${day}, ${year}`);
+      }
+      calendar.append(item);
+    }
+  }
+
   const categoryButtons = Array.from(page.querySelectorAll('.blog-category-chip'));
   const cards = Array.from(page.querySelectorAll('.blog-note-card'));
   if (!categoryButtons.length || !cards.length) return;
