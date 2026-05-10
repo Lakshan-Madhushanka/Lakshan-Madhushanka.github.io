@@ -5266,6 +5266,67 @@ body {
   color: rgba(246, 242, 255, .76);
 }
 
+/* Awards scroll cue */
+.awards-scroll-cue {
+  position: absolute;
+  top: clamp(.8rem, 2vw, 1.15rem);
+  left: 50%;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  margin-top: 0;
+  padding: .68rem 1.1rem;
+  border: 1px solid rgba(245, 199, 107, .34);
+  border-radius: 999px;
+  color: #ffe7a3;
+  background:
+    linear-gradient(135deg, rgba(245, 199, 107, .18), rgba(7, 10, 22, .92));
+  box-shadow:
+    0 0 18px rgba(245, 199, 107, .2),
+    0 12px 26px rgba(0, 0, 0, .34),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+  font-size: .9rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.awards-scroll-cue span {
+  display: inline-block;
+  animation: awardsScrollArrow 1.6s ease-in-out infinite;
+}
+
+.awards-scroll-cue:hover,
+.awards-scroll-cue:focus-visible {
+  transform: translateX(-50%) translateY(-2px);
+  border-color: rgba(245, 199, 107, .58);
+  background:
+    linear-gradient(135deg, rgba(245, 199, 107, .18), rgba(10, 18, 35, .82));
+  box-shadow:
+    0 0 24px rgba(245, 199, 107, .22),
+    0 12px 28px rgba(0, 0, 0, .28);
+}
+
+@keyframes awardsScrollArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: .75;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
 @keyframes awardTitleMetalShine {
   0% { background-position: 180% 50%, 0 0; }
   50% { background-position: -80% 50%, 0 0; }
@@ -5945,6 +6006,13 @@ body {
     font-size: clamp(2rem, 10vw, 3rem);
   }
 
+  .awards-scroll-cue {
+    top: .8rem;
+    margin-top: 0;
+    padding: .6rem .95rem;
+    font-size: .82rem;
+  }
+
   .awards-showcase-page .award-carousel {
     min-height: 500px;
     width: 100%;
@@ -6139,6 +6207,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .awards-showcase-hero h1,
+  .awards-scroll-cue span,
   .awards-showcase-page .award-carousel-stage::before,
   .awards-showcase-page .award-carousel-stage::after,
   .awards-showcase-page .award-carousel-card,
