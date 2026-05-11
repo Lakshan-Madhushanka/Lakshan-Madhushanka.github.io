@@ -12568,11 +12568,12 @@ body {
 .home-explore-grid a {
   position: relative;
   grid-template-columns: 1fr;
-  justify-items: start;
+  align-items: end;
+  justify-items: stretch;
   isolation: isolate;
-  gap: .9rem;
+  aspect-ratio: 1.75 / 1;
   min-height: 140px;
-  padding: 1.12rem;
+  padding: .85rem;
   overflow: hidden;
   border-radius: 20px;
   border-color: color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 72%);
@@ -12587,7 +12588,8 @@ body {
     inset 0 -1px 0 color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 88%);
   cursor: pointer;
   transform: translateZ(0);
-  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+  transform-origin: center;
+  transition: opacity .42s ease, filter .42s ease, transform .58s cubic-bezier(.16, 1, .3, 1), border-color .42s ease, box-shadow .58s ease, background .42s ease;
 }
 
 .home-explore-grid a::before {
@@ -12619,7 +12621,8 @@ body {
 
 .home-explore-grid a:hover,
 .home-explore-grid a:focus-visible {
-  transform: translateY(-6px);
+  z-index: 4;
+  transform: translateY(-12px) scale(1.16);
   border-color: color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 46%);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .032)),
@@ -12648,7 +12651,45 @@ body {
   transform: translateY(-2px) scale(.99);
 }
 
+.explore-tile-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .76;
+  filter: saturate(1.12) contrast(1.06);
+  transform: scale(1.04);
+  transition: opacity .5s ease, transform .72s cubic-bezier(.16, 1, .3, 1), filter .5s ease;
+}
+
+.home-explore-grid a::before {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(2, 6, 23, .02), rgba(2, 6, 23, .7)),
+    radial-gradient(circle at 18% 16%, color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 72%), transparent 9rem);
+  opacity: 1;
+  transform: none;
+}
+
+.home-explore-grid a:hover .explore-tile-image,
+.home-explore-grid a:focus-visible .explore-tile-image {
+  opacity: .96;
+  filter: saturate(1.18) contrast(1.08);
+  transform: scale(1.1);
+}
+
+.home-explore-grid:has(a:hover) a:not(:hover),
+.home-explore-grid:has(a:focus-visible) a:not(:focus-visible) {
+  opacity: .48;
+  filter: blur(1.5px) saturate(.76);
+  transform: scale(.96);
+}
+
 .home-explore-grid i {
+  position: relative;
+  z-index: 1;
   width: 3rem;
   height: 3rem;
   margin-bottom: 0;
@@ -12662,6 +12703,7 @@ body {
   box-shadow:
     0 12px 28px color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 88%),
     inset 0 1px 0 rgba(255, 255, 255, .16);
+  backdrop-filter: blur(8px);
   transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 
@@ -12675,11 +12717,43 @@ body {
 }
 
 .home-explore-grid span {
-  color: var(--text);
-  font-size: clamp(1rem, 1.25vw, 1.1rem);
-  font-weight: 850;
-  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 2.45rem;
+  padding: .52rem .72rem;
+  border: 1px solid color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 56%);
+  border-radius: 999px;
+  color: #f8fbff;
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, .68), rgba(2, 6, 23, .36)),
+    color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 90%);
+  box-shadow:
+    0 12px 26px rgba(2, 6, 23, .36),
+    inset 0 1px 0 rgba(255, 255, 255, .16);
+  font-size: clamp(.98rem, 1.25vw, 1.12rem);
+  font-weight: 900;
+  line-height: 1.08;
   letter-spacing: .01em;
+  text-shadow: 0 2px 14px rgba(2, 6, 23, .76);
+  backdrop-filter: blur(10px);
+  transition: border-color .22s ease, background .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+
+.home-explore-grid a:hover span,
+.home-explore-grid a:focus-visible span {
+  border-color: color-mix(in oklab, var(--explore-accent, #00d4ff), white 4%);
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, .58), rgba(2, 6, 23, .28)),
+    color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 82%);
+  box-shadow:
+    0 16px 32px rgba(2, 6, 23, .42),
+    0 0 24px color-mix(in oklab, var(--explore-accent, #00d4ff), transparent 78%),
+    inset 0 1px 0 rgba(255, 255, 255, .2);
+  transform: translateY(-4px);
 }
 
 .home-page + .site-footer,
