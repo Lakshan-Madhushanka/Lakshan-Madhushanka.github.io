@@ -2156,8 +2156,7 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   margin: .1rem 0 .55rem;
 }
 
-.contact-info-card p,
-.contact-form-note {
+.contact-info-card p {
   color: var(--muted);
 }
 
@@ -2229,11 +2228,6 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 .contact-submit {
   justify-self: start;
   cursor: pointer;
-}
-
-.contact-form-note {
-  margin: .9rem 0 0;
-  font-size: .92rem;
 }
 
 @media (max-width: 860px) {
