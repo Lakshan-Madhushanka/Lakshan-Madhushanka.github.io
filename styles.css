@@ -11244,6 +11244,18 @@ body {
   object-position: 72% center;
 }
 
+.lecturing-hero .page-hero-art::before,
+.lecturing-hero .page-hero-art::after,
+.research-agreed-hero .page-hero-art::before,
+.research-agreed-hero .page-hero-art::after,
+.volunteering-hero .page-hero-art::before,
+.volunteering-hero .page-hero-art::after,
+.sessions-hero .page-hero-art::before,
+.sessions-hero .page-hero-art::after {
+  display: none;
+  background: none;
+}
+
 .sessions-hero .page-hero-image {
   opacity: .82;
 }
@@ -11256,6 +11268,7 @@ body {
 
 /* Volunteering hero image */
 .volunteering-hero-tiles {
+  display: none;
   position: absolute;
   inset: 0;
   z-index: 5;
@@ -11445,8 +11458,18 @@ body {
   right: 18%;
 }
 
-.research-agreed-hero .hero-neural-firing {
-  opacity: .72;
+.lecturing-hero .hero-neural-firing,
+.research-agreed-hero .hero-neural-firing,
+.volunteering-hero .hero-neural-firing,
+.sessions-hero .hero-neural-firing {
+  display: none;
+}
+
+.lecturing-hero .hero-neural-overlay,
+.research-agreed-hero .hero-neural-overlay,
+.volunteering-hero .hero-neural-overlay,
+.sessions-hero .hero-neural-overlay {
+  display: none;
 }
 
 .research-agreed-hero .hero-neural-firing::before {
