@@ -74,6 +74,13 @@ if (root) {
       const header = document.createElement("div");
       header.className = "blog-comment-meta";
 
+      const avatar = document.createElement("img");
+      avatar.alt = "";
+      avatar.src = comment.authorPhoto || "assets/profile-placeholder.jpg";
+
+      const author = document.createElement("div");
+      author.className = "blog-comment-author";
+
       const name = document.createElement("strong");
       name.textContent = comment.authorName || "Google user";
 
@@ -83,7 +90,8 @@ if (root) {
       const body = document.createElement("p");
       body.textContent = comment.text || "";
 
-      header.append(name, time);
+      author.append(name, time);
+      header.append(avatar, author);
       item.append(header, body);
       list.append(item);
     });
@@ -149,6 +157,8 @@ if (root) {
       try {
         await addDoc(commentsRef, {
           uid: user.uid,
+          authorName: user.displayName || user.email || "Google user",
+          authorPhoto: user.photoURL || "",
           text,
           createdAt: serverTimestamp(),
         });
