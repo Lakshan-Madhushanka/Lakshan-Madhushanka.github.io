@@ -102,16 +102,18 @@ if (root) {
     const commentsRef = collection(db, "blogComments", postSlug, "comments");
     const commentsQuery = query(commentsRef, orderBy("createdAt", "desc"), limit(50));
 
-    onSnapshot(commentsQuery, renderComments, () => {
-      setStatus("Could not load comments. Check Firestore rules for this project.");
+    onSnapshot(commentsQuery, renderComments, (error) => {
+      const code = error?.code ? ` (${error.code})` : "";
+      setStatus(`Could not load comments${code}. Check Firestore rules for this project.`);
       renderEmpty("Comments are temporarily unavailable.");
     });
 
     signInButton.addEventListener("click", async () => {
       try {
         await signInWithPopup(auth, provider);
-      } catch {
-        setStatus("Google sign-in was not completed.");
+      } catch (error) {
+        const code = error?.code ? ` (${error.code})` : "";
+        setStatus(`Google sign-in was not completed${code}.`);
       }
     });
 
@@ -146,17 +148,15 @@ if (root) {
 
       try {
         await addDoc(commentsRef, {
-          text,
-          postSlug,
-          authorName: user.displayName || "Google user",
-          authorPhoto: user.photoURL || "",
           uid: user.uid,
+          text,
           createdAt: serverTimestamp(),
         });
         textarea.value = "";
         setStatus("Comment posted.");
-      } catch {
-        setStatus("Could not post the comment. Check Firestore rules and try again.");
+      } catch (error) {
+        const code = error?.code ? ` (${error.code})` : "";
+        setStatus(`Could not post the comment${code}. Check Firestore rules and try again.`);
       } finally {
         submitButton.disabled = false;
       }
