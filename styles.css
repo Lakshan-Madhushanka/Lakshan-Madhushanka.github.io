@@ -2230,6 +2230,18 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
   cursor: pointer;
 }
 
+.recaptcha-disclosure {
+  max-width: 34rem;
+  margin: -.2rem 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 @media (max-width: 860px) {
   .contact-layout {
     grid-template-columns: 1fr;
