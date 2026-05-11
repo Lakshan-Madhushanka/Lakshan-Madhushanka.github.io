@@ -1535,13 +1535,32 @@ body.blog-notebook-body .site-footer a {
 
 .blog-comment-meta {
   display: grid;
-  gap: .15rem;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: .45rem;
+  align-items: center;
   margin-bottom: .35rem;
 }
 
+.blog-comment-meta img {
+  width: 2rem;
+  height: 2rem;
+  border: 1.2px solid rgba(31, 41, 55, .42);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.blog-comment-author {
+  display: grid;
+  gap: .15rem;
+  min-width: 0;
+}
+
 .blog-comment-meta strong {
+  overflow: hidden;
   color: var(--blog-ink);
   font: 800 .82rem/1.1 Inter, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .blog-comment-meta time {
