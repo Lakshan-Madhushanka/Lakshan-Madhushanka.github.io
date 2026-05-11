@@ -1072,16 +1072,283 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('DOMContentLoaded', initResearchCollaboratorCarousel);
 })();
 
-// Homepage latest updates bar
+// Homepage dynamic latest updates
 (function () {
-  function initHomepageLatestUpdates() {
+  const updatePages = [
+    'research-publications.html',
+    'awards.html',
+    'sessions.html'
+  ];
+
+  const typeOrder = ['publication', 'recognition', 'session'];
+  const typeLabels = {
+    publication: 'Publication',
+    recognition: 'Recognition',
+    session: 'Session'
+  };
+  const metaLabels = {
+    publication: 'Journal/Conference',
+    recognition: 'Organization',
+    session: 'Organization'
+  };
+  const actionLabels = {
+    publication: 'View Research',
+    recognition: 'View Recognitions',
+    session: 'View Sessions'
+  };
+  const placeholderPattern = /\[[^\]]+\]|to be added|placeholder/i;
+
+  function isPlaceholder(value) {
+    return !value || placeholderPattern.test(value.trim());
+  }
+
+  function parseUpdateDate(value) {
+    const raw = (value || '').trim();
+    const invalid = {
+      raw,
+      year: null,
+      time: Number.NEGATIVE_INFINITY,
+      granularity: 'unknown',
+      isValid: false
+    };
+
+    if (!raw || placeholderPattern.test(raw)) return invalid;
+
+    let match = raw.match(/^(\d{4})$/);
+    if (match) {
+      const year = Number(match[1]);
+      return {
+        raw,
+        year,
+        time: Date.UTC(year, 11, 31),
+        granularity: 'year',
+        isValid: true
+      };
+    }
+
+    match = raw.match(/^(\d{4})-(\d{2})$/);
+    if (match) {
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      if (month >= 1 && month <= 12) {
+        return {
+          raw,
+          year,
+          time: Date.UTC(year, month, 0),
+          granularity: 'month',
+          isValid: true
+        };
+      }
+      return invalid;
+    }
+
+    match = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (match) {
+      const year = Number(match[1]);
+      const month = Number(match[2]);
+      const day = Number(match[3]);
+      const time = Date.UTC(year, month - 1, day);
+      const parsed = new Date(time);
+
+      if (
+        parsed.getUTCFullYear() === year &&
+        parsed.getUTCMonth() === month - 1 &&
+        parsed.getUTCDate() === day
+      ) {
+        return {
+          raw,
+          year,
+          time,
+          granularity: 'day',
+          isValid: true
+        };
+      }
+      return invalid;
+    }
+
+    const parsed = new Date(raw);
+    if (!Number.isNaN(parsed.getTime())) {
+      return {
+        raw,
+        year: parsed.getFullYear(),
+        time: parsed.getTime(),
+        granularity: 'readable',
+        isValid: true
+      };
+    }
+
+    return invalid;
+  }
+
+  function isWithinLastTwoYears(value) {
+    const parsed = parseUpdateDate(value);
+    if (!parsed.isValid || !parsed.year) return false;
+
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const earliestYear = currentYear - 1;
+
+    const calendarStart = new Date(earliestYear, 0, 1);
+
+    return (
+      (parsed.year >= earliestYear && parsed.year <= currentYear) ||
+      (parsed.time >= calendarStart.getTime() && parsed.time <= now.getTime())
+    );
+  }
+
+  function compareUpdates(a, b) {
+    if (a.parsedDate.time !== b.parsedDate.time) {
+      return b.parsedDate.time - a.parsedDate.time;
+    }
+
+    return a.order - b.order;
+  }
+
+  function isPlaceholderItem(item) {
+    return [item.type, item.date, item.title, item.meta, item.link].some(isPlaceholder);
+  }
+
+  function readUpdateSource(source, page, order) {
+    const type = (source.dataset.updateType || '').trim().toLowerCase();
+    const date = (source.dataset.updateDate || '').trim();
+    const title = (source.dataset.updateTitle || '').trim();
+    const meta = (source.dataset.updateMeta || '').trim();
+    const link = (source.dataset.updateLink || page).trim();
+
+    if (!typeOrder.includes(type)) return null;
+
+    return {
+      type,
+      date,
+      title,
+      meta,
+      link,
+      page,
+      order,
+      parsedDate: parseUpdateDate(date)
+    };
+  }
+
+  function getRecentUpdates(updates) {
+    const recentUpdates = updates
+      .filter(update => !isPlaceholderItem(update))
+      .filter(update => isWithinLastTwoYears(update.date))
+      .sort(compareUpdates);
+
+    return interleaveUpdatesByType(recentUpdates);
+  }
+
+  function interleaveUpdatesByType(updates) {
+    const grouped = typeOrder.reduce((groups, type) => {
+      groups[type] = updates.filter(update => update.type === type);
+      return groups;
+    }, {});
+    const ordered = [];
+    let hasItems = true;
+
+    while (hasItems) {
+      hasItems = false;
+
+      typeOrder.forEach(type => {
+        const next = grouped[type].shift();
+        if (!next) return;
+
+        ordered.push(next);
+        hasItems = true;
+      });
+    }
+
+    return ordered;
+  }
+
+  function buildUpdateItem(update, index) {
+    const item = document.createElement('a');
+    item.className = 'update-item';
+    item.href = update.link;
+    item.dataset.dynamic = 'true';
+    item.dataset.updateTypeValue = typeLabels[update.type] || 'Update';
+    if (index === 0) item.classList.add('active');
+
+    const dateEl = document.createElement(update.parsedDate.isValid ? 'time' : 'span');
+    dateEl.className = 'update-date';
+    dateEl.textContent = update.date;
+    if (update.parsedDate.isValid) {
+      dateEl.setAttribute('datetime', update.date);
+    }
+
+    const content = document.createElement('span');
+    content.className = 'update-content';
+
+    const title = document.createElement('span');
+    title.className = 'update-title';
+    title.textContent = update.title;
+
+    const meta = document.createElement('span');
+    meta.className = 'update-meta';
+    const metaLabel = metaLabels[update.type];
+    meta.textContent = metaLabel && update.meta ? `${metaLabel}: ${update.meta}` : update.meta;
+
+    const action = document.createElement('span');
+    action.className = 'update-action';
+    action.textContent = `${actionLabels[update.type] || 'View'} \u2192`;
+
+    content.appendChild(title);
+    content.appendChild(meta);
+    item.appendChild(dateEl);
+    item.appendChild(content);
+    item.appendChild(action);
+
+    return item;
+  }
+
+  async function loadAndRenderLatestUpdates(viewport) {
+    const updates = [];
+    let sourceOrder = 0;
+
+    try {
+      const pageDocs = await Promise.all(updatePages.map(async page => {
+        const res = await fetch(page, { cache: 'no-cache' });
+        if (!res.ok) return null;
+
+        const html = await res.text();
+        return {
+          page,
+          doc: new DOMParser().parseFromString(html, 'text/html')
+        };
+      }));
+
+      pageDocs.forEach(result => {
+        if (!result) return;
+
+        result.doc.querySelectorAll('.update-source').forEach(source => {
+          const update = readUpdateSource(source, result.page, sourceOrder);
+          sourceOrder += 1;
+          if (update) updates.push(update);
+        });
+      });
+    } catch (error) {
+      console.warn('Dynamic latest updates require GitHub Pages or a local server.', error);
+      return false;
+    }
+
+    const selectedUpdates = getRecentUpdates(updates);
+    if (!selectedUpdates.length) return false;
+
+    viewport.replaceChildren(...selectedUpdates.map(buildUpdateItem));
+    return true;
+  }
+
+  async function populateLatestUpdates() {
     const bar = document.querySelector('[data-latest-updates]');
     if (!bar) return;
 
-    const items = Array.from(bar.querySelectorAll('.update-item'));
-    if (!items.length) return;
+    const viewport = bar.querySelector('.updates-viewport');
+    if (!viewport) return;
 
-    const statusType = bar.querySelector('[data-update-type]');
+    return loadAndRenderLatestUpdates(viewport);
+  }
+
+  function rotateUpdates(bar, items, statusType) {
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let active = Math.max(0, items.findIndex(item => item.classList.contains('active')));
     let timer = null;
@@ -1131,6 +1398,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
     show(active);
     start();
+  }
+
+  async function initHomepageLatestUpdates() {
+    const bar = document.querySelector('[data-latest-updates]');
+    if (!document.querySelector('.home-page')) return;
+    if (!bar) return;
+
+    await populateLatestUpdates();
+
+    const items = Array.from(bar.querySelectorAll('.update-item'));
+    if (!items.length) return;
+
+    const statusType = bar.querySelector('[data-update-type]');
+    rotateUpdates(bar, items, statusType);
   }
 
   window.addEventListener('DOMContentLoaded', initHomepageLatestUpdates);
