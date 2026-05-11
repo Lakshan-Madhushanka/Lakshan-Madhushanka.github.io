@@ -18,6 +18,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const root = document.querySelector("[data-comments]");
+const fallbackAvatar = new URL("assets/profile-placeholder.jpg", import.meta.url).href;
 
 if (root) {
   const firebaseConfig = window.BLOG_COMMENTS_CONFIG?.firebase;
@@ -76,7 +77,7 @@ if (root) {
 
       const avatar = document.createElement("img");
       avatar.alt = "";
-      avatar.src = comment.authorPhoto || "assets/profile-placeholder.jpg";
+      avatar.src = comment.authorPhoto || fallbackAvatar;
 
       const author = document.createElement("div");
       author.className = "blog-comment-author";
@@ -137,7 +138,7 @@ if (root) {
 
       if (isSignedIn) {
         userName.textContent = user.displayName || user.email || "Signed in";
-        userPhoto.src = user.photoURL || "assets/profile-placeholder.jpg";
+        userPhoto.src = user.photoURL || fallbackAvatar;
         setStatus("Signed in with Google. Your comment will appear here after posting.");
       } else {
         setStatus("Sign in with Google to leave a pencil note.");

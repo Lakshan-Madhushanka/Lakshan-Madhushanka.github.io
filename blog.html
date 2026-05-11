@@ -85,7 +85,7 @@
               <span class="blog-section-mark">01</span>
               <h2 id="featuredNoteTitle" class="blog-section-title">Featured Note</h2>
             </div>
-            <article class="blog-featured-paper blog-post-tile reveal" data-category="reflections" data-book-open="blog-opening-the-first-page.html" tabindex="0" role="link" aria-label="Read Opening the First Page">
+            <article class="blog-featured-paper blog-post-tile reveal" data-category="reflections" data-book-open="blog-posts/opening-the-first-page.html" tabindex="0" role="link" aria-label="Read Opening the First Page">
               <div class="paper-tape" aria-hidden="true"></div>
               <div class="blog-note-meta">
                 <span class="blog-category-label">Reflections</span>
@@ -93,7 +93,7 @@
               </div>
               <h3>Opening the First Page</h3>
               <p>A small first entry for this notebook: why I am keeping a public space for research notes, teaching reflections, experiments, and the unfinished questions that keep pulling me forward.</p>
-              <a class="blog-note-link blog-book-link" href="blog-opening-the-first-page.html">Open the page &rarr;</a>
+              <a class="blog-note-link blog-book-link" href="blog-posts/opening-the-first-page.html">Open the page &rarr;</a>
             </article>
           </div>
           <aside class="blog-calendar-card reveal" aria-labelledby="blogCalendarTitle">
@@ -113,91 +113,52 @@
         </div>
         <div class="blog-category-tabs reveal" aria-label="Blog categories">
           <button class="blog-category-chip is-active" type="button" data-filter="all">All Notes</button>
-          <button class="blog-category-chip" type="button" data-filter="teaching">Teaching</button>
-          <button class="blog-category-chip" type="button" data-filter="research">Research</button>
-          <button class="blog-category-chip" type="button" data-filter="programming">Programming</button>
-          <button class="blog-category-chip" type="button" data-filter="ai">AI</button>
-          <button class="blog-category-chip" type="button" data-filter="reflections">Reflections</button>
-          <button class="blog-category-chip" type="button" data-filter="life">Life</button>
+          <button id="blog-label-reflections" class="blog-category-chip" type="button" data-filter="reflections">Reflections</button>
+          <button id="blog-label-research-journey" class="blog-category-chip" type="button" data-filter="research-journey">Research Journey</button>
+          <button id="blog-label-life-as-a-lecturer" class="blog-category-chip" type="button" data-filter="life-as-a-lecturer">Life as a Lecturer</button>
+          <button id="blog-label-science-in-everyday-life" class="blog-category-chip" type="button" data-filter="science-in-everyday-life">Science in Everyday Life</button>
+          <button id="blog-label-moments-updates" class="blog-category-chip" type="button" data-filter="moments-updates">Moments & Updates</button>
         </div>
       </section>
 
       <section id="latest-notes" class="container section blog-latest-section" aria-labelledby="latestNotesTitle">
         <div class="blog-section-heading">
-          <span class="blog-section-mark">03</span>
-          <h2 id="latestNotesTitle" class="blog-section-title">Latest Notes</h2>
+          <h2 id="latestNotesTitle" class="blog-section-title">Recent Notes</h2>
         </div>
-        <div class="blog-notes-grid">
-          <article class="blog-note-card reveal" data-category="research">
-            <span class="blog-card-pin" aria-hidden="true"></span>
-            <div class="blog-note-meta">
-              <span class="blog-category-label">Research</span>
-              <span>Drafting soon</span>
-            </div>
-            <h3>Research Note Coming Soon</h3>
-            <p>A future note from the research desk, likely somewhere between a method, a lesson, and a question that refused to stay quiet.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
-          </article>
-          <article class="blog-note-card reveal" data-category="teaching">
-            <span class="blog-card-pin" aria-hidden="true"></span>
-            <div class="blog-note-meta">
-              <span class="blog-category-label">Teaching</span>
-              <span>Drafting soon</span>
-            </div>
-            <h3>Teaching Note Coming Soon</h3>
-            <p>A future reflection from lectures, labs, mentoring, and the small classroom moments that change how I explain an idea.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
-          </article>
-          <article class="blog-note-card reveal" data-category="ai">
-            <span class="blog-card-pin" aria-hidden="true"></span>
-            <div class="blog-note-meta">
-              <span class="blog-category-label">AI</span>
-              <span>Drafting soon</span>
-            </div>
-            <h3>AI Note Coming Soon</h3>
-            <p>A future note about models, experiments, image understanding, or the careful habits needed when tools become powerful.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="container section blog-journal-section" aria-labelledby="learningJournalTitle">
-        <div class="blog-section-heading">
-          <span class="blog-section-mark">04</span>
-          <h2 id="learningJournalTitle" class="blog-section-title">Stories & Lessons</h2>
-        </div>
-        <div class="blog-notes-grid blog-journal-grid">
-          <article class="blog-note-card reveal" data-category="programming">
-            <span class="blog-card-pin" aria-hidden="true"></span>
-            <div class="blog-note-meta">
-              <span class="blog-category-label">Programming</span>
-              <span>Drafting soon</span>
-            </div>
-            <h3>Programming Note Coming Soon</h3>
-            <p>A future note from the practical side of building, debugging, naming things, and slowly making ideas executable.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
-          </article>
-          <article class="blog-note-card reveal" data-category="reflections">
+        <p class="blog-section-note" data-recent-note>Notes from the last 3 months.</p>
+        <div class="blog-notes-grid" data-recent-post-list>
+          <article class="blog-note-card blog-post-tile reveal" data-recent-post-card data-labels="reflections moments-updates" data-published="2026-05-11T12:59:00+05:30" data-book-open="blog-posts/opening-the-first-page.html" tabindex="0" role="link" aria-label="Read Opening the First Page">
             <span class="blog-card-pin" aria-hidden="true"></span>
             <div class="blog-note-meta">
               <span class="blog-category-label">Reflections</span>
-              <span>Drafting soon</span>
+              <span>May 11, 2026</span>
             </div>
-            <h3>Reflection Coming Soon</h3>
-            <p>A future note on the quieter parts of learning, service, discipline, uncertainty, and staying curious without rushing.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
-          </article>
-          <article class="blog-note-card reveal" data-category="life">
-            <span class="blog-card-pin" aria-hidden="true"></span>
-            <div class="blog-note-meta">
-              <span class="blog-category-label">Life</span>
-              <span>Drafting soon</span>
-            </div>
-            <h3>Life Note Coming Soon</h3>
-            <p>A future note from journeys, people, places, and the ordinary details that keep the academic story human.</p>
-            <span class="blog-note-link blog-note-link-disabled" aria-disabled="true">Drafting soon</span>
+            <h3>Opening the First Page</h3>
+            <p>A small first entry for this notebook: why I am keeping a public space for research notes, teaching reflections, experiments, and the unfinished questions that keep pulling me forward.</p>
+            <a class="blog-note-link blog-book-link" href="blog-posts/opening-the-first-page.html">Open the page &rarr;</a>
           </article>
         </div>
+        <p class="blog-empty-note" data-recent-empty hidden>No recent notes under this category.</p>
+      </section>
+
+      <section class="container section blog-all-notes-section" aria-labelledby="allCategoryNotesTitle">
+        <div class="blog-section-heading">
+          <h2 id="allCategoryNotesTitle" class="blog-section-title" data-all-notes-title>All Notes</h2>
+        </div>
+        <p class="blog-section-note" data-all-notes-note>All published notes.</p>
+        <div class="blog-notes-grid" data-all-post-list>
+          <article class="blog-note-card blog-post-tile reveal" data-all-post-card data-labels="reflections moments-updates" data-published="2026-05-11T12:59:00+05:30" data-book-open="blog-posts/opening-the-first-page.html" tabindex="0" role="link" aria-label="Read Opening the First Page">
+            <span class="blog-card-pin" aria-hidden="true"></span>
+            <div class="blog-note-meta">
+              <span class="blog-category-label">Reflections</span>
+              <span>May 11, 2026</span>
+            </div>
+            <h3>Opening the First Page</h3>
+            <p>A small first entry for this notebook: why I am keeping a public space for research notes, teaching reflections, experiments, and the unfinished questions that keep pulling me forward.</p>
+            <a class="blog-note-link blog-book-link" href="blog-posts/opening-the-first-page.html">Open the page &rarr;</a>
+          </article>
+        </div>
+        <p class="blog-empty-note" data-all-empty hidden>No posts under this category yet.</p>
       </section>
 
       <section class="container section blog-closing-note" aria-labelledby="blogClosingTitle">

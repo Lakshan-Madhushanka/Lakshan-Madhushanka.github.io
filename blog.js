@@ -1,7 +1,8 @@
 (() => {
   const blogPosts = [
     {
-      slug: 'blog-opening-the-first-page.html',
+      slug: 'blog-posts/opening-the-first-page.html',
+      aliases: ['opening-the-first-page.html', 'blog-opening-the-first-page.html'],
       publishedAt: '2026-05-11T12:59:00+05:30',
     },
   ].sort((first, second) => new Date(first.publishedAt) - new Date(second.publishedAt));
@@ -9,7 +10,7 @@
 
   document.querySelectorAll('[data-blog-page-number]').forEach((target) => {
     const slug = target.dataset.postSlug || window.location.pathname.split('/').pop();
-    const postIndex = blogPosts.findIndex((post) => post.slug === slug);
+    const postIndex = blogPosts.findIndex((post) => post.slug === slug || post.aliases?.includes(slug));
     if (postIndex < 0) return;
 
     const pageWord = pageNumberWords[postIndex] || `${postIndex + 1}th`;
@@ -158,7 +159,13 @@
   }
 
   const categoryButtons = Array.from(page.querySelectorAll('.blog-category-chip'));
-  const cards = Array.from(page.querySelectorAll('.blog-note-card'));
+  const recentCards = Array.from(page.querySelectorAll('[data-recent-post-card]'));
+  const allCards = Array.from(page.querySelectorAll('[data-all-post-card]'));
+  const recentEmptyNote = page.querySelector('[data-recent-empty]');
+  const allEmptyNote = page.querySelector('[data-all-empty]');
+  const allNotesTitle = page.querySelector('[data-all-notes-title]');
+  const recentNote = page.querySelector('[data-recent-note]');
+  const allNotesNote = page.querySelector('[data-all-notes-note]');
   const reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
   let audioContext;
@@ -264,19 +271,77 @@
     });
   });
 
-  if (!categoryButtons.length || !cards.length) return;
+  if (!categoryButtons.length || !allCards.length) return;
+
+  const activateCategory = (filter, activeButton) => {
+    categoryButtons.forEach((item) => item.classList.remove('is-active'));
+    activeButton?.classList.add('is-active');
+
+    const label = activeButton?.textContent?.trim() || 'All Notes';
+    const recentCutoff = new Date();
+    recentCutoff.setMonth(recentCutoff.getMonth() - 3);
+
+    const matchesFilter = (card) => {
+      const labels = (card.dataset.labels || '').split(/\s+/).filter(Boolean);
+      return filter === 'all' || labels.includes(filter);
+    };
+    const isRecent = (card) => new Date(card.dataset.published) >= recentCutoff;
+
+    let recentVisibleCount = 0;
+    recentCards.forEach((card) => {
+      const isVisible = matchesFilter(card) && isRecent(card);
+      card.classList.toggle('is-hidden', !isVisible);
+      if (isVisible) recentVisibleCount += 1;
+    });
+
+    let allVisibleCount = 0;
+    allCards.forEach((card) => {
+      const isVisible = matchesFilter(card);
+      card.classList.toggle('is-hidden', !isVisible);
+      if (isVisible) allVisibleCount += 1;
+    });
+
+    if (recentNote) {
+      recentNote.textContent = filter === 'all'
+        ? 'Notes from the last 3 months.'
+        : `Notes under ${label} from the last 3 months.`;
+    }
+
+    if (allNotesTitle) {
+      allNotesTitle.textContent = filter === 'all' ? 'All Notes' : `All Notes Under ${label}`;
+    }
+
+    if (allNotesNote) {
+      allNotesNote.textContent = filter === 'all' ? 'All published notes.' : `Every published note labeled ${label}.`;
+    }
+
+    if (recentEmptyNote) {
+      recentEmptyNote.textContent = filter === 'all'
+        ? 'No recent notes from the last 3 months.'
+        : `No recent notes under ${label} from the last 3 months.`;
+      recentEmptyNote.hidden = recentVisibleCount > 0;
+    }
+
+    if (allEmptyNote) {
+      allEmptyNote.textContent = filter === 'all'
+        ? 'No notes have been posted yet.'
+        : `No posts under ${label} yet.`;
+      allEmptyNote.hidden = allVisibleCount > 0;
+    }
+  };
 
   categoryButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      const filter = button.dataset.filter || 'all';
-
-      categoryButtons.forEach((item) => item.classList.remove('is-active'));
-      button.classList.add('is-active');
-
-      cards.forEach((card) => {
-        const isVisible = filter === 'all' || card.dataset.category === filter;
-        card.classList.toggle('is-hidden', !isVisible);
-      });
+      activateCategory(button.dataset.filter || 'all', button);
     });
   });
+
+  const hashTarget = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
+  if (hashTarget?.classList.contains('blog-category-chip')) {
+    activateCategory(hashTarget.dataset.filter || 'all', hashTarget);
+    requestAnimationFrame(() => hashTarget.scrollIntoView({ block: 'center' }));
+  } else {
+    const defaultButton = categoryButtons.find((button) => button.classList.contains('is-active')) || categoryButtons[0];
+    activateCategory(defaultButton?.dataset.filter || 'all', defaultButton);
+  }
 })();
