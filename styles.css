@@ -9285,6 +9285,115 @@ body {
   line-height: 1.25;
 }
 
+.volunteering-impact-summary-section {
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+}
+
+.vol-impact-summary-head {
+  max-width: 760px;
+}
+
+.vol-section-kicker {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: .55rem;
+  padding: .28rem .6rem;
+  border: 1px solid color-mix(in oklab, var(--vol-cyan), transparent 64%);
+  border-radius: 999px;
+  color: color-mix(in oklab, var(--vol-cyan), white 10%);
+  background: color-mix(in oklab, var(--vol-cyan), transparent 90%);
+  font-size: .74rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.vol-impact-summary-head p {
+  max-width: 680px;
+  margin: .55rem 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.58;
+}
+
+.vol-impact-summary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: clamp(.8rem, 2vw, 1rem);
+  border-color: color-mix(in oklab, var(--vol-cyan), transparent 70%);
+  background:
+    radial-gradient(circle at 0 0, color-mix(in oklab, var(--vol-cyan), transparent 84%), transparent 18rem),
+    radial-gradient(circle at 100% 8%, color-mix(in oklab, var(--vol-gold), transparent 86%), transparent 16rem),
+    color-mix(in oklab, var(--surface), transparent 18%);
+}
+
+.vol-impact-summary-grid span {
+  display: grid;
+  gap: .22rem;
+  justify-items: center;
+}
+
+.vol-impact-summary-grid strong {
+  color: color-mix(in oklab, var(--text), white 6%);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.vol-impact-summary-grid em {
+  color: color-mix(in oklab, var(--vol-cyan), white 12%);
+  font-size: .76rem;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.vol-impact-summary-grid small {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.vol-impact-summary-grid article {
+  min-height: 142px;
+  border-color: color-mix(in oklab, var(--vol-cyan), transparent 76%);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)),
+    color-mix(in oklab, var(--surface), transparent 24%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 16px 44px color-mix(in oklab, #020617, transparent 88%);
+}
+
+.vol-impact-summary-grid i {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid color-mix(in oklab, var(--vol-cyan), transparent 58%);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--vol-cyan), transparent 88%);
+  font-size: 1.1rem;
+}
+
+.vol-service-level-grid article {
+  align-content: start;
+}
+
+.vol-service-level-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.vol-service-level-grid ul {
+  display: grid;
+  gap: .45rem;
+  margin: .75rem 0 0;
+  padding-left: 1.05rem;
+  color: var(--muted);
+  font-size: .84rem;
+  line-height: 1.45;
+}
+
 .vol-project-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -9354,6 +9463,83 @@ body {
 }
 
 /* Volunteering grants section */
+.vol-grants-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(.85rem, 2vw, 1rem);
+  border: 1px solid color-mix(in oklab, var(--vol-gold), transparent 58%);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 8% 0%, color-mix(in oklab, var(--vol-gold), transparent 84%), transparent 16rem),
+    color-mix(in oklab, var(--surface), transparent 20%);
+  box-shadow: 0 20px 58px color-mix(in oklab, #020617, transparent 84%);
+}
+
+.vol-grant-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+}
+
+.vol-grant-summary article {
+  display: grid;
+  gap: .35rem;
+  padding: .9rem;
+  border: 1px solid color-mix(in oklab, var(--vol-gold), transparent 66%);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--vol-gold), transparent 90%);
+}
+
+.vol-grant-summary span,
+.vol-grant-row span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.vol-grant-summary strong {
+  color: color-mix(in oklab, var(--vol-gold), white 16%);
+  font-size: clamp(1.05rem, 2vw, 1.42rem);
+  line-height: 1.05;
+}
+
+.vol-grant-list {
+  display: grid;
+  gap: .55rem;
+}
+
+.vol-grant-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) auto minmax(0, 1fr);
+  gap: .85rem;
+  align-items: center;
+  padding: .72rem .85rem;
+  border: 1px solid color-mix(in oklab, var(--vol-gold), transparent 78%);
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--surface), transparent 34%);
+}
+
+.vol-grant-row-featured {
+  border-color: color-mix(in oklab, var(--vol-gold), transparent 54%);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--vol-gold), transparent 86%), transparent),
+    color-mix(in oklab, var(--surface), transparent 28%);
+}
+
+.vol-grant-row strong {
+  color: color-mix(in oklab, var(--vol-gold), white 14%);
+  font-size: .94rem;
+  white-space: nowrap;
+}
+
+.vol-grant-row p {
+  margin: 0;
+  color: color-mix(in oklab, var(--text), var(--muted) 35%);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+
 .vol-grant-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -9657,6 +9843,16 @@ body {
   .vol-current-role-grid,
   .vol-impact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .vol-grant-summary,
+  .vol-grant-row {
+    grid-template-columns: 1fr;
+  }
+
+  .vol-grant-row {
+    gap: .3rem;
+    align-items: start;
   }
 
   .vol-leadership-loop {
@@ -13398,6 +13594,12 @@ body {
   .page-split-title {
     font-size: clamp(2.05rem, 13vw, 3rem) !important;
     line-height: .98 !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .volunteering-hero .page-split-title .nowrap {
+    white-space: normal;
   }
 
   .lecturing-hero .page-hero-content,
