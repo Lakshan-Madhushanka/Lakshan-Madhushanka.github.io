@@ -2396,7 +2396,15 @@ h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 .home-social li:nth-child(2) a { color: #0a66c2; }
 .home-social li:nth-child(3) a { color: #00ccbb; }
 .home-social li:nth-child(4) a { color: var(--text); }
-.home-social li:nth-child(5) a { color: var(--text); }
+.home-social li:nth-child(5) a { color: #A6CE39; }
+.home-social li:nth-child(6) a { color: var(--text); }
+
+.home-social a img,
+.about-social a img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
 
 .home-social a:hover,
 .home-social a:focus-visible {
@@ -3448,6 +3456,11 @@ body {
 .about-social .fa-linkedin { color: #0a66c2; }
 .about-social .fa-researchgate { color: #00ccbb; }
 .about-social .fa-github { color: var(--text); }
+.about-social .orcid-logo img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
 .about-social .fa-x-twitter { color: var(--text); }
 
 .about-profile-panel {
