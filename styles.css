@@ -14097,6 +14097,127 @@ body {
 
 }
 
+/* CV download highlight */
+.about-actions .btn.cv-download-highlight,
+.research-hero-actions .btn.cv-download-highlight {
+  isolation: isolate;
+  gap: .45rem;
+  color: #fff;
+  border-color: color-mix(in oklab, var(--accent), #f6d77a 30%);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, .28), transparent 31%),
+    linear-gradient(135deg, color-mix(in oklab, var(--accent), #00d4ff 20%), color-mix(in oklab, var(--accent), #172554 28%));
+  box-shadow:
+    0 0 0 0 color-mix(in oklab, var(--accent), transparent 78%),
+    0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+    inset 0 1px 0 rgba(255, 255, 255, .24);
+  animation: cvDownloadPulse 3.2s ease-in-out infinite;
+}
+
+.about-actions .btn:not(.cv-download-highlight),
+.research-hero-actions .btn:not(.cv-download-highlight) {
+  color: color-mix(in oklab, var(--text), var(--muted) 28%);
+  border-color: color-mix(in oklab, var(--muted), transparent 84%);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--surface), transparent 18%), color-mix(in oklab, var(--surface), transparent 36%));
+  box-shadow:
+    0 8px 18px color-mix(in oklab, var(--ring), transparent 86%),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.about-actions .btn.cv-download-highlight::before,
+.research-hero-actions .btn.cv-download-highlight::before {
+  content: "";
+  position: absolute;
+  top: -130%;
+  left: -48%;
+  z-index: 0;
+  width: 36%;
+  height: 360%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .56), transparent);
+  filter: blur(.5px);
+  transform: translateX(-180%) rotate(18deg);
+  animation: cvDownloadShine 3.2s ease-in-out infinite;
+}
+
+.about-actions .btn.cv-download-highlight::after,
+.research-hero-actions .btn.cv-download-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: inherit;
+}
+
+.about-actions .btn.cv-download-highlight i,
+.about-actions .btn.cv-download-highlight span,
+.research-hero-actions .btn.cv-download-highlight i,
+.research-hero-actions .btn.cv-download-highlight span {
+  position: relative;
+  z-index: 1;
+}
+
+.about-actions .btn.cv-download-highlight i,
+.research-hero-actions .btn.cv-download-highlight i {
+  margin-right: 0;
+}
+
+.about-actions .btn.cv-download-highlight:hover,
+.about-actions .btn.cv-download-highlight:focus-visible,
+.research-hero-actions .btn.cv-download-highlight:hover,
+.research-hero-actions .btn.cv-download-highlight:focus-visible {
+  transform: translateY(-3px) scale(1.02);
+  border-color: color-mix(in oklab, #f6d77a, var(--accent) 42%);
+  box-shadow:
+    0 0 0 .34rem color-mix(in oklab, #f6d77a, transparent 88%),
+    0 24px 54px color-mix(in oklab, var(--accent), transparent 45%),
+    inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+
+@keyframes cvDownloadPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--accent), transparent 78%),
+      0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+      inset 0 1px 0 rgba(255, 255, 255, .24);
+  }
+  50% {
+    box-shadow:
+      0 0 0 .42rem color-mix(in oklab, #f6d77a, transparent 91%),
+      0 22px 52px color-mix(in oklab, var(--accent), transparent 48%),
+      inset 0 1px 0 rgba(255, 255, 255, .28);
+  }
+}
+
+@keyframes cvDownloadShine {
+  0%, 18% {
+    transform: translateX(-180%) rotate(18deg);
+  }
+  48%, 100% {
+    transform: translateX(460%) rotate(18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-actions .btn.cv-download-highlight,
+  .about-actions .btn.cv-download-highlight::before,
+  .research-hero-actions .btn.cv-download-highlight,
+  .research-hero-actions .btn.cv-download-highlight::before {
+    animation: none !important;
+  }
+
+  .about-actions .btn.cv-download-highlight,
+  .research-hero-actions .btn.cv-download-highlight {
+    box-shadow:
+      0 0 0 .24rem color-mix(in oklab, #f6d77a, transparent 90%),
+      0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+      inset 0 1px 0 rgba(255, 255, 255, .24);
+  }
+}
+
 @media (max-width: 480px) {
   .about-social a {
     width: 42px;
