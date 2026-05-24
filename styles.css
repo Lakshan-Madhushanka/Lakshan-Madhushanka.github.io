@@ -6404,6 +6404,397 @@ body {
   mask-image: radial-gradient(circle at 52% 50%, black, transparent 78%);
 }
 
+.hero-certification-cluster {
+  position: absolute;
+  top: clamp(.85rem, 2.2vw, 1.4rem);
+  right: calc(clamp(1rem, 2.4vw, 1.8rem) - .2cm);
+  bottom: auto;
+  z-index: 42;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: clamp(.08rem, .14vw, .16rem);
+  width: min(45rem, calc(100% - 2rem));
+  max-width: calc(100% - 2rem);
+  pointer-events: none;
+}
+
+.hero-certification-stack {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: clamp(.08rem, .14vw, .16rem);
+}
+
+.google-certification-stack {
+  width: auto;
+  padding-top: 0;
+}
+
+.gemini-certification-stack {
+  width: auto;
+}
+
+.hero-credential-badge {
+  --hero-badge-scale: .8;
+  display: block;
+  width: clamp(8.2rem, 10vw, 9.4rem);
+  min-width: 0;
+  padding: 0;
+  color: #eef4ff;
+  text-decoration: none;
+  pointer-events: auto;
+  opacity: .9;
+  zoom: var(--hero-badge-scale);
+  transition: transform .2s ease, filter .2s ease, opacity .2s ease;
+}
+
+.hero-credential-badge:hover,
+.hero-credential-badge:focus-visible {
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.05);
+  opacity: 1;
+}
+
+.gemini-credential-card {
+  --gemini-logo-left: 41.25%;
+  --gemini-logo-top: 11%;
+  --gemini-logo-width: 17.5%;
+  --gemini-title-top: 60.5%;
+  --gemini-title-width: 49.5%;
+  --gemini-title-size: clamp(.48rem, .75vw, .62rem);
+  --gemini-bar-left: 22.75%;
+  --gemini-bar-top: 77.5%;
+  --gemini-bar-width: 54.5%;
+  --gemini-bar-height: 11.5%;
+  --gemini-role-size: clamp(.26rem, .4vw, .34rem);
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  padding: 0;
+  filter:
+    drop-shadow(0 7px 16px rgba(0, 0, 0, .34))
+    drop-shadow(0 0 10px rgba(0, 200, 255, .10));
+}
+
+.hero-gemini-faculty-badge .gemini-credential-card {
+  --gemini-logo-left: 39.75%;
+  --gemini-logo-top: 5.5%;
+  --gemini-logo-width: 20.25%;
+  --gemini-title-top: 62.5%;
+  --gemini-title-width: 56.25%;
+  --gemini-title-size: clamp(.52rem, .82vw, .68rem);
+  --gemini-bar-left: 18.75%;
+  --gemini-bar-top: 82%;
+  --gemini-bar-width: 62.25%;
+  --gemini-bar-height: 12.5%;
+}
+
+.gemini-credential-card::after {
+  display: none;
+}
+
+.gemini-credential-card img {
+  display: block;
+  position: absolute;
+  top: var(--gemini-logo-top);
+  left: var(--gemini-logo-left);
+  width: var(--gemini-logo-width);
+  height: auto;
+  filter: drop-shadow(0 4px 7px rgba(0, 0, 0, .28));
+}
+
+.gemini-credential-title {
+  display: block;
+  position: absolute;
+  top: var(--gemini-title-top);
+  left: 50%;
+  width: var(--gemini-title-width);
+  transform: translateX(-50%);
+  color: #eef4ff;
+  font-family: "Google Sans", "Product Sans", Inter, Arial, sans-serif;
+  font-size: var(--gemini-title-size);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(2, 6, 23, .66);
+  white-space: nowrap;
+}
+
+.gemini-credential-role {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: var(--gemini-bar-top);
+  left: var(--gemini-bar-left);
+  width: var(--gemini-bar-width);
+  height: var(--gemini-bar-height);
+  padding: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2f6df6, #58a8ff);
+  color: #ffffff;
+  font-family: "Google Sans", "Product Sans", Inter, Arial, sans-serif;
+  font-size: var(--gemini-role-size);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .36),
+    0 4px 8px rgba(4, 13, 31, .2);
+}
+
+.hero-google-credential-badge {
+  --hero-badge-scale: .8;
+  display: block;
+  width: clamp(11.8rem, 15vw, 13.6rem);
+  min-width: 0;
+  color: #eef4ff;
+  text-decoration: none;
+  pointer-events: auto;
+  zoom: var(--hero-badge-scale);
+  transition: transform .2s ease, filter .2s ease;
+}
+
+.hero-google-credential-badge:hover,
+.hero-google-credential-badge:focus-visible {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+}
+
+.google-credential-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 380 / 79;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .025)),
+    rgba(4, 13, 31, .54);
+  border: 1px solid rgba(147, 240, 255, .18);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, .26),
+    0 0 12px rgba(0, 200, 255, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.google-credential-card::after {
+  display: none;
+}
+
+.google-credential-card img {
+  display: block;
+  position: absolute;
+  left: 4.74%;
+  top: 20.25%;
+  width: 11.32%;
+  height: auto;
+  filter: drop-shadow(0 4px 9px rgba(0, 0, 0, .2));
+}
+
+.google-credential-card > span {
+  position: absolute;
+  left: 21.58%;
+  top: 17.72%;
+  width: 71.84%;
+}
+
+.google-credential-card span span {
+  display: block;
+  color: rgba(238, 244, 255, .8);
+  font-family: "Google Sans", "Product Sans", Inter, Arial, sans-serif;
+  font-size: clamp(.46rem, .73vw, .6rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.google-credential-card strong {
+  display: block;
+  margin-top: .08rem;
+  color: #fff;
+  font-family: "Google Sans", "Product Sans", Inter, Arial, sans-serif;
+  font-size: clamp(.56rem, .91vw, .74rem);
+  line-height: .98;
+  white-space: nowrap;
+}
+
+/* Lecturing hero certification logos */
+.hero-certification-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .7rem;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: clamp(2.4rem, 3.4vw, 2.9rem);
+  padding: .24rem .05rem;
+}
+
+.google-credential-card.hero-certification-item,
+.gemini-credential-card.hero-certification-item {
+  aspect-ratio: auto;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.google-credential-card.hero-certification-item {
+  display: grid;
+  grid-template-columns: clamp(23px, 1.85vw, 28px) minmax(0, 1fr);
+  align-items: center;
+  column-gap: .58rem;
+}
+
+.google-credential-card.hero-certification-item::after,
+.gemini-credential-card.hero-certification-item::after {
+  display: none;
+}
+
+.hero-certification-logo-wrap {
+  flex: 0 0 clamp(24px, 2.2vw, 34px);
+  position: relative !important;
+  inset: auto !important;
+  z-index: 2;
+  display: block;
+  overflow: visible;
+  width: clamp(24px, 2.2vw, 34px) !important;
+  height: clamp(24px, 2.2vw, 34px) !important;
+  border-radius: 4px;
+}
+
+.hero-google-credential-badge .hero-certification-logo-wrap {
+  flex-basis: clamp(23px, 1.85vw, 28px);
+  width: clamp(23px, 1.85vw, 28px) !important;
+  height: clamp(23px, 1.85vw, 28px) !important;
+  transform: translateY(-.2cm);
+}
+
+.hero-credential-badge .hero-certification-logo-wrap {
+  transform: translate(-.2cm, -.08cm);
+}
+
+.google-credential-card > .hero-certification-logo-wrap,
+.google-credential-card > .hero-certification-name {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+.hero-certification-logo-wrap::after {
+  display: none;
+}
+
+.hero-certification-logo {
+  position: relative !important;
+  z-index: 1;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  display: block;
+  object-position: center;
+  filter: drop-shadow(0 4px 9px rgba(0, 0, 0, .2));
+}
+
+.hero-certification-name {
+  position: static !important;
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+  color: rgba(247, 250, 255, .96);
+  font-family: "Google Sans", "Product Sans", Inter, Arial, sans-serif;
+  font-size: clamp(.58rem, .72vw, .68rem);
+  line-height: 1.2;
+  font-weight: 700;
+  text-shadow:
+    0 1px 3px rgba(2, 6, 23, .9),
+    0 0 8px rgba(2, 6, 23, .55);
+}
+
+.hero-certification-name span,
+.hero-certification-name strong {
+  display: block;
+  white-space: normal;
+  line-height: 1.05;
+}
+
+.hero-google-credential-badge .hero-certification-name span,
+.hero-google-credential-badge .hero-certification-name strong {
+  white-space: nowrap;
+}
+
+.hero-certification-name .gemini-credential-title {
+  position: static;
+  width: auto;
+  transform: none;
+  color: rgba(247, 250, 255, .96);
+  font-size: inherit;
+  line-height: 1.05;
+  text-align: left;
+  text-shadow:
+    0 1px 3px rgba(2, 6, 23, .9),
+    0 0 8px rgba(2, 6, 23, .55);
+  white-space: normal;
+}
+
+.hero-certification-name .gemini-credential-role {
+  position: static;
+  justify-content: flex-start;
+  width: fit-content;
+  height: auto;
+  margin-top: .18rem;
+  padding: .1rem .5rem;
+  font-size: clamp(.5rem, .65vw, .58rem);
+  line-height: 1;
+}
+
+@media (max-width: 700px) {
+  .hero-certification-logo-wrap {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .hero-certification-name {
+    font-size: .66rem;
+  }
+}
+
+@keyframes logoShine {
+  0%, 58%, 100% {
+    opacity: 0;
+    transform: translateX(0) rotate(14deg);
+  }
+  66% {
+    opacity: .68;
+  }
+  78% {
+    opacity: 0;
+    transform: translateX(340%) rotate(14deg);
+  }
+}
+
+@keyframes credentialCardShine {
+  0%, 58%, 100% {
+    opacity: 0;
+    transform: translateX(0) rotate(12deg);
+  }
+  66% {
+    opacity: .72;
+  }
+  78% {
+    opacity: 0;
+    transform: translateX(470%) rotate(12deg);
+  }
+}
+
 .lecturing-hero-art i {
   position: absolute;
   color: transparent;
@@ -7124,6 +7515,48 @@ body {
   justify-content: center;
 }
 
+.lecturing-certifications-section {
+  margin-top: clamp(1rem, 2.4vw, 1.8rem);
+}
+
+.teaching-certification-list {
+  display: grid;
+  gap: .65rem;
+  max-width: 760px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.teaching-certification-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem .8rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: .72rem .86rem;
+  border-radius: 10px;
+  color: rgba(238, 244, 255, .86);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .018)),
+    rgba(5, 17, 37, .58);
+  border: 1px solid rgba(71, 148, 255, .26);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.teaching-certification-list a {
+  color: #eef4ff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.teaching-certification-list a:hover,
+.teaching-certification-list a:focus-visible {
+  color: #93f0ff;
+  text-decoration: underline;
+}
+
 @media (max-width: 1100px) {
   .lecturing-hero,
   .teaching-appointments-grid,
@@ -7152,6 +7585,54 @@ body {
   }
 }
 
+@media (max-width: 900px) {
+  .hero-certification-cluster {
+    position: relative;
+    display: grid;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: flex-start;
+    width: min(21rem, 100%);
+    max-width: 100%;
+    margin-top: .15rem;
+    gap: .35rem;
+  }
+
+  .hero-certification-stack {
+    display: contents;
+  }
+
+  .google-certification-stack {
+    width: auto;
+    padding-top: 0;
+  }
+
+  .gemini-certification-stack {
+    width: auto;
+  }
+
+  .hero-google-credential-badge {
+    width: 100%;
+  }
+
+  .hero-credential-badge {
+    width: 100%;
+  }
+
+  .hero-certification-item {
+    min-height: 2.22rem;
+  }
+
+  .hero-google-credential-badge .hero-certification-name span,
+  .hero-google-credential-badge .hero-certification-name strong {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 640px) {
   .lecturing-hero,
   .teaching-appointments-grid,
@@ -7164,6 +7645,10 @@ body {
 
   .lecturing-hero-art {
     min-height: 220px;
+  }
+
+  .teaching-certification-list li {
+    width: 100%;
   }
 
   .lecturing-course-section {
@@ -7214,6 +7699,11 @@ body {
   .course-carousel-btn,
   .course-carousel-dots button {
     transition: none !important;
+  }
+
+  .gemini-credential-card::after,
+  .google-credential-card::after {
+    animation: none !important;
   }
 }
 
@@ -14013,7 +14503,7 @@ body {
 .lecturing-landing .page-hero-art {
   position: absolute;
   inset: 0 -9% 0 30%;
-  z-index: 1;
+  z-index: 6;
   width: auto;
   min-height: 100%;
   overflow: hidden;
@@ -14024,6 +14514,10 @@ body {
 .lecturing-landing .hero-neural-overlay,
 .lecturing-landing .hero-neural-firing {
   z-index: 4;
+}
+
+.lecturing-landing .hero-certification-cluster {
+  z-index: 42;
 }
 
 .lecturing-landing .page-hero-art::before {
@@ -14095,6 +14589,127 @@ body {
     animation: none !important;
   }
 
+}
+
+/* CV download highlight */
+.about-actions .btn.cv-download-highlight,
+.research-hero-actions .btn.cv-download-highlight {
+  isolation: isolate;
+  gap: .45rem;
+  color: #fff;
+  border-color: color-mix(in oklab, var(--accent), #f6d77a 30%);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, .28), transparent 31%),
+    linear-gradient(135deg, color-mix(in oklab, var(--accent), #00d4ff 20%), color-mix(in oklab, var(--accent), #172554 28%));
+  box-shadow:
+    0 0 0 0 color-mix(in oklab, var(--accent), transparent 78%),
+    0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+    inset 0 1px 0 rgba(255, 255, 255, .24);
+  animation: cvDownloadPulse 3.2s ease-in-out infinite;
+}
+
+.about-actions .btn:not(.cv-download-highlight),
+.research-hero-actions .btn:not(.cv-download-highlight) {
+  color: color-mix(in oklab, var(--text), var(--muted) 28%);
+  border-color: color-mix(in oklab, var(--muted), transparent 84%);
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--surface), transparent 18%), color-mix(in oklab, var(--surface), transparent 36%));
+  box-shadow:
+    0 8px 18px color-mix(in oklab, var(--ring), transparent 86%),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.about-actions .btn.cv-download-highlight::before,
+.research-hero-actions .btn.cv-download-highlight::before {
+  content: "";
+  position: absolute;
+  top: -130%;
+  left: -48%;
+  z-index: 0;
+  width: 36%;
+  height: 360%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .56), transparent);
+  filter: blur(.5px);
+  transform: translateX(-180%) rotate(18deg);
+  animation: cvDownloadShine 3.2s ease-in-out infinite;
+}
+
+.about-actions .btn.cv-download-highlight::after,
+.research-hero-actions .btn.cv-download-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, .34);
+  border-radius: inherit;
+}
+
+.about-actions .btn.cv-download-highlight i,
+.about-actions .btn.cv-download-highlight span,
+.research-hero-actions .btn.cv-download-highlight i,
+.research-hero-actions .btn.cv-download-highlight span {
+  position: relative;
+  z-index: 1;
+}
+
+.about-actions .btn.cv-download-highlight i,
+.research-hero-actions .btn.cv-download-highlight i {
+  margin-right: 0;
+}
+
+.about-actions .btn.cv-download-highlight:hover,
+.about-actions .btn.cv-download-highlight:focus-visible,
+.research-hero-actions .btn.cv-download-highlight:hover,
+.research-hero-actions .btn.cv-download-highlight:focus-visible {
+  transform: translateY(-3px) scale(1.02);
+  border-color: color-mix(in oklab, #f6d77a, var(--accent) 42%);
+  box-shadow:
+    0 0 0 .34rem color-mix(in oklab, #f6d77a, transparent 88%),
+    0 24px 54px color-mix(in oklab, var(--accent), transparent 45%),
+    inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+
+@keyframes cvDownloadPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--accent), transparent 78%),
+      0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+      inset 0 1px 0 rgba(255, 255, 255, .24);
+  }
+  50% {
+    box-shadow:
+      0 0 0 .42rem color-mix(in oklab, #f6d77a, transparent 91%),
+      0 22px 52px color-mix(in oklab, var(--accent), transparent 48%),
+      inset 0 1px 0 rgba(255, 255, 255, .28);
+  }
+}
+
+@keyframes cvDownloadShine {
+  0%, 18% {
+    transform: translateX(-180%) rotate(18deg);
+  }
+  48%, 100% {
+    transform: translateX(460%) rotate(18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-actions .btn.cv-download-highlight,
+  .about-actions .btn.cv-download-highlight::before,
+  .research-hero-actions .btn.cv-download-highlight,
+  .research-hero-actions .btn.cv-download-highlight::before {
+    animation: none !important;
+  }
+
+  .about-actions .btn.cv-download-highlight,
+  .research-hero-actions .btn.cv-download-highlight {
+    box-shadow:
+      0 0 0 .24rem color-mix(in oklab, #f6d77a, transparent 90%),
+      0 18px 42px color-mix(in oklab, var(--accent), transparent 58%),
+      inset 0 1px 0 rgba(255, 255, 255, .24);
+  }
 }
 
 @media (max-width: 480px) {
