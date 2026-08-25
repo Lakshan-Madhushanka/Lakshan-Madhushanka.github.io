@@ -1072,6 +1072,133 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('DOMContentLoaded', initResearchCollaboratorCarousel);
 })();
 
+// Research statistics from the latest valid Google Form response
+(function () {
+  const statisticsCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcmXxYb7IMUXgbqRhTxaXzKXAVT7mNEfuFyre5Hul1VZd8L2x6rGbwo0hahsPJdajDJGh-3_783IH/pub?gid=1906640285&single=true&output=csv';
+  const statisticHeaders = {
+    citations: 'citations',
+    'h-index': 'h-index',
+    'i10-index': 'i10-index',
+    'total-publications': 'total-publications',
+    'journal-articles': 'journal-articles',
+    'collaborating-institutions': 'collaborating-institutions',
+    'countries-collaborated': 'countries-collaborated',
+    'co-authors': 'co-authors'
+  };
+
+  function normalizeCsvHeader(value) {
+    return value
+      .replace(/^\uFEFF/, '')
+      .trim()
+      .toLowerCase()
+      .replace(/[\s_]+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-');
+  }
+
+  function parseCsv(csvText) {
+    const rows = [];
+    let row = [];
+    let field = '';
+    let quoted = false;
+
+    for (let index = 0; index < csvText.length; index += 1) {
+      const character = csvText[index];
+      const nextCharacter = csvText[index + 1];
+
+      if (character === '"') {
+        if (quoted && nextCharacter === '"') {
+          field += '"';
+          index += 1;
+        } else {
+          quoted = !quoted;
+        }
+      } else if (character === ',' && !quoted) {
+        row.push(field);
+        field = '';
+      } else if ((character === '\n' || character === '\r') && !quoted) {
+        if (character === '\r' && nextCharacter === '\n') index += 1;
+        row.push(field);
+        if (row.some((value) => value.trim() !== '')) rows.push(row);
+        row = [];
+        field = '';
+      } else {
+        field += character;
+      }
+    }
+
+    row.push(field);
+    if (!quoted && row.some((value) => value.trim() !== '')) rows.push(row);
+    return rows;
+  }
+
+  function getValidStatistic(value) {
+    const cleanedValue = String(value || '').trim().replace(/,/g, '');
+    if (!/^\d+(?:\.\d+)?$/.test(cleanedValue)) return null;
+
+    const parsedValue = Number(cleanedValue);
+    return Number.isFinite(parsedValue) && parsedValue >= 0 ? String(parsedValue) : null;
+  }
+
+  async function loadResearchStatistics() {
+    const statisticElements = document.querySelectorAll('[data-research-stat]');
+    if (!statisticElements.length) return;
+
+    try {
+      const separator = statisticsCsvUrl.includes('?') ? '&' : '?';
+      const response = await fetch(`${statisticsCsvUrl}${separator}_=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const rows = parseCsv(await response.text());
+      if (rows.length < 2) throw new Error('No submitted response rows were found');
+
+      const headers = rows[0].map(normalizeCsvHeader);
+      const timestampIndex = headers.indexOf('timestamp');
+      const recognizedColumns = Object.fromEntries(
+        Object.entries(statisticHeaders)
+          .map(([statistic, header]) => [statistic, headers.indexOf(header)])
+          .filter(([, index]) => index >= 0)
+      );
+
+      console.info('[Research statistics] Detected CSV headers:', rows[0]);
+      if (Object.keys(recognizedColumns).length === 0) {
+        throw new Error('No recognized statistic headers were found');
+      }
+
+      const lastRequiredColumnIndex = Math.max(timestampIndex, ...Object.values(recognizedColumns));
+      const latestRow = rows.slice(1).reverse().find((candidateRow) => {
+        const isCompleteRow = candidateRow.length > lastRequiredColumnIndex;
+        const hasTimestamp = timestampIndex < 0 || Boolean(candidateRow[timestampIndex]?.trim());
+        const hasValidStatistic = Object.values(recognizedColumns)
+          .some((columnIndex) => getValidStatistic(candidateRow[columnIndex]) !== null);
+        return isCompleteRow && hasTimestamp && hasValidStatistic;
+      });
+
+      if (!latestRow) throw new Error('No valid submitted response row was found');
+
+      statisticElements.forEach((element) => {
+        const columnIndex = recognizedColumns[element.dataset.researchStat];
+        if (columnIndex === undefined) {
+          console.warn(`[Research statistics] Missing CSV header for "${element.dataset.researchStat}"; keeping its fallback value.`);
+          return;
+        }
+
+        const value = getValidStatistic(latestRow[columnIndex]);
+        if (value === null) {
+          console.warn(`[Research statistics] Invalid or missing value for "${element.dataset.researchStat}"; keeping its fallback value.`);
+          return;
+        }
+
+        element.textContent = value;
+      });
+    } catch (error) {
+      console.warn('[Research statistics] Could not load Google Sheet data; keeping fallback values.', error);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', loadResearchStatistics);
+})();
+
 // Homepage dynamic latest updates
 (function () {
   const updatePages = [
