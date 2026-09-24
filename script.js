@@ -1199,6 +1199,222 @@ window.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('DOMContentLoaded', loadResearchStatistics);
 })();
 
+// Selected publications from Google Form responses
+(function () {
+  const publicationsCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcmXxYb7IMUXgbqRhTxaXzKXAVT7mNEfuFyre5Hul1VZd8L2x6rGbwo0hahsPJdajDJGh-3_783IH/pub?gid=1328317716&single=true&output=csv';
+  const publicationHeaderAliases = {
+    timestamp: ['timestamp'],
+    title: ['publication-title'],
+    year: ['publication-year', 'year'],
+    type: ['publication-type', 'type'],
+    venue: ['venue-journal-conference', 'venue', 'journal-conference'],
+    doi: ['doi'],
+    url: ['publication-url', 'url'],
+    issn: ['issn'],
+    display: ['display-on-website']
+  };
+
+  function normalizePublicationHeader(value) {
+    return value
+      .replace(/^\uFEFF/, '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  function parsePublicationsCsv(csvText) {
+    const rows = [];
+    let row = [];
+    let field = '';
+    let quoted = false;
+
+    for (let index = 0; index < csvText.length; index += 1) {
+      const character = csvText[index];
+      const nextCharacter = csvText[index + 1];
+
+      if (character === '"') {
+        if (quoted && nextCharacter === '"') {
+          field += '"';
+          index += 1;
+        } else {
+          quoted = !quoted;
+        }
+      } else if (character === ',' && !quoted) {
+        row.push(field);
+        field = '';
+      } else if ((character === '\n' || character === '\r') && !quoted) {
+        if (character === '\r' && nextCharacter === '\n') index += 1;
+        row.push(field);
+        if (row.some((value) => value.trim() !== '')) rows.push(row);
+        row = [];
+        field = '';
+      } else {
+        field += character;
+      }
+    }
+
+    row.push(field);
+    if (!quoted && row.some((value) => value.trim() !== '')) rows.push(row);
+    return rows;
+  }
+
+  function getPublicationColumns(headers) {
+    return Object.fromEntries(
+      Object.entries(publicationHeaderAliases).map(([field, aliases]) => [
+        field,
+        headers.findIndex((header) => aliases.includes(header))
+      ])
+    );
+  }
+
+  function isYes(value) {
+    return String(value || '').trim().toLowerCase() === 'yes';
+  }
+
+  function getSafeExternalUrl(value) {
+    try {
+      const url = new URL(String(value || '').trim());
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function getDoiUrl(value) {
+    const doi = String(value || '').trim();
+    if (!doi) return null;
+    if (/^10\.\d{4,9}\/[\S]+$/i.test(doi)) {
+      return `https://doi.org/${encodeURI(doi)}`;
+    }
+    return getSafeExternalUrl(doi);
+  }
+
+  function createPublicationCard(publication, index) {
+    const article = document.createElement('article');
+    article.className = 'publication-compact-card update-source';
+    article.dataset.updateType = 'publication';
+    article.dataset.updateDate = publication.year;
+    article.dataset.updateTitle = publication.title;
+    article.dataset.updateMeta = publication.venue;
+    article.dataset.updateLink = publication.primaryUrl || 'research-publications.html';
+    article.dataset.highlightCategory = 'Publication';
+    article.dataset.highlightTitle = publication.title;
+    article.dataset.highlightYear = publication.year;
+    article.dataset.highlightLink = publication.primaryUrl || 'research-publications.html#researchEvidence';
+
+    const number = document.createElement('span');
+    number.className = 'publication-index';
+    number.textContent = String(index + 1).padStart(2, '0');
+
+    const content = document.createElement('div');
+    const title = document.createElement('h3');
+    title.textContent = publication.title;
+    content.appendChild(title);
+
+    if (publication.venue) {
+      const venue = document.createElement('p');
+      venue.textContent = publication.venue;
+      content.appendChild(venue);
+    }
+
+    const badges = document.createElement('div');
+    const year = document.createElement('time');
+    year.dateTime = publication.year;
+    year.textContent = `Published ${publication.year}`;
+    badges.appendChild(year);
+
+    if (publication.type) {
+      const type = document.createElement('span');
+      type.textContent = publication.type;
+      badges.appendChild(type);
+    }
+
+    if (publication.primaryUrl) {
+      const link = document.createElement('a');
+      link.href = publication.primaryUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = publication.doiUrl ? 'DOI' : 'View Publication';
+      badges.appendChild(link);
+    }
+
+    if (publication.issn) {
+      const issn = document.createElement('span');
+      issn.textContent = `ISSN ${publication.issn}`;
+      badges.appendChild(issn);
+    }
+
+    content.appendChild(badges);
+    article.append(number, content);
+    return article;
+  }
+
+  async function loadSelectedPublications() {
+    const list = document.querySelector('[data-selected-publications]');
+    if (!list) return;
+
+    try {
+      const separator = publicationsCsvUrl.includes('?') ? '&' : '?';
+      const response = await fetch(`${publicationsCsvUrl}${separator}_=${Date.now()}`, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const rows = parsePublicationsCsv(await response.text());
+      if (!rows.length) throw new Error('The publication CSV is empty');
+
+      const rawHeaders = rows[0];
+      const headers = rawHeaders.map(normalizePublicationHeader);
+      const columns = getPublicationColumns(headers);
+      console.info('[Selected publications] Detected CSV headers:', rawHeaders);
+
+      const requiredFields = ['title', 'year', 'display'];
+      const missingFields = requiredFields.filter((field) => columns[field] < 0);
+      if (missingFields.length) {
+        throw new Error(`Missing required publication columns: ${missingFields.join(', ')}`);
+      }
+
+      const publications = rows.slice(1).map((row, rowIndex) => {
+        const value = (field) => columns[field] < 0 ? '' : String(row[columns[field]] || '').trim();
+        const year = value('year');
+        if (!value('title') || !/^\d{4}$/.test(year) || !isYes(value('display'))) {
+          return null;
+        }
+
+        const doiUrl = getDoiUrl(value('doi'));
+        const publicationUrl = getSafeExternalUrl(value('url'));
+        const timestamp = Date.parse(value('timestamp'));
+        return {
+          title: value('title'),
+          year,
+          type: value('type'),
+          venue: value('venue'),
+          issn: value('issn'),
+          doiUrl,
+          primaryUrl: doiUrl || publicationUrl,
+          timestamp: Number.isFinite(timestamp) ? timestamp : 0,
+          rowIndex
+        };
+      }).filter(Boolean);
+
+      publications.sort((first, second) =>
+        Number(second.year) - Number(first.year)
+        || second.timestamp - first.timestamp
+        || second.rowIndex - first.rowIndex
+      );
+
+      const fragment = document.createDocumentFragment();
+      publications.forEach((publication, index) => {
+        fragment.appendChild(createPublicationCard(publication, index));
+      });
+      list.replaceChildren(fragment);
+    } catch (error) {
+      console.warn('[Selected publications] Could not load Google Sheet data; keeping fallback cards.', error);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', loadSelectedPublications);
+})();
+
 // Homepage dynamic latest updates
 (function () {
   const updatePages = [
